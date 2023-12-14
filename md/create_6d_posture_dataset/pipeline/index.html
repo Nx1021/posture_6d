@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="nx1021" /><link rel="canonical" href="https://nx1021.github.io/MyLib/md/create_6d_posture_dataset/pipeline/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>pipeline - My Docs</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "pipeline";
+        var mkdocs_page_input_path = "md\\create_6d_posture_dataset\\pipeline.md";
+        var mkdocs_page_url = "/MyLib/md/create_6d_posture_dataset/pipeline/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">derive</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../derive/">derive</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">metric</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../metric/">metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">core</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/intr/">intr</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/posture/">posture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/utils/">utils</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">create_6d_posture_dataset</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../capturing/">capturing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data_manager/">data_manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interact_icp/">interact_icp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pcd_creator/">pcd_creator</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">pipeline</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.pipeline">pipeline</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine">PipeLine</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.aruco_detector">aruco_detector</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.capturing">capturing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.data_num">data_num</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.data_recorder">data_recorder</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.dataset_name">dataset_name</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.directory">directory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.interact_icp">interact_icp</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.model_manager">model_manager</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.pcd_creator">pcd_creator</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.sub_dir">sub_dir</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.capture_image">capture_image()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.export_data">export_data()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.icp">icp()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.plot_captured">plot_captured()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.plot_dataset">plot_dataset()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.register_pcd">register_pcd()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.pipeline.PipeLine.segment_pcd">segment_pcd()</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/aruco_detector/">utils.aruco_detector</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/bounded_voronoi/">utils.bounded_voronoi</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/camera_sys/">utils.camera_sys</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/pc_voxelize/">utils.pc_voxelize</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/plane/">utils.plane</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataCluster/">dataCluster</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataset/">dataset</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataset_example/">dataset_example</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataset_format/">dataset_format</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/IOAbstract/">IOAbstract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/mesh_manager/">mesh_manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/spliter/">spliter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/viewmeta/">viewmeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/_mkdoctest/">_mkdoctest</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">create_6d_posture_dataset</li>
+      <li class="breadcrumb-item active">pipeline</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="pipeline">pipeline</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="create_6d_posture_dataset.pipeline"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="create_6d_posture_dataset.pipeline.PipeLine" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">PipeLine</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.aruco_detector" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">aruco_detector</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">aruco_detector</span> <span class="o">=</span> <span class="n">ArucoDetector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_recorder</span><span class="o">.</span><span class="n">aruco_floor_json</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.capturing" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">capturing</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">capturing</span> <span class="o">=</span> <span class="n">Capturing</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_recorder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">aruco_detector</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_manager</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.data_num" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">data_num</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">data_num</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.data_recorder" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">data_recorder</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">data_recorder</span> <span class="o">=</span> <span class="n">DataRecorder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">flag_name</span><span class="o">=</span><span class="s1">&#39;data_recorder&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.dataset_name" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">dataset_name</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">dataset_name</span> <span class="o">=</span> <span class="n">dataset_name</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.directory" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">directory</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">sub_dir</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.interact_icp" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">interact_icp</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">interact_icp</span> <span class="o">=</span> <span class="n">InteractIcp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_recorder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_manager</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.model_manager" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">model_manager</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">model_manager</span> <span class="o">=</span> <span class="n">ModelManager</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">flag_name</span><span class="o">=</span><span class="s1">&#39;model_manager&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.pcd_creator" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">pcd_creator</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">pcd_creator</span> <span class="o">=</span> <span class="n">PcdCreator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_recorder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">aruco_detector</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_manager</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.sub_dir" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">sub_dir</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">sub_dir</span> <span class="o">=</span> <span class="n">sub_dir</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">sub_dir</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.capture_image" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">capture_image</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">capture_image</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.export_data" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">export_data</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">export_data</span><span class="p">(</span><span class="n">mesh_manager</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">MeshManager</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">MeshMeta</span><span class="p">]],</span> <span class="n">cvt_intr</span><span class="p">:</span> <span class="n">CameraIntr</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.icp" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">icp</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">icp</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.plot_captured" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">plot_captured</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">plot_captured</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.plot_dataset" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">plot_dataset</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">plot_dataset</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.register_pcd" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">register_pcd</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">register_pcd</span><span class="p">(</span><span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.pipeline.PipeLine.segment_pcd" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">segment_pcd</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">segment_pcd</span><span class="p">(</span><span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../pcd_creator/" class="btn btn-neutral float-left" title="pcd_creator"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../utils/aruco_detector/" class="btn btn-neutral float-right" title="utils.aruco_detector">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../pcd_creator/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../utils/aruco_detector/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

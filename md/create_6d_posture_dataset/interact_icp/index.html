@@ -1,0 +1,2966 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="nx1021" /><link rel="canonical" href="https://nx1021.github.io/MyLib/md/create_6d_posture_dataset/interact_icp/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>interact_icp - My Docs</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "interact_icp";
+        var mkdocs_page_input_path = "md\\create_6d_posture_dataset\\interact_icp.md";
+        var mkdocs_page_url = "/MyLib/md/create_6d_posture_dataset/interact_icp/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">derive</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../derive/">derive</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">metric</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../metric/">metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">core</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/intr/">intr</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/posture/">posture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/utils/">utils</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">create_6d_posture_dataset</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../capturing/">capturing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data_manager/">data_manager</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">interact_icp</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp">interact_icp</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp">InteractIcp</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.baryline_visible">baryline_visible</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.ckt">ckt</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.color_g">color_g</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.contact_pcd">contact_pcd</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.cover_data_confirm">cover_data_confirm</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.current_index">current_index</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.current_pcd">current_pcd</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.current_std_mi">current_std_mi</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.data_recorder">data_recorder</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.icp_trans_dir">icp_trans_dir</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.icp_unf_pcd_dir">icp_unf_pcd_dir</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.is_camera_mode">is_camera_mode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.is_mask_visible">is_mask_visible</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.is_refine_mode">is_refine_mode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.model_manager">model_manager</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.modelbalenceposture">modelbalenceposture</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.pcd_visible">pcd_visible</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.place_gen">place_gen</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.std_meshes_dir">std_meshes_dir</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.std_meshes_enums">std_meshes_enums</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.std_model_baryline">std_model_baryline</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.std_model_frame">std_model_frame</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.step">step</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.trans_with_CCS">trans_with_CCS</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.view_directions">view_directions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.view_switch">view_switch</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.GA_registration">GA_registration()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.auto_icp">auto_icp()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.change_background_color">change_background_color()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.color_generator">color_generator()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.confirm">confirm()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.current_std_mi_transform">current_std_mi_transform()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.gen_cur_std_model_meta">gen_cur_std_model_meta()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.get_O2C0">get_O2C0()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.load_data">load_data()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.nearest_points_mean_d">nearest_points_mean_d()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.next_view">next_view()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.place_step">place_step()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.post_progress">post_progress()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.pre_progress">pre_progress()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.print_nearest_points_mean_d">print_nearest_points_mean_d()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.refine_mode">refine_mode()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.rotate_X_dec">rotate_X_dec()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.rotate_X_inc">rotate_X_inc()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.rotate_Y_dec">rotate_Y_dec()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.rotate_Y_inc">rotate_Y_inc()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.rotate_Z_dec">rotate_Z_dec()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.rotate_Z_inc">rotate_Z_inc()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.set_is_mask_visible">set_is_mask_visible()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.set_unfpcd_visible">set_unfpcd_visible()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.show_bary_arrow">show_bary_arrow()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.show_contact">show_contact()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.skip">skip()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.start">start()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.switch_to_camera_view_mode">switch_to_camera_view_mode()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.switch_to_trans_with_CCS">switch_to_trans_with_CCS()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.trans_with_obj_center">trans_with_obj_center()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.translate_X_dec">translate_X_dec()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.translate_X_inc">translate_X_inc()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.translate_Y_dec">translate_Y_dec()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.translate_Y_inc">translate_Y_inc()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.translate_Z_dec">translate_Z_dec()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.InteractIcp.translate_Z_inc">translate_Z_inc()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter">MaskBilter</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.SHOW_NUM">SHOW_NUM</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.camera_intr">camera_intr</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.cur_range">cur_range</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.data_path">data_path</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.data_recorder">data_recorder</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.model_index_range">model_index_range</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.selected_depth_masks">selected_depth_masks</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.selected_frame_indecies">selected_frame_indecies</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.selected_rgbs">selected_rgbs</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.selected_view_trans_mats">selected_view_trans_mats</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.this_frame_rgb">this_frame_rgb</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.this_view_trans_mat">this_view_trans_mat</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.farthest_point_sample_angle">farthest_point_sample_angle()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.next_view">next_view()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.read_rgbs">read_rgbs()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.select_views">select_views()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.set_current_name">set_current_name()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MaskBilter.show">show()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture">ModelBalencePosture</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.POINT_BALENCE_TOL">POINT_BALENCE_TOL</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.POINT_STABLE_TOL">POINT_STABLE_TOL</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.current_mi">current_mi</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture._angle">_angle()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.fall">fall()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.find_all_connected">find_all_connected()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.get_bary_vec">get_bary_vec()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.get_contact_point">get_contact_point()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.get_drop_foot">get_drop_foot()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.get_neighbors">get_neighbors()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.get_normal">get_normal()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.if_point_stable">if_point_stable()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.place">place()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.point_distance_line">point_distance_line()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelBalencePosture.proj_vec">proj_vec()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelInfo">ModelInfo</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelInfo.avg_dist">avg_dist</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelInfo.barycenter">barycenter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelInfo.pcd">pcd</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelInfo.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelInfo.calc_barycenter">calc_barycenter()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.ModelInfo.transform">transform()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MyGA">MyGA</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MyGA.fit">fit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MyGA.result_precision">result_precision</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MyGA.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.interact_icp.MyGA.run">run()</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pcd_creator/">pcd_creator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pipeline/">pipeline</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/aruco_detector/">utils.aruco_detector</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/bounded_voronoi/">utils.bounded_voronoi</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/camera_sys/">utils.camera_sys</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/pc_voxelize/">utils.pc_voxelize</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/plane/">utils.plane</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataCluster/">dataCluster</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataset/">dataset</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataset_example/">dataset_example</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataset_format/">dataset_format</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/IOAbstract/">IOAbstract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/mesh_manager/">mesh_manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/spliter/">spliter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/viewmeta/">viewmeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/_mkdoctest/">_mkdoctest</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">create_6d_posture_dataset</li>
+      <li class="breadcrumb-item active">interact_icp</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="interact_icp">interact_icp</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="create_6d_posture_dataset.interact_icp"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="create_6d_posture_dataset.interact_icp.InteractIcp" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">InteractIcp</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.baryline_visible" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">baryline_visible</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">baryline_visible</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.ckt" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">ckt</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">ckt</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.color_g" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">color_g</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">color_g</span> <span class="o">=</span> <span class="n">InteractIcp</span><span class="o">.</span><span class="n">color_generator</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.contact_pcd" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">contact_pcd</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">contact_pcd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">PointCloud</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.cover_data_confirm" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">cover_data_confirm</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">cover_data_confirm</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.current_index" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">current_index</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">current_index</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.current_pcd" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">current_pcd</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">current_pcd</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.current_std_mi" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">current_std_mi</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">current_std_mi</span><span class="p">:</span> <span class="n">ModelInfo</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.data_recorder" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">data_recorder</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">data_recorder</span> <span class="o">=</span> <span class="n">data_recorder</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.icp_trans_dir" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">icp_trans_dir</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">icp_trans_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_manager</span><span class="o">.</span><span class="n">icp_trans</span><span class="o">.</span><span class="n">data_path</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.icp_unf_pcd_dir" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">icp_unf_pcd_dir</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">icp_unf_pcd_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_manager</span><span class="o">.</span><span class="n">icp_unf_pcd</span><span class="o">.</span><span class="n">data_path</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.is_camera_mode" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">is_camera_mode</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">is_camera_mode</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.is_mask_visible" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">is_mask_visible</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">is_mask_visible</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.is_refine_mode" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">is_refine_mode</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">is_refine_mode</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.model_manager" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">model_manager</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">model_manager</span> <span class="o">=</span> <span class="n">model_manager</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.modelbalenceposture" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">modelbalenceposture</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">modelbalenceposture</span> <span class="o">=</span> <span class="n">ModelBalencePosture</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.pcd_visible" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">pcd_visible</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">pcd_visible</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.place_gen" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">place_gen</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">place_gen</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.std_meshes_dir" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">std_meshes_dir</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">std_meshes_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_manager</span><span class="o">.</span><span class="n">std_meshes_dir</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.std_meshes_enums" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">std_meshes_enums</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">std_meshes_enums</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_manager</span><span class="o">.</span><span class="n">std_meshes_enums</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.std_model_baryline" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">std_model_baryline</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">std_model_baryline</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">TriangleMesh</span><span class="o">.</span><span class="n">create_arrow</span><span class="p">(</span><span class="n">cylinder_radius</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">cone_radius</span><span class="o">=</span><span class="mf">0.004</span><span class="p">,</span> <span class="n">cylinder_height</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">cone_height</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Posture</span><span class="p">(</span><span class="n">rvec</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span><span class="o">.</span><span class="n">trans_mat</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.std_model_frame" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">std_model_frame</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">std_model_frame</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">TriangleMesh</span><span class="o">.</span><span class="n">create_coordinate_frame</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.step" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">step</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">step</span> <span class="o">=</span> <span class="mf">1.0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.trans_with_CCS" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">trans_with_CCS</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">trans_with_CCS</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.view_directions" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">view_directions</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">view_directions</span> <span class="o">=</span> <span class="p">[((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.view_switch" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">view_switch</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">view_switch</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.GA_registration" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">GA_registration</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">GA_registration</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">data_recorder</span><span class="p">:</span> <span class="n">DataRecorder</span><span class="p">,</span> <span class="n">model_manager</span><span class="p">:</span> <span class="n">ModelManager</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.auto_icp" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">auto_icp</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">auto_icp</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>根据用户定义初始姿态进行配准</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.change_background_color" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">change_background_color</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">change_background_color</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.color_generator" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">color_generator</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">color_generator</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.confirm" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">confirm</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">confirm</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.current_std_mi_transform" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">current_std_mi_transform</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">current_std_mi_transform</span><span class="p">(</span><span class="n">vis</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.gen_cur_std_model_meta" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">gen_cur_std_model_meta</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">gen_cur_std_model_meta</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.get_O2C0" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_O2C0</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_O2C0</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.load_data" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">load_data</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">load_data</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.nearest_points_mean_d" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">nearest_points_mean_d</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">nearest_points_mean_d</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.next_view" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">next_view</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">next_view</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.place_step" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">place_step</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">place_step</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.post_progress" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">post_progress</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">post_progress</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>完成配准后的后处理</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.pre_progress" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">pre_progress</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">pre_progress</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>预处理:
+1) 修改为平衡姿态
+2) 平移到中心</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.print_nearest_points_mean_d" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">print_nearest_points_mean_d</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">print_nearest_points_mean_d</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.refine_mode" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">refine_mode</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">refine_mode</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.rotate_X_dec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">rotate_X_dec</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">rotate_X_dec</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.rotate_X_inc" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">rotate_X_inc</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">rotate_X_inc</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.rotate_Y_dec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">rotate_Y_dec</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">rotate_Y_dec</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.rotate_Y_inc" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">rotate_Y_inc</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">rotate_Y_inc</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.rotate_Z_dec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">rotate_Z_dec</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">rotate_Z_dec</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.rotate_Z_inc" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">rotate_Z_inc</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">rotate_Z_inc</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.set_is_mask_visible" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_is_mask_visible</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_is_mask_visible</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.set_unfpcd_visible" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_unfpcd_visible</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_unfpcd_visible</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.show_bary_arrow" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">show_bary_arrow</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">show_bary_arrow</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.show_contact" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">show_contact</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">show_contact</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.skip" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">skip</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">skip</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.start" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">start</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">start</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.switch_to_camera_view_mode" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">switch_to_camera_view_mode</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">switch_to_camera_view_mode</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.switch_to_trans_with_CCS" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">switch_to_trans_with_CCS</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">switch_to_trans_with_CCS</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.trans_with_obj_center" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">trans_with_obj_center</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">trans_with_obj_center</span><span class="p">(</span><span class="n">T_center</span><span class="p">:</span> <span class="n">Posture</span><span class="p">,</span> <span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>以物体中心的旋转</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.translate_X_dec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">translate_X_dec</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">translate_X_dec</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.translate_X_inc" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">translate_X_inc</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">translate_X_inc</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.translate_Y_dec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">translate_Y_dec</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">translate_Y_dec</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.translate_Y_inc" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">translate_Y_inc</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">translate_Y_inc</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.translate_Z_dec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">translate_Z_dec</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">translate_Z_dec</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.InteractIcp.translate_Z_inc" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">translate_Z_inc</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">translate_Z_inc</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="create_6d_posture_dataset.interact_icp.MaskBilter" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">MaskBilter</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.SHOW_NUM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">SHOW_NUM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">SHOW_NUM</span> <span class="o">=</span> <span class="mi">6</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.camera_intr" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">camera_intr</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">camera_intr</span> <span class="o">=</span> <span class="n">CameraIntr</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_path</span><span class="p">,</span> <span class="n">CALI_INTR_FILE</span><span class="p">))</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.cur_range" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">cur_range</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">cur_range</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>当前的帧范围</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.data_path" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">data_path</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">data_path</span> <span class="o">=</span> <span class="n">data_recorder</span><span class="o">.</span><span class="n">data_path</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.data_recorder" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">data_recorder</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">data_recorder</span> <span class="o">=</span> <span class="n">data_recorder</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.model_index_range" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">model_index_range</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">model_index_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_recorder</span><span class="o">.</span><span class="n">category_idx_range</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.selected_depth_masks" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">selected_depth_masks</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">selected_depth_masks</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.selected_frame_indecies" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">selected_frame_indecies</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">selected_frame_indecies</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.selected_rgbs" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">selected_rgbs</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">selected_rgbs</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.selected_view_trans_mats" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">selected_view_trans_mats</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">selected_view_trans_mats</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.this_frame_rgb" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">this_frame_rgb</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">this_frame_rgb</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.this_view_trans_mat" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">this_view_trans_mat</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">this_view_trans_mat</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">data_recorder</span><span class="p">:</span> <span class="n">DataRecorder</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.farthest_point_sample_angle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">farthest_point_sample_angle</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">farthest_point_sample_angle</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">npoint</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Input:
+    xyz: pointcloud data, [N, 3]
+    npoint: number of samples
+Return:
+    centroids: sampled pointcloud index, [B, npoint]</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.next_view" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">next_view</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">next_view</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>下一个视角</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.read_rgbs" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">read_rgbs</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">read_rgbs</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.select_views" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">select_views</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">select_views</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>选择视角</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.set_current_name" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_current_name</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_current_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MaskBilter.show" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">show</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">show</span><span class="p">(</span><span class="n">std_model_meta</span><span class="p">:</span> <span class="n">ModelInfo</span><span class="p">,</span> <span class="n">is_mask_visible</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">ModelBalencePosture</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.POINT_BALENCE_TOL" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">POINT_BALENCE_TOL</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">POINT_BALENCE_TOL</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.POINT_STABLE_TOL" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">POINT_STABLE_TOL</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">POINT_STABLE_TOL</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.current_mi" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">current_mi</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">current_mi</span><span class="p">:</span> <span class="n">ModelInfo</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture._angle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">_angle</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_angle</span><span class="p">(</span><span class="n">vce1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.fall" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">fall</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">fall</span><span class="p">(</span><span class="n">mi</span><span class="p">:</span> <span class="n">ModelInfo</span><span class="p">,</span> <span class="n">contact_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>step 步长</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.find_all_connected" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">find_all_connected</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">find_all_connected</span><span class="p">(</span><span class="n">tri</span><span class="p">,</span> <span class="n">seed_idx</span><span class="p">,</span> <span class="n">valid_idx_array</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.get_bary_vec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_bary_vec</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_bary_vec</span><span class="p">(</span><span class="n">mi</span><span class="p">:</span> <span class="n">ModelInfo</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.get_contact_point" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_contact_point</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_contact_point</span><span class="p">(</span><span class="n">mi</span><span class="p">:</span> <span class="n">ModelInfo</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.get_drop_foot" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_drop_foot</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_drop_foot</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">line_p1</span><span class="p">,</span> <span class="n">line_p2</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.get_neighbors" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_neighbors</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_neighbors</span><span class="p">(</span><span class="n">point</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">point_list</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.get_normal" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_normal</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_normal</span><span class="p">(</span><span class="n">mi</span><span class="p">:</span> <span class="n">ModelInfo</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.if_point_stable" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">if_point_stable</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">if_point_stable</span><span class="p">(</span><span class="n">mi</span><span class="p">:</span> <span class="n">ModelInfo</span><span class="p">,</span> <span class="n">contact_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>点是否稳定，计算该点的夹角、附近点的夹角</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.place" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">place</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">place</span><span class="p">(</span><span class="n">mi</span><span class="p">:</span> <span class="n">ModelInfo</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.point_distance_line" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">point_distance_line</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">point_distance_line</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">lines_point1</span><span class="p">,</span> <span class="n">lines_point2</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>points : [P, 3]         -&gt; [P, L, 3]
+lines_point1: [L, 3]    -&gt; [P, L, 3]</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelBalencePosture.proj_vec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">proj_vec</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">proj_vec</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="create_6d_posture_dataset.interact_icp.ModelInfo" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">ModelInfo</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="create_6d_posture_dataset.MeshMeta">MeshMeta</span></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelInfo.avg_dist" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">avg_dist</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">avg_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelInfo.barycenter" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">barycenter</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">barycenter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_barycenter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">avg_dist</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelInfo.pcd" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">pcd</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">pcd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">PointCloud</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelInfo.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">class_id</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">barycenter</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelInfo.calc_barycenter" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">calc_barycenter</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">calc_barycenter</span><span class="p">(</span><span class="n">voxel_size</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.ModelInfo.transform" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">transform</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">transform</span><span class="p">(</span><span class="n">posture</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Posture</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="create_6d_posture_dataset.interact_icp.MyGA" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">MyGA</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="sko.GA.GA">GA</span></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MyGA.fit" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">fit</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">fit</span> <span class="o">=</span> <span class="n">run</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MyGA.result_precision" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">result_precision</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">result_precision</span> <span class="o">=</span> <span class="n">result_precision</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MyGA.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">n_dim</span><span class="p">,</span> <span class="n">size_pop</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">prob_mut</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lb</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ub</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constraint_eq</span><span class="o">=</span><span class="p">[],</span> <span class="n">constraint_ueq</span><span class="o">=</span><span class="p">[],</span> <span class="n">precision</span><span class="o">=</span><span class="mf">1e-07</span><span class="p">,</span> <span class="n">early_stop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">result_precision</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.interact_icp.MyGA.run" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">run</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">run</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../data_manager/" class="btn btn-neutral float-left" title="data_manager"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../pcd_creator/" class="btn btn-neutral float-right" title="pcd_creator">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../data_manager/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../pcd_creator/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
