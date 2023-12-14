@@ -28,8 +28,8 @@ function escapeHtml (value) {
     .replace(/>/g, '&gt;');
 }
 
-function formatResult(location, title, summary) {
-  return '<article><h3><a href="' + joinUrl(base_url, location) + '">' + escapeHtml(title) + '</a></h3><p class="search-location"><a href="' + joinUrl(base_url, location) + '">Location: ' + escapeHtml(location) + '</a></p><p>' + escapeHtml(summary) + '</p></article>';
+function formatResult (location, title, summary) {
+  return '<article><h3><a href="' + joinUrl(base_url, location) + '">'+ escapeHtml(title) + '</a></h3><p>' + escapeHtml(summary) +'</p></article>';
 }
 
 function displayResults (results) {
