@@ -1,127 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://nx1021.github.io/MyLib/home/</loc>
+         <loc>https://nx1021.github.io/posture_6d/home/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/derive/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/derive/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/metric/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/metric/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/core/intr/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/core/intr/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/core/posture/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/core/posture/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/core/utils/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/core/utils/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/create_6d_posture_dataset/capturing/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/create_6d_posture_dataset/capturing/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/create_6d_posture_dataset/data_manager/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/create_6d_posture_dataset/data_manager/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/create_6d_posture_dataset/interact_icp/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/create_6d_posture_dataset/interact_icp/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/create_6d_posture_dataset/pcd_creator/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/create_6d_posture_dataset/pcd_creator/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/create_6d_posture_dataset/pipeline/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/create_6d_posture_dataset/pipeline/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/create_6d_posture_dataset/utils/aruco_detector/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/create_6d_posture_dataset/utils/aruco_detector/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/create_6d_posture_dataset/utils/bounded_voronoi/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/create_6d_posture_dataset/utils/bounded_voronoi/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/create_6d_posture_dataset/utils/camera_sys/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/create_6d_posture_dataset/utils/camera_sys/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/create_6d_posture_dataset/utils/pc_voxelize/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/create_6d_posture_dataset/utils/pc_voxelize/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/create_6d_posture_dataset/utils/plane/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/create_6d_posture_dataset/utils/plane/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/data/IOAbstract/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/data/IOAbstract/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/data/_mkdoctest/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/data/_mkdoctest/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/data/dataCluster/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/data/dataCluster/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/data/dataset/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/data/dataset/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/data/dataset_example/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/data/dataset_example/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/data/dataset_format/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/data/dataset_format/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/data/mesh_manager/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/data/mesh_manager/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/data/spliter/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/data/spliter/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nx1021.github.io/MyLib/md/data/viewmeta/</loc>
+         <loc>https://nx1021.github.io/posture_6d/md/data/viewmeta/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
