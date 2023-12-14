@@ -1,0 +1,66 @@
+site_name: My Docs
+site_url: https://nx1021.github.io/MyLib/
+site_author: nx1021
+plugins:
+- mkdocstrings:
+    handlers:
+      python:
+        options:
+          filters:
+          - ''
+          - _
+          - '!^__.*[^_]$'
+          show_source: false
+          show_if_no_docstring: true
+          docstring_style: numpy
+          show_signature_annotations: true
+          separate_signature: true
+          signature_crossrefs: true
+          show_symbol_type_heading: true
+          line_length: 100
+        paths:
+        - ..
+- search
+- i18n:
+    default_language: en
+    languages:
+      en: English
+      zh: "\u4E2D\u6587(\u7B80\u4F53)"
+use_directory_urls: true
+theme:
+  name: readthedocs
+  features:
+  - search.share
+  - search.highlight
+extra_css:
+- css/extra.css
+nav:
+- derive:
+  - derive: md\derive.md
+- metric:
+  - metric: md\metric.md
+- core:
+  - intr: md\core\intr.md
+  - posture: md\core\posture.md
+  - utils: md\core\utils.md
+- create_6d_posture_dataset:
+  - capturing: md\create_6d_posture_dataset\capturing.md
+  - data_manager: md\create_6d_posture_dataset\data_manager.md
+  - interact_icp: md\create_6d_posture_dataset\interact_icp.md
+  - pcd_creator: md\create_6d_posture_dataset\pcd_creator.md
+  - pipeline: md\create_6d_posture_dataset\pipeline.md
+  - utils.aruco_detector: md\create_6d_posture_dataset\utils\aruco_detector.md
+  - utils.bounded_voronoi: md\create_6d_posture_dataset\utils\bounded_voronoi.md
+  - utils.camera_sys: md\create_6d_posture_dataset\utils\camera_sys.md
+  - utils.pc_voxelize: md\create_6d_posture_dataset\utils\pc_voxelize.md
+  - utils.plane: md\create_6d_posture_dataset\utils\plane.md
+- data:
+  - dataCluster: md\data\dataCluster.md
+  - dataset: md\data\dataset.md
+  - dataset_example: md\data\dataset_example.md
+  - dataset_format: md\data\dataset_format.md
+  - IOAbstract: md\data\IOAbstract.md
+  - mesh_manager: md\data\mesh_manager.md
+  - spliter: md\data\spliter.md
+  - viewmeta: md\data\viewmeta.md
+  - _mkdoctest: md\data\_mkdoctest.md

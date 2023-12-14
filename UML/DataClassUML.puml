@@ -1,0 +1,345 @@
+@startuml DataUML
+
+abstract class IOStatusManager{
+    ..Properties..
+    + closed : bool
+    + opened : bool
+    + readonly : bool
+    + writable : bool
+    + wait_writing : bool
+    + is_writing : bool
+    + overwrite_allowed : bool
+    + overwrite_forbidden : bool
+    ..Methods..
+    + get_writer ()
+    + mark_exist (): bool
+    + remove_mark ()
+    + load_from_mark_file ()
+    + log_to_mark_file (log_type, src=None, dst=None, value=None)
+
+    + close (bool)
+    + open (bool)
+    + reopen ()
+    + set_readonly (bool)
+    + set_writable (bool)
+    + stop_writing (bool)
+    + start_writing (bool)
+    + set_overwrite_allowed (bool)
+    + set_overwrite_forbidden (bool)
+    + is_closed (bool) 
+    + is_readonly (bool)
+        
+}
+
+class _IOContext{
+    ..public..
+    + __enter__()
+    + __exit__(exc_type, exc_value, traceback)
+    ..recommend to inherit..
+    + enter_hook()
+    + exit_hook()
+}
+
+class _Writer{
+    ..public..
+    + allow_overwriting(overwrite_allowed = True)
+}
+
+class _Empty_Writer{
+    # a writer that do nothing
+}
+
+
+abstract class _RegisterInstance{
+    "the instance of _RegisterInstance will be registered.
+    You may use it to realize singleton pattern."
+    ..classmethod..
+    + __new__(cls, *args, **kwargs)
+    ..abstract classmethod..
+    + register(cls, identity_string, obj)
+    + get_instance(cls, identity_string, obj)
+    + gen_identity_string()
+    + gen_identity_name()
+    + init_identity()
+    ..methods..
+    + identity_string()
+    + identity_name()
+    ..public..
+    + register_instance()
+    + unregister_instance()
+}
+
+
+class _Prefix{
+    ..Properties..
+    + prefix :str 
+    + joiner :str 
+}
+
+class _AppendNames{
+    ..Properties..
+    + appendnames :list[str] 
+    + joiner :str 
+}
+
+class CacheProxy{
+    ..attribute..
+    + __cache 
+    + __value_type: type
+    + __value_init_func: Callable
+    ..init_cache..
+    + __init_cache()
+}    
+
+
+
+class FilesHandle{
+    A class representing a file handle for input/output operations. 
+    * Its instance manages some attributes of one file or a group of files, 
+    depending on the value of the `multi_files` attribute.
+    * Its instance is immutable object, once created, it can't be changed.
+    ..Properties..
+    + data_path :str 
+    + sub_dir :str 
+    + full_directory :str 
+    + corename :str 
+    + suffix :str 
+    + multi_files :bool 
+    + prefix :str 
+    + prefix_with_joiner :str 
+    + appendnames :list[str] 
+    + appendnames_with_joiner :list[str] 
+    + read_func :Callable 
+    + write_func :Callable 
+    + cache :CacheProxy 
+
+    + synced :bool 
+    + value_type :type 
+
+    + all_file_exist :bool 
+    + all_file_not_exist :bool 
+    + any_file_exist :bool 
+    + any_file_not_exist :bool 
+    + has_cache :bool 
+    + empty :bool 
+}
+
+class BinDict{
+    "A dictionary subclass that supports bidirectional 
+    mapping between keys and values."
+}
+
+class Node{
+    # A class representing a node in a tree structure.
+    ..staticmethod..
+    + downward_preorder_propagate (Callable): Callable
+    + downward_postorder_propagate (Callable): Callable
+    + upward_preorder_propagate (Callable): Callable
+    + upward_postorder_propagate (Callable): Callable
+    ..methods..
+    + _set_parent (parent: Node)
+    + _add_child (child: Node)
+    + _remove_child (child: Node)
+    + _move_node (new_parent: Node)
+}
+
+abstract class DataMapping{
+    # A class representing the bin-directional mapping between data and files.
+    ..attributes..
+    - _MemoryData 
+    - mapping_name
+    - flag_name
+    ..methods..
+    + load_memory
+    + save_memory
+    + load_postprocess
+    + save_preprocess
+    + clear
+    + rebuild
+    + read
+    + write
+    + remove
+    + modify_key
+    + merge_from
+    + copy_from
+    + append
+    + clear
+    + make_continuous
+    + cache_to_file
+    + file_to_cache
+    + clear_files
+    + clear_cache
+    + keys
+    + values
+    + items
+    + __getitem__
+    + __setitem__
+    + __iter__
+    + __len__
+}
+
+abstract class IOMeta{
+    # This class represents the abstract base class for input/output (IO) operations.
+    # Pre-process/post-process input and output, format conversion, and perform IO operations. 
+    # Need to be used in combination with `FilesCluster.io_decorator`
+    ..methods..
+    + __call__(*, src = None, dst = None, value = None, **other_paras): Any
+    
+    ..Methods (abstract)..
+    + get_FilesHandle(self, src, dst, value, **other_paras): Gets the file handles for the IO operation.
+    + io_cache
+    + cvt_to_core_paras
+
+    ..Methods recommended to be overridden..
+    + preprogress_value: Preprocesses the value before the I operation.
+    + postprogress_value: Postprocesses the value after the O operation.
+    + format_value: Formats the value before the I operation.
+    + inv_format_value: Inversely formats the value after the O operation.
+    + core_func_hook: Hook function for the core function.
+
+    ..Methods need to be overridden if `OPER_ELEM`..
+    + operate_elem
+
+    ..Methods need to be overridden if the files cluster contains multiple files..
+    + gather_mutil_results
+    + split_value_as_mutil
+}
+
+class _read{
+
+}
+
+class _operation{}
+
+class _write{}
+
+class _modify_key{}
+
+class _remove{}
+
+class _paste_file{}
+
+class _change_dir{}
+
+class FilesCluster{
+    "A class representing a cluster of files."
+    ..Properties commonly used..
+    + dataset_node: The dataset node that the cluster belongs to.
+    + continuous: A boolean indicating whether the cluster is continuous.
+    + num: The number of files in the cluster.
+    + i_upper: The upper bound of the indices of the files in the cluster.
+
+    Methods commonly used:
+    + query_all_fileshandle: Queries all the file handles in the cluster.
+    + read: Reads a file from the cluster.
+    + write: Writes a file to the cluster.
+    + modify_key: Modifies the key of a file in the cluster.
+    + remove: Removes a file from the cluster.
+    + merge_from: Merges the cluster from another cluster.
+    + copy_from: Copies the cluster from another cluster.
+    + append: Appends a file to the cluster.
+    + clear: Clears the cluster.
+    + make_continuous: Makes the cluster continuous.
+}
+
+class DatasetNode{
+    "Represents a dataset node in the data mapping hierarchy."
+
+    ..Attributes..
+    + MEMORY_DATA_TYPE (Table[int, str, bool]): The memory data type.
+    + MEMORY_DATA_FILE (str): The memory data file.
+    + load_memory_func (function): The function used to load memory data.
+    + save_memory_func (function): The function used to save memory data.
+}
+
+package "dataset.py" <<Node>>{
+    class Dataset{}
+
+    class Mix_Dataset{}
+}
+
+package "spliter.py" <<Node>>{
+class SpliterFilesHandle{}
+
+class Spliter{
+    Describe a way to split a data set
+}
+
+class SpliterGroup{
+    Manage multiple Spliters
+}
+}
+
+package "dataCluster.py" <<Node>>{
+class UnifiedFilesHandle{}
+class UnifiedFileCluster{}
+class DisunifiedFilesHandle{}
+class DisunifiedFileCluster{}
+class DictLikeHandle{}
+class DictLikeCluster{}
+class DictFile{}
+class NdarrayAsTxtCluster{}
+class IntArrayDictAsTxtCluster{}
+}
+
+
+thickness=4
+
+IOStatusManager -- _IOContext
+IOStatusManager -- _Writer
+
+_IOContext <|-right- _Writer
+_Writer <|-right- _Empty_Writer
+
+_RegisterInstance<|..FilesHandle
+FilesHandle -- _Prefix
+FilesHandle -- _AppendNames
+FilesHandle -- CacheProxy
+
+Node <|-- DataMapping
+IOStatusManager <|.. DataMapping
+_RegisterInstance <|.. DataMapping
+
+DataMapping <|.[thickness=4]. FilesCluster
+FilesCluster o-[thickness=4]- FilesHandle
+FilesCluster -- IOMeta
+FilesCluster -left- BinDict
+IOMeta <|.. _read
+IOMeta <|.. _operation
+IOMeta <|.. _write
+IOMeta <|.. _modify_key
+IOMeta <|.. _remove
+IOMeta <|.. _paste_file
+IOMeta <|.. _change_dir
+
+DataMapping <|.[thickness=4]. DatasetNode
+DatasetNode o-[thickness=4]- FilesCluster
+
+DatasetNode <|-[thickness=4]- Dataset
+DatasetNode <|-[thickness=4]- SpliterGroup
+Dataset <|-- Mix_Dataset
+Dataset -[thickness=4]- SpliterGroup
+
+FilesHandle <|-- SpliterFilesHandle
+FilesHandle <|-- UnifiedFilesHandle
+FilesHandle <|-- DisunifiedFilesHandle 
+FilesHandle <|-- DictLikeHandle
+FilesHandle <|-- DictFile 
+
+FilesCluster <|-- UnifiedFileCluster
+FilesCluster <|-- DisunifiedFileCluster
+FilesCluster <|-- DictLikeCluster
+FilesCluster <|-- NdarrayAsTxtCluster
+FilesCluster <|-- IntArrayDictAsTxtCluster
+FilesCluster <|-- Spliter
+
+UnifiedFileCluster o-- UnifiedFilesHandle
+DisunifiedFileCluster o-- DisunifiedFilesHandle
+DictLikeCluster o-- DictLikeHandle
+NdarrayAsTxtCluster o-- DictFile
+IntArrayDictAsTxtCluster o-- DictFile
+Spliter o- SpliterFilesHandle
+
+SpliterGroup o- Spliter
+
+@enduml

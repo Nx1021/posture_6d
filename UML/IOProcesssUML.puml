@@ -1,0 +1,86 @@
+@startuml IOProcess
+
+start
+: call IO method;
+note right: call IO method of FilesCluster object, such as read, write, etc.
+
+if (switch by ""_ELEM_BY_CACHE"") then(True)
+    :""IO on data"";
+else (False)
+    :""IO on elem"";
+endif
+note right
+    # What needs to be explained is the definition of ""data"" and ""elem"":
+    ""data"" refers to the files contained in the ""FilesCluster"" object. When ""_ELEM_BY_CACHE"" is ""False"",
+    The index used is by default against the corresponding ""FilesHandle"" in ""FilesCluster.MemoryData"".
+    In some cases, it may not be recommended to perform file IO operations directly, but you should first operate the ""cache"" of ""FilesHandle"".
+    Then call ""cache_to_file"". Otherwise, if every piece of data written requires IO operations, a lot of resources will be consumed.
+    For example, a json/xml file containing multiple pieces of data. At this time, you need to set ""_ELEM_BY_CACHE"" to ""True"".
+    Makes the index target ""elem"" by default, that is, the ""key"" with the same name in the cache of all ""FilesHandle"".
+
+    # The value of ""_ELEM_BY_CACHE"" will affect the default calls of a series of properties and methods. 
+    You can also call the corresponding explicit methods:
+    ## properties:
+    * ""num"":            ""data_num""/""elem_num""
+    * ""i_upper"":        ""data_i_upper""/""elem_i_upper""
+    * ""next_valid_i"":   ""next_valid_elem_i""/""net_valid_data_i""
+    ## methods"":
+    * ""read"":           ""read_data""/""read_elem""
+    * ""write"":          ""write_data""/""write_elem""
+    * ""modify_key"":     ""modify_data_key""/""modity_elem_key""
+    * ""remove"":         ""remove_data""/""remove_elem""
+    * ""merge_from"":     ""merge_data_from""/""merge_elem_from""
+    * ""copy_from"":      ""copy_data_from""/""copy_elem_from""
+    * ""clear"":          ""clear_data""/""clear_elem""
+    * ""keys"":           ""data_keys""/""elem_keys""
+    * ""idx_unwritten""
+end note
+
+: pass in paras;
+note right
+    include :
+    * ""src""(int)
+    * ""dst""(int)
+    * ""value""(any)
+    * ""force""(bool): Force reading and writing, regardless of whether FilesCluster is closed or readonly
+    * ""**other_paras""(dict): Other parameters
+end note
+
+group io_decorator
+    :""cvt_key"", ""cvt_value"";
+    note right: convert key and value to valid type
+    ' !pragma useVerticalIf on
+    if (FilesCluster object is closed or readonly) then(True)
+        :""raise warning"";
+    elseif (check src) then(True)
+        :""raise warning"";
+    elseif (check dst) then(True)
+        :""raise warning"";
+    elseif (check value) then(True)
+        :""raise warning"";
+    elseif (check overwriting) then(True) 
+        :""raise warning"";
+    else
+        
+        group execeute io_meta
+            :""preprogress_value"";
+            if (""OPER_ELEM"") then (True)
+                :""operate_elem"";
+                :set all FilesHandle unsynced;
+            else (False)
+                :get FilesHandle by ""src"" and ""dst"";
+            endif
+            :""postprogress_value"";
+        end group
+
+        if (exception was raise) then(True)
+            :""raise warning"";
+        else (False)
+            :record to log;
+        endif
+    endif
+end group
+end
+
+
+@enduml
