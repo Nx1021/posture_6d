@@ -1,0 +1,2533 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="nx1021" /><link rel="canonical" href="https://nx1021.github.io/posture_6d/md/data/spliter/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>spliter - My Docs</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "spliter";
+        var mkdocs_page_input_path = "md\\data\\spliter.md";
+        var mkdocs_page_url = "/posture_6d/md/data/spliter/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">derive</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../derive/">derive</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">metric</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../metric/">metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">core</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/intr/">intr</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/posture/">posture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/utils/">utils</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">create_6d_posture_dataset</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/capturing/">capturing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/data_manager/">data_manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/interact_icp/">interact_icp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/pcd_creator/">pcd_creator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/pipeline/">pipeline</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/aruco_detector/">utils.aruco_detector</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/bounded_voronoi/">utils.bounded_voronoi</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/camera_sys/">utils.camera_sys</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/pc_voxelize/">utils.pc_voxelize</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/plane/">utils.plane</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">data</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../dataCluster/">dataCluster</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dataset/">dataset</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dataset_example/">dataset_example</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dataset_format/">dataset_format</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../IOAbstract/">IOAbstract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mesh_manager/">mesh_manager</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">spliter</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#data.spliter">spliter</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.spliter.SFH">SFH</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.spliter.SP">SP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.spliter.SPG">SPG</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.spliter.VDMT">VDMT</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.spliter.Spliter">Spliter</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.ALWAYS_ALLOW_WRITE">ALWAYS_ALLOW_WRITE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.DEFAULT_SUB_SET">DEFAULT_SUB_SET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.FILESHANDLE_TYPE">FILESHANDLE_TYPE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.KW_TRAIN">KW_TRAIN</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.KW_VAL">KW_VAL</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.SPLIT_FILE">SPLIT_FILE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter._ELEM_BY_CACHE">_ELEM_BY_CACHE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter._IS_ELEM">_IS_ELEM</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter._next_valid_elem_i">_next_valid_elem_i</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter._undefined_idx">_undefined_idx</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.elem_idx">elem_idx</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.exclusive">exclusive</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.split_fileshandle">split_fileshandle</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.split_table">split_table</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.split_table_data">split_table_data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.subsets">subsets</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter._modify_elem_key">_modify_elem_key</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._modify_elem_key.OPER_ELEM">OPER_ELEM</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._modify_elem_key.split_table">split_table</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._modify_elem_key.is_overwriting">is_overwriting()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._modify_elem_key.operate_elem">operate_elem()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter._read_elem">_read_elem</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._read_elem.OPER_ELEM">OPER_ELEM</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._read_elem.split_table">split_table</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._read_elem.operate_elem">operate_elem()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter._remove_elem">_remove_elem</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._remove_elem.OPER_ELEM">OPER_ELEM</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._remove_elem.is_overwriting">is_overwriting()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._remove_elem.operate_elem">operate_elem()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter._write_elem">_write_elem</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._write_elem.OPER_ELEM">OPER_ELEM</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._write_elem.split_table">split_table</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._write_elem.is_overwriting">is_overwriting()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.spliter.Spliter._write_elem.operate_elem">operate_elem()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.__str__">__str__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter._decide_subset">_decide_subset()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter._set_fileshandle">_set_fileshandle()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.add_elem_idx">add_elem_idx()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.add_subset">add_subset()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.clear_subset">clear_subset()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.elem_keys">elem_keys()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.from_txt">from_txt()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.gen_split">gen_split()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.get_idx_dict">get_idx_dict()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.get_idx_list">get_idx_list()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.get_nums">get_nums()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.init_io_metas">init_io_metas()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.merge_elem_from">merge_elem_from()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.modify_elem_key">modify_elem_key()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.one_defined">one_defined()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.process_split_rate">process_split_rate()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.qurey_one">qurey_one()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.qurey_one_elem">qurey_one_elem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.qurey_one_subset">qurey_one_subset()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.read_elem">read_elem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.remove_elem">remove_elem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.remove_elem_idx">remove_elem_idx()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.remove_subset">remove_subset()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.save_as_txt">save_as_txt()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.set_all_by_rate">set_all_by_rate()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.set_one">set_one()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.set_one_by_rate">set_one_by_rate()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.set_one_elem">set_one_elem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.set_one_subset">set_one_subset()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.sort_elem">sort_elem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.stop_writing_hook">stop_writing_hook()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.Spliter.write_elem">write_elem()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.spliter.SpliterFilesHandle">SpliterFilesHandle</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterFilesHandle.DEFAULT_READ_FUNC">DEFAULT_READ_FUNC</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterFilesHandle.DEFAULT_VALUE_INIT_FUNC">DEFAULT_VALUE_INIT_FUNC</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterFilesHandle.DEFAULT_VALUE_TYPE">DEFAULT_VALUE_TYPE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterFilesHandle.DEFAULT_WRITE_FUNC">DEFAULT_WRITE_FUNC</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterFilesHandle.LOAD_CACHE_ON_INIT">LOAD_CACHE_ON_INIT</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.spliter.SpliterGroup">SpliterGroup</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.DEFAULT_SPLIT_MODE">DEFAULT_SPLIT_MODE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.active_spliter">active_spliter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.split_mode">split_mode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.train_idx_list">train_idx_list</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.val_idx_list">val_idx_list</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.add_elem">add_elem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.copy_elem">copy_elem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.init_clusters_hook">init_clusters_hook()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.init_dataset_attr_hook">init_dataset_attr_hook()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.move_elem">move_elem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.remove_elem">remove_elem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.stop_writing_hook">stop_writing_hook()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.spliter.SpliterGroup.update_clusters">update_clusters()</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../viewmeta/">viewmeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../_mkdoctest/">_mkdoctest</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">data</li>
+      <li class="breadcrumb-item active">spliter</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="spliter">spliter</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="data.spliter"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.spliter.SFH" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">SFH</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">SFH</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;SFH&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;SpliterFilesHandle&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.spliter.SP" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">SP</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">SP</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;SP&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;Spliter&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.spliter.SPG" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">SPG</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">SPG</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;SPG&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;SpliterGroup&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.spliter.VDMT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">VDMT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">VDMT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;VDMT&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>spliter(DisunifiedFilesHandle) .json  维护一个table, 行：elem_i, 列：sub_set, 值：bool
+行、列增删，元素读取；设置idx所在的subset；是否独占</p>
+<p>splitergroup(Cluster) 维护多个spliter, 每个spliter是一个 split_mode</p>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.spliter.Spliter" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">Spliter</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster" href="../dataCluster/#data.dataCluster.DisunifiedFileCluster">DisunifiedFileCluster</a>[<a class="autorefs autorefs-internal" title="data.spliter.SpliterFilesHandle" href="#data.spliter.SpliterFilesHandle">SpliterFilesHandle</a>, <a class="autorefs autorefs-internal" title="data.spliter.SP" href="#data.spliter.SP">SP</a>, <a class="autorefs autorefs-internal" title="data.spliter.SPG" href="#data.spliter.SPG">SPG</a>, <span title="data.Table">Table</span>[int, str, bool]]</code>, <code><span title="typing.Generic">Generic</span>[<a class="autorefs autorefs-internal" title="data.spliter.SP" href="#data.spliter.SP">SP</a>, <a class="autorefs autorefs-internal" title="data.spliter.SPG" href="#data.spliter.SPG">SPG</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter.ALWAYS_ALLOW_WRITE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">ALWAYS_ALLOW_WRITE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">ALWAYS_ALLOW_WRITE</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter.DEFAULT_SUB_SET" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_SUB_SET</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_SUB_SET</span> <span class="o">=</span> <span class="p">[</span><span class="n">KW_TRAIN</span><span class="p">,</span> <span class="n">KW_VAL</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter.FILESHANDLE_TYPE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">FILESHANDLE_TYPE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">FILESHANDLE_TYPE</span> <span class="o">=</span> <span class="n">SpliterFilesHandle</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter.KW_TRAIN" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">KW_TRAIN</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">KW_TRAIN</span> <span class="o">=</span> <span class="s1">&#39;train&#39;</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter.KW_VAL" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">KW_VAL</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">KW_VAL</span> <span class="o">=</span> <span class="s1">&#39;val&#39;</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter.SPLIT_FILE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">SPLIT_FILE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">SPLIT_FILE</span> <span class="o">=</span> <span class="s1">&#39;split.json&#39;</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter._ELEM_BY_CACHE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_ELEM_BY_CACHE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_ELEM_BY_CACHE</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter._IS_ELEM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_IS_ELEM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_IS_ELEM</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter._next_valid_elem_i" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_next_valid_elem_i</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_next_valid_elem_i</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter._undefined_idx" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_undefined_idx</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_undefined_idx</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter.elem_idx" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">elem_idx</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">elem_idx</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter.exclusive" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">exclusive</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">exclusive</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter.split_fileshandle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">split_fileshandle</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">split_fileshandle</span><span class="p">:</span> <span class="n">SpliterFilesHandle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FILESHANDLE_TYPE</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SPLIT_FILE</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter.split_table" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">split_table</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">split_table</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter.split_table_data" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">split_table_data</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">split_table_data</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.Spliter.subsets" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">subsets</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">subsets</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.spliter.Spliter._modify_elem_key" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_modify_elem_key</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._modify_key" href="../IOAbstract/#data.IOAbstract.FilesCluster._modify_key">_modify_key</a>[&#39;Spliter&#39;, dict[int, <span title="typing.Any">Any</span>], <a class="autorefs autorefs-internal" title="data.dataCluster.DictLikeHandle" href="../dataCluster/#data.dataCluster.DictLikeHandle">DictLikeHandle</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.spliter.Spliter._modify_elem_key.OPER_ELEM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">OPER_ELEM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">OPER_ELEM</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.spliter.Spliter._modify_elem_key.split_table" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">split_table</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">split_table</span><span class="p">:</span> <span class="n">Table</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.spliter.Spliter._modify_elem_key.is_overwriting" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">is_overwriting</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">is_overwriting</span><span class="p">(</span><span class="n">dst</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.spliter.Spliter._modify_elem_key.operate_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">operate_elem</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">operate_elem</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.spliter.Spliter._read_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_read_elem</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._read" href="../dataCluster/#data.dataCluster.DisunifiedFileCluster._read">_read</a>[&#39;Spliter&#39;, dict[int, <span title="typing.Any">Any</span>], <a class="autorefs autorefs-internal" title="data.dataCluster.DictLikeHandle" href="../dataCluster/#data.dataCluster.DictLikeHandle">DictLikeHandle</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.spliter.Spliter._read_elem.OPER_ELEM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">OPER_ELEM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">OPER_ELEM</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.spliter.Spliter._read_elem.split_table" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">split_table</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">split_table</span><span class="p">:</span> <span class="n">Table</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.spliter.Spliter._read_elem.operate_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">operate_elem</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">operate_elem</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.spliter.Spliter._remove_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_remove_elem</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._remove" href="../IOAbstract/#data.IOAbstract.FilesCluster._remove">_remove</a>[&#39;Spliter&#39;, dict[int, <span title="typing.Any">Any</span>], <a class="autorefs autorefs-internal" title="data.dataCluster.DictLikeHandle" href="../dataCluster/#data.dataCluster.DictLikeHandle">DictLikeHandle</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.spliter.Spliter._remove_elem.OPER_ELEM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">OPER_ELEM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">OPER_ELEM</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.spliter.Spliter._remove_elem.is_overwriting" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">is_overwriting</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">is_overwriting</span><span class="p">(</span><span class="n">dst</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.spliter.Spliter._remove_elem.operate_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">operate_elem</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">operate_elem</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.spliter.Spliter._write_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_write_elem</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._write" href="../dataCluster/#data.dataCluster.DisunifiedFileCluster._write">_write</a>[&#39;Spliter&#39;, dict[int, <span title="typing.Any">Any</span>], <a class="autorefs autorefs-internal" title="data.dataCluster.DictLikeHandle" href="../dataCluster/#data.dataCluster.DictLikeHandle">DictLikeHandle</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.spliter.Spliter._write_elem.OPER_ELEM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">OPER_ELEM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">OPER_ELEM</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.spliter.Spliter._write_elem.split_table" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">split_table</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">split_table</span><span class="p">:</span> <span class="n">Table</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.spliter.Spliter._write_elem.is_overwriting" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">is_overwriting</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">is_overwriting</span><span class="p">(</span><span class="n">dst</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.spliter.Spliter._write_elem.operate_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">operate_elem</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">operate_elem</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">dataset_node</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DatasetNode</span><span class="p">],</span> <span class="n">mapping_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">subsets</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.__str__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__str__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__str__</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter._decide_subset" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">_decide_subset</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_decide_subset</span><span class="p">(</span><span class="n">rlts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">],</span> <span class="n">split_rate</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter._set_fileshandle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">_set_fileshandle</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_set_fileshandle</span><span class="p">(</span><span class="n">data_i</span><span class="p">,</span> <span class="n">fh</span><span class="p">:</span> <span class="n">DictLikeHandle</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.add_elem_idx" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">add_elem_idx</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">add_elem_idx</span><span class="p">(</span><span class="n">elem_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.add_subset" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">add_subset</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">add_subset</span><span class="p">(</span><span class="n">subset</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.clear_subset" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">clear_subset</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">clear_subset</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.elem_keys" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">elem_keys</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">elem_keys</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.from_txt" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">from_txt</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">from_txt</span><span class="p">(</span><span class="n">txt_name_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.gen_split" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">gen_split</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">gen_split</span><span class="p">(</span><span class="n">idx_array</span><span class="p">,</span> <span class="n">split_rate</span><span class="p">,</span> <span class="n">split_num</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.get_idx_dict" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_idx_dict</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_idx_dict</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.get_idx_list" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_idx_list</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_idx_list</span><span class="p">(</span><span class="n">subset</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.get_nums" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_nums</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_nums</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.init_io_metas" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">init_io_metas</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">init_io_metas</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.merge_elem_from" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">merge_elem_from</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">merge_elem_from</span><span class="p">(</span><span class="n">src_data_map</span><span class="p">:</span> <span class="n">Spliter</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.modify_elem_key" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">modify_elem_key</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">modify_elem_key</span><span class="p">(</span><span class="n">src</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dst</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.one_defined" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">one_defined</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">one_defined</span><span class="p">(</span><span class="n">elem_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.process_split_rate" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">process_split_rate</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">process_split_rate</span><span class="p">(</span><span class="n">split_rate</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span> <span class="n">split_num</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.qurey_one" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">qurey_one</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">qurey_one</span><span class="p">(</span><span class="n">elem_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">subset</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.qurey_one_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">qurey_one_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">qurey_one_elem</span><span class="p">(</span><span class="n">elem_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.qurey_one_subset" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">qurey_one_subset</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">qurey_one_subset</span><span class="p">(</span><span class="n">subset</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.read_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">read_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">read_elem</span><span class="p">(</span><span class="n">src</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="o">*</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.remove_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">remove_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">remove_elem</span><span class="p">(</span><span class="n">dst</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">remove_both</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.remove_elem_idx" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">remove_elem_idx</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">remove_elem_idx</span><span class="p">(</span><span class="n">elem_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.remove_subset" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">remove_subset</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">remove_subset</span><span class="p">(</span><span class="n">subset</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.save_as_txt" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">save_as_txt</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">save_as_txt</span><span class="p">(</span><span class="n">mask_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.set_all_by_rate" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_all_by_rate</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_all_by_rate</span><span class="p">(</span><span class="n">split_rate</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.set_one" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_one</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_one</span><span class="p">(</span><span class="n">elem_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">subset</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.set_one_by_rate" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_one_by_rate</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_one_by_rate</span><span class="p">(</span><span class="n">elem_i</span><span class="p">,</span> <span class="n">split_rate</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.set_one_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_one_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_one_elem</span><span class="p">(</span><span class="n">elem_i</span><span class="p">,</span> <span class="n">subsets</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.set_one_subset" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_one_subset</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_one_subset</span><span class="p">(</span><span class="n">subset</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">elems</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bool</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.sort_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">sort_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">sort_elem</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.stop_writing_hook" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">stop_writing_hook</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">stop_writing_hook</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.Spliter.write_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">write_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">write_elem</span><span class="p">(</span><span class="n">dst</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="o">*</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.spliter.SpliterFilesHandle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">SpliterFilesHandle</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFilesHandle" href="../dataCluster/#data.dataCluster.DisunifiedFilesHandle">DisunifiedFilesHandle</a>[<a class="autorefs autorefs-internal" title="data.spliter.SP" href="#data.spliter.SP">SP</a>, <span title="data.Table">Table</span>[int, str, bool]]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.SpliterFilesHandle.DEFAULT_READ_FUNC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_READ_FUNC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_READ_FUNC</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">from_json</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.SpliterFilesHandle.DEFAULT_VALUE_INIT_FUNC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_VALUE_INIT_FUNC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_VALUE_INIT_FUNC</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">Table</span><span class="p">,</span> <span class="n">row_name_type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">col_name_type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default_value_type</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.SpliterFilesHandle.DEFAULT_VALUE_TYPE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_VALUE_TYPE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_VALUE_TYPE</span> <span class="o">=</span> <span class="n">Table</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.SpliterFilesHandle.DEFAULT_WRITE_FUNC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_WRITE_FUNC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_WRITE_FUNC</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">to_json</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.SpliterFilesHandle.LOAD_CACHE_ON_INIT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">LOAD_CACHE_ON_INIT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">LOAD_CACHE_ON_INIT</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.spliter.SpliterGroup" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">SpliterGroup</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.IOAbstract.DatasetNode" href="../IOAbstract/#data.IOAbstract.DatasetNode">DatasetNode</a>[<a class="autorefs autorefs-internal" title="data.spliter.Spliter" href="#data.spliter.Spliter">Spliter</a>, <a class="autorefs autorefs-internal" title="data.spliter.SPG" href="#data.spliter.SPG">SPG</a>, <span title="data.Table">Table</span>[int, str, bool]]</code>, <code><span title="typing.Generic">Generic</span>[<a class="autorefs autorefs-internal" title="data.spliter.SP" href="#data.spliter.SP">SP</a>, <a class="autorefs autorefs-internal" title="data.spliter.SPG" href="#data.spliter.SPG">SPG</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.DEFAULT_SPLIT_MODE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_SPLIT_MODE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_SPLIT_MODE</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.active_spliter" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">active_spliter</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">active_spliter</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.split_mode" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">split_mode</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">split_mode</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.train_idx_list" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">train_idx_list</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">train_idx_list</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.val_idx_list" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">val_idx_list</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">val_idx_list</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">top_directory</span><span class="p">,</span> <span class="n">mapping_name</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">flag_name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">split_paras</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.add_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">add_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">add_elem</span><span class="p">(</span><span class="n">elem_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.copy_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">copy_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">copy_elem</span><span class="p">(</span><span class="n">src</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dst</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.init_clusters_hook" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">init_clusters_hook</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">init_clusters_hook</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.init_dataset_attr_hook" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">init_dataset_attr_hook</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">init_dataset_attr_hook</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.move_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">move_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">move_elem</span><span class="p">(</span><span class="n">src</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dst</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.remove_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">remove_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">remove_elem</span><span class="p">(</span><span class="n">elem_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.stop_writing_hook" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">stop_writing_hook</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">stop_writing_hook</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.spliter.SpliterGroup.update_clusters" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">update_clusters</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">update_clusters</span><span class="p">(</span><span class="n">log_type</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">cluster</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../mesh_manager/" class="btn btn-neutral float-left" title="mesh_manager"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../viewmeta/" class="btn btn-neutral float-right" title="viewmeta">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../mesh_manager/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../viewmeta/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

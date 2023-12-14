@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="nx1021" /><link rel="canonical" href="https://nx1021.github.io/posture_6d/md/core/posture/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>posture - My Docs</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "posture";
+        var mkdocs_page_input_path = "md\\core\\posture.md";
+        var mkdocs_page_url = "/posture_6d/md/core/posture/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">derive</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../derive/">derive</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">metric</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../metric/">metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">core</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../intr/">intr</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">posture</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#core.posture">posture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core.posture.T">T</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core.posture.Icosahedron">Icosahedron</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Icosahedron.vecs">vecs</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Icosahedron.__init__">__init__()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core.posture.Posture">Posture</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.POSTURE_EULARZYX">POSTURE_EULARZYX</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.POSTURE_HOMOMAT">POSTURE_HOMOMAT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.POSTURE_MAT">POSTURE_MAT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.POSTURE_VEC">POSTURE_VEC</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.eularZYX">eularZYX</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.inv_transmat">inv_transmat</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.rmat">rmat</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.rvec">rvec</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.trans_mat">trans_mat</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.tvec">tvec</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.__div__">__div__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.__mul__">__mul__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.from_vecs">from_vecs()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.get_NED">get_NED()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.get_eular">get_eular()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.inv">inv()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.set_homomat">set_homomat()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.set_rmat">set_rmat()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.set_rvec">set_rvec()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Posture.set_tvec">set_tvec()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core.posture.Rotation">Rotation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Rotation.vecs">vecs</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Rotation.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Rotation.__iter__">__iter__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Rotation.get_rvec">get_rvec()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Rotation.get_rvec_from_destination">get_rvec_from_destination()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.Rotation.plot_destination">plot_destination()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core.posture.SphereAngle">SphereAngle</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.SphereAngle.vecs">vecs</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core.posture.SphereAngle.__init__">__init__()</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/">utils</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">create_6d_posture_dataset</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/capturing/">capturing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/data_manager/">data_manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/interact_icp/">interact_icp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/pcd_creator/">pcd_creator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/pipeline/">pipeline</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/aruco_detector/">utils.aruco_detector</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/bounded_voronoi/">utils.bounded_voronoi</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/camera_sys/">utils.camera_sys</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/pc_voxelize/">utils.pc_voxelize</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/plane/">utils.plane</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataCluster/">dataCluster</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataset/">dataset</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataset_example/">dataset_example</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataset_format/">dataset_format</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/IOAbstract/">IOAbstract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/mesh_manager/">mesh_manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/spliter/">spliter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/viewmeta/">viewmeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/_mkdoctest/">_mkdoctest</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">core</li>
+      <li class="breadcrumb-item active">posture</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="posture">posture</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="core.posture"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="core.posture.T" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">T</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Posture&#39;</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="core.posture.Icosahedron" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">Icosahedron</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="core.posture.Rotation" href="#core.posture.Rotation">Rotation</a></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.Icosahedron.vecs" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">vecs</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">vecs</span> <span class="o">=</span> <span class="n">vecs</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Icosahedron.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="core.posture.Posture" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">Posture</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>姿态类，接收各种类型的姿态的输入，并转换为矩阵</p>
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.Posture.POSTURE_EULARZYX" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">POSTURE_EULARZYX</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">POSTURE_EULARZYX</span> <span class="o">=</span> <span class="mi">3</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.Posture.POSTURE_HOMOMAT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">POSTURE_HOMOMAT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">POSTURE_HOMOMAT</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.Posture.POSTURE_MAT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">POSTURE_MAT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">POSTURE_MAT</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.Posture.POSTURE_VEC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">POSTURE_VEC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">POSTURE_VEC</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.Posture.eularZYX" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">eularZYX</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">eularZYX</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.Posture.inv_transmat" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">inv_transmat</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">inv_transmat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.Posture.rmat" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">rmat</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">rmat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.Posture.rvec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">rvec</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">rvec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.Posture.trans_mat" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">trans_mat</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">trans_mat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.Posture.tvec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">tvec</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">tvec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Posture.__div__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__div__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">__div__</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Posture.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">rvec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">tvec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">rmat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">homomat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">Eular</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Posture.__mul__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__mul__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__mul__</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Posture.from_vecs" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">from_vecs</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">from_vecs</span><span class="p">(</span><span class="n">src_vec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">dst_vec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Posture.get_NED" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_NED</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_NED</span><span class="p">(</span><span class="n">degrees</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Posture.get_eular" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_eular</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_eular</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">degrees</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Posture.inv" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">inv</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">inv</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Posture.set_homomat" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_homomat</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_homomat</span><span class="p">(</span><span class="n">homomat</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Posture.set_rmat" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_rmat</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_rmat</span><span class="p">(</span><span class="n">rmat</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Posture.set_rvec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_rvec</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_rvec</span><span class="p">(</span><span class="n">rvec</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Posture.set_tvec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_tvec</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_tvec</span><span class="p">(</span><span class="n">tvec</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="core.posture.Rotation" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">Rotation</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.Rotation.vecs" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">vecs</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Rotation.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Rotation.__iter__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__iter__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__iter__</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Rotation.get_rvec" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_rvec</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_rvec</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Rotation.get_rvec_from_destination" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_rvec_from_destination</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_rvec_from_destination</span><span class="p">(</span><span class="n">dest</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">base</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.Rotation.plot_destination" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">plot_destination</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">plot_destination</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="core.posture.SphereAngle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">SphereAngle</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="core.posture.Rotation" href="#core.posture.Rotation">Rotation</a></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="core.posture.SphereAngle.vecs" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">vecs</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">vecs</span> <span class="o">=</span> <span class="n">loc</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="core.posture.SphereAngle.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">nums_points</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../intr/" class="btn btn-neutral float-left" title="intr"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../utils/" class="btn btn-neutral float-right" title="utils">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../intr/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../utils/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

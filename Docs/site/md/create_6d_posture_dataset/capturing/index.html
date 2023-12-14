@@ -1,0 +1,2418 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="nx1021" /><link rel="canonical" href="https://nx1021.github.io/posture_6d/md/create_6d_posture_dataset/capturing/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>capturing - My Docs</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "capturing";
+        var mkdocs_page_input_path = "md\\create_6d_posture_dataset\\capturing.md";
+        var mkdocs_page_url = "/posture_6d/md/create_6d_posture_dataset/capturing/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">derive</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../derive/">derive</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">metric</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../metric/">metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">core</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/intr/">intr</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/posture/">posture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/utils/">utils</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">create_6d_posture_dataset</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">capturing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing">capturing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing--record2py">record2.py</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.BASE_FRAME_ARUCO_NUM">BASE_FRAME_ARUCO_NUM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.BUFFER_MAX_LENGTH">BUFFER_MAX_LENGTH</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.DELTA_THRESHOLD">DELTA_THRESHOLD</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.FIRST_FRAME_ARUCO_NUM">FIRST_FRAME_ARUCO_NUM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.LPLC_THRESHOLD">LPLC_THRESHOLD</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.NEW_FRAME_MUL">NEW_FRAME_MUL</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RECORD_LENGTH">RECORD_LENGTH</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.SINGLE_BASE_FRAME_ARUCO_NUM">SINGLE_BASE_FRAME_ARUCO_NUM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.STOP_BLACK_TIME">STOP_BLACK_TIME</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.STOP_COLOR_THRESHOLD">STOP_COLOR_THRESHOLD</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.TEST">TEST</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.WAIT_LENGTH">WAIT_LENGTH</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing">Capturing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.aruco_detector">aruco_detector</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.aruco_dict_list">aruco_dict_list</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.color_image_list">color_image_list</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.data_recorder">data_recorder</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.depth_frame_list">depth_frame_list</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.ignore_stable">ignore_stable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.info_txt">info_txt</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.is_waiting">is_waiting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.keep_at_last_position">keep_at_last_position</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.model_manager">model_manager</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.obj_exanple_img_dict">obj_exanple_img_dict</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.record_pos_image">record_pos_image</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.record_pos_list">record_pos_list</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.record_pos_list_updated">record_pos_list_updated</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.rs_camera">rs_camera</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.this_color">this_color</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.this_depth_frame">this_depth_frame</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.this_floor_aruco_corners">this_floor_aruco_corners</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.this_floor_aruco_dict">this_floor_aruco_dict</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.this_other_aruco_corners">this_other_aruco_corners</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.this_other_aruco_dict">this_other_aruco_dict</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.trans_mat_list">trans_mat_list</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.process_buffer">process_buffer()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.process_one_frame">process_one_frame()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.process_one_frame--return">return</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.pushback_to_record_pos_list">pushback_to_record_pos_list()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.read_trans_mats">read_trans_mats()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.start">start()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.update_record_pos_image">update_record_pos_image()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Capturing.visualise">visualise()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion">Motion</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.angular_position">angular_position</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.angular_velocity">angular_velocity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.g">g</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.imu_sensor">imu_sensor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.imu_start_loop_time">imu_start_loop_time</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.is_stable">is_stable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.last_a_time">last_a_time</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.last_g_time">last_g_time</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.last_moving_time">last_moving_time</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.position">position</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.stable_gyro_threshold">stable_gyro_threshold</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.stable_time_threshold">stable_time_threshold</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.this_time">this_time</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.velocity">velocity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.cal_position">cal_position()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.imu_callback">imu_callback()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.Motion.read_calibrate">read_calibrate()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera">RsCamera</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.MODE_CALI">MODE_CALI</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.MODE_DATA">MODE_DATA</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.align">align</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.call_num">call_num</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.color_frame">color_frame</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.color_sensor">color_sensor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.config">config</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.decimation">decimation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.depth_frame">depth_frame</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.depth_sensor">depth_sensor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.device">device</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.fwd_disparity">fwd_disparity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.hole_filling">hole_filling</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.intr">intr</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.inv_disparity">inv_disparity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.mode">mode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.motion_module">motion_module</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.pipeline">pipeline</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.pipeline_profile">pipeline_profile</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.profile">profile</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.spatial">spatial</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.start_time">start_time</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.temporal">temporal</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create_6d_posture_dataset.capturing.RsCamera.get_frames">get_frames()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.get_corner_dict">get_corner_dict()</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create_6d_posture_dataset.capturing.multiframe_distortion_correction">multiframe_distortion_correction()</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data_manager/">data_manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interact_icp/">interact_icp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pcd_creator/">pcd_creator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pipeline/">pipeline</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/aruco_detector/">utils.aruco_detector</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/bounded_voronoi/">utils.bounded_voronoi</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/camera_sys/">utils.camera_sys</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/pc_voxelize/">utils.pc_voxelize</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../utils/plane/">utils.plane</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataCluster/">dataCluster</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataset/">dataset</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataset_example/">dataset_example</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/dataset_format/">dataset_format</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/IOAbstract/">IOAbstract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/mesh_manager/">mesh_manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/spliter/">spliter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/viewmeta/">viewmeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../data/_mkdoctest/">_mkdoctest</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">create_6d_posture_dataset</li>
+      <li class="breadcrumb-item active">capturing</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="capturing">capturing</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="create_6d_posture_dataset.capturing"></a>
+  <div class="doc doc-contents first">
+  
+      <h3 id="create_6d_posture_dataset.capturing--record2py">record2.py</h3>
+<p>Main Function for recording a video sequence into cad (color-aligned-to-depth)
+images and depth images</p>
+<p>Using librealsense SDK 2.0 with pyrealsense2 for SR300 and D series cameras</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.BASE_FRAME_ARUCO_NUM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">BASE_FRAME_ARUCO_NUM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">BASE_FRAME_ARUCO_NUM</span> <span class="o">=</span> <span class="mi">8</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.BUFFER_MAX_LENGTH" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">BUFFER_MAX_LENGTH</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">BUFFER_MAX_LENGTH</span> <span class="o">=</span> <span class="mi">9</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.DELTA_THRESHOLD" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DELTA_THRESHOLD</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DELTA_THRESHOLD</span> <span class="o">=</span> <span class="mi">15</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.FIRST_FRAME_ARUCO_NUM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">FIRST_FRAME_ARUCO_NUM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">FIRST_FRAME_ARUCO_NUM</span> <span class="o">=</span> <span class="mi">12</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.LPLC_THRESHOLD" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">LPLC_THRESHOLD</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">LPLC_THRESHOLD</span> <span class="o">=</span> <span class="mf">0.0012</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.NEW_FRAME_MUL" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">NEW_FRAME_MUL</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">NEW_FRAME_MUL</span> <span class="o">=</span> <span class="mf">2.0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.RECORD_LENGTH" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">RECORD_LENGTH</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">RECORD_LENGTH</span> <span class="o">=</span> <span class="mi">80</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.SINGLE_BASE_FRAME_ARUCO_NUM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">SINGLE_BASE_FRAME_ARUCO_NUM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">SINGLE_BASE_FRAME_ARUCO_NUM</span> <span class="o">=</span> <span class="mi">3</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.STOP_BLACK_TIME" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">STOP_BLACK_TIME</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">STOP_BLACK_TIME</span> <span class="o">=</span> <span class="mi">3</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.STOP_COLOR_THRESHOLD" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">STOP_COLOR_THRESHOLD</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">STOP_COLOR_THRESHOLD</span> <span class="o">=</span> <span class="mi">25</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.TEST" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">TEST</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">TEST</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.WAIT_LENGTH" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">WAIT_LENGTH</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">WAIT_LENGTH</span> <span class="o">=</span> <span class="mi">5</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.Capturing" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">Capturing</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.aruco_detector" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">aruco_detector</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">aruco_detector</span> <span class="o">=</span> <span class="n">aruco_detector</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.aruco_dict_list" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">aruco_dict_list</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">aruco_dict_list</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.color_image_list" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">color_image_list</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">color_image_list</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.data_recorder" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">data_recorder</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">data_recorder</span> <span class="o">=</span> <span class="n">data_recorder</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.depth_frame_list" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">depth_frame_list</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">depth_frame_list</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.ignore_stable" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">ignore_stable</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">ignore_stable</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.info_txt" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">info_txt</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">info_txt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.is_waiting" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">is_waiting</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">is_waiting</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.keep_at_last_position" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">keep_at_last_position</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">keep_at_last_position</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.model_manager" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">model_manager</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">model_manager</span> <span class="o">=</span> <span class="n">model_manager</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.obj_exanple_img_dict" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">obj_exanple_img_dict</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">obj_exanple_img_dict</span> <span class="o">=</span> <span class="p">{}</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.record_pos_image" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">record_pos_image</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">record_pos_image</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.record_pos_list" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">record_pos_list</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">record_pos_list</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.record_pos_list_updated" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">record_pos_list_updated</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">record_pos_list_updated</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.rs_camera" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">rs_camera</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">rs_camera</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.this_color" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">this_color</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">this_color</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.this_depth_frame" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">this_depth_frame</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">this_depth_frame</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.this_floor_aruco_corners" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">this_floor_aruco_corners</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">this_floor_aruco_corners</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.this_floor_aruco_dict" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">this_floor_aruco_dict</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">this_floor_aruco_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.this_other_aruco_corners" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">this_other_aruco_corners</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">this_other_aruco_corners</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.this_other_aruco_dict" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">this_other_aruco_dict</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">this_other_aruco_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.trans_mat_list" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">trans_mat_list</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">trans_mat_list</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">data_recorder</span><span class="p">:</span> <span class="n">DataRecorder</span><span class="p">,</span> <span class="n">aruco_detector</span><span class="p">:</span> <span class="n">ArucoDetector</span><span class="p">,</span> <span class="n">model_manager</span><span class="p">:</span> <span class="n">ModelManager</span><span class="p">,</span> <span class="n">rs_camera</span><span class="p">:</span> <span class="n">RsCamera</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.process_buffer" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">process_buffer</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">process_buffer</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>添加到缓冲区</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.process_one_frame" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">process_one_frame</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">process_one_frame</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">depth_frame</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <h5 id="create_6d_posture_dataset.capturing.Capturing.process_one_frame--return">return</h5>
+<p>color_image, depth_frame, info_txt</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.pushback_to_record_pos_list" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">pushback_to_record_pos_list</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">pushback_to_record_pos_list</span><span class="p">(</span><span class="n">record_pos</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.read_trans_mats" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">read_trans_mats</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">read_trans_mats</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.start" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">start</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">start</span><span class="p">(</span><span class="n">break_callback</span><span class="p">,</span> <span class="n">record_gate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.update_record_pos_image" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">update_record_pos_image</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">update_record_pos_image</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Capturing.visualise" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">visualise</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">visualise</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.Motion" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">Motion</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.angular_position" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">angular_position</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">angular_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.angular_velocity" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">angular_velocity</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">angular_velocity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.g" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">g</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">g</span> <span class="o">=</span> <span class="mf">9.798</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.imu_sensor" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">imu_sensor</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">imu_sensor</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.imu_start_loop_time" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">imu_start_loop_time</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">imu_start_loop_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.is_stable" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">is_stable</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">is_stable</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>是否是稳定状态</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.last_a_time" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">last_a_time</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">last_a_time</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.last_g_time" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">last_g_time</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">last_g_time</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.last_moving_time" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">last_moving_time</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">last_moving_time</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.position" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">position</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.stable_gyro_threshold" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">stable_gyro_threshold</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">stable_gyro_threshold</span> <span class="o">=</span> <span class="mf">0.1</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.stable_time_threshold" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">stable_time_threshold</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">stable_time_threshold</span> <span class="o">=</span> <span class="mi">500</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.this_time" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">this_time</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">this_time</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.velocity" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">velocity</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">velocity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">sensor</span><span class="p">,</span> <span class="n">imu_calibration</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.cal_position" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">cal_position</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">cal_position</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.imu_callback" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">imu_callback</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">imu_callback</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>回调函数</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.Motion.read_calibrate" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">read_calibrate</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">read_calibrate</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>读取校准矩阵</p>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.RsCamera" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">RsCamera</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.MODE_CALI" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">MODE_CALI</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">MODE_CALI</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.MODE_DATA" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">MODE_DATA</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">MODE_DATA</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.align" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">align</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">align</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">align_to</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.call_num" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">call_num</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">call_num</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.color_frame" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">color_frame</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">color_frame</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.color_sensor" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">color_sensor</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">color_sensor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">color_sensor</span><span class="p">(</span><span class="n">sensors</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.config" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">config</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">config</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">config</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.decimation" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">decimation</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">decimation</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">decimation_filter</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.depth_frame" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">depth_frame</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">depth_frame</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.depth_sensor" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">depth_sensor</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">depth_sensor</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">depth_sensor</span><span class="p">(</span><span class="n">sensors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.device" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">device</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">device</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline_profile</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.fwd_disparity" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">fwd_disparity</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">fwd_disparity</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">disparity_transform</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.hole_filling" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">hole_filling</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">hole_filling</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">hole_filling_filter</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.intr" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">intr</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">intr</span> <span class="o">=</span> <span class="n">CameraIntr</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">camera_parameters</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.inv_disparity" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">inv_disparity</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">inv_disparity</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">disparity_transform</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.mode" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">mode</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.motion_module" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">motion_module</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">motion_module</span> <span class="o">=</span> <span class="n">Motion</span><span class="p">(</span><span class="n">sensors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">imu_calibration</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.pipeline" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">pipeline</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">pipeline</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">pipeline</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.pipeline_profile" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">pipeline_profile</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">pipeline_profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.profile" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">profile</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.spatial" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">spatial</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">spatial</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">spatial_filter</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.start_time" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">start_time</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">start_time</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.temporal" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">temporal</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">temporal</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">temporal_filter</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">imu_calibration</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="create_6d_posture_dataset.capturing.RsCamera.get_frames" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_frames</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_frames</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.get_corner_dict" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_corner_dict</span>
+
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_corner_dict</span><span class="p">(</span><span class="n">img</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="create_6d_posture_dataset.capturing.multiframe_distortion_correction" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">multiframe_distortion_correction</span>
+
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">multiframe_distortion_correction</span><span class="p">(</span><span class="n">color_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">image_size</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>correct distortion of multiframe
+color_list: list of color image
+image_size: size of image</p>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../core/utils/" class="btn btn-neutral float-left" title="utils"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../data_manager/" class="btn btn-neutral float-right" title="data_manager">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../core/utils/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../data_manager/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

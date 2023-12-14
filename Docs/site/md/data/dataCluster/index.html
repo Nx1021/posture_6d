@@ -1,0 +1,4368 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="nx1021" /><link rel="canonical" href="https://nx1021.github.io/posture_6d/md/data/dataCluster/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>dataCluster - My Docs</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "dataCluster";
+        var mkdocs_page_input_path = "md\\data\\dataCluster.md";
+        var mkdocs_page_url = "/posture_6d/md/data/dataCluster/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">derive</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../derive/">derive</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">metric</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../metric/">metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">core</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/intr/">intr</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/posture/">posture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core/utils/">utils</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">create_6d_posture_dataset</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/capturing/">capturing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/data_manager/">data_manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/interact_icp/">interact_icp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/pcd_creator/">pcd_creator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/pipeline/">pipeline</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/aruco_detector/">utils.aruco_detector</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/bounded_voronoi/">utils.bounded_voronoi</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/camera_sys/">utils.camera_sys</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/pc_voxelize/">utils.pc_voxelize</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_6d_posture_dataset/utils/plane/">utils.plane</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">data</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">dataCluster</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster">dataCluster</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.DF">DF</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.DFC">DFC</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.DFH">DFH</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.DLC">DLC</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.DLFH">DLFH</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.FHT">FHT</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.INDADC">INDADC</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.IntArrayDict">IntArrayDict</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.NDAC">NDAC</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.UFC">UFC</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.UFH">UFH</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.VDLT">VDLT</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.VDMT">VDMT</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.VINDADC">VINDADC</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.VNDAC">VNDAC</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.DictFile">DictFile</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.cache_priority">cache_priority</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.write_synchronous">write_synchronous</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.__contains__">__contains__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.__getitem__">__getitem__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.__iter__">__iter__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.__len__">__len__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.__setitem__">__setitem__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile._set_fileshandle">_set_fileshandle()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.clear">clear()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.get">get()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.has_info">has_info()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.pop">pop()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.popitem">popitem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.read_info">read_info()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.setdefault">setdefault()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.update">update()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictFile.write_info">write_info()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.DictLikeCluster">DictLikeCluster</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.FILESHANDLE_TYPE">FILESHANDLE_TYPE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.SAVE_AFTER_CLOSE">SAVE_AFTER_CLOSE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.SAVE_IMMIDIATELY">SAVE_IMMIDIATELY</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.SAVE_STREAMLY">SAVE_STREAMLY</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._ELEM_BY_CACHE">_ELEM_BY_CACHE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._IS_ELEM">_IS_ELEM</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.caches">caches</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.save_mode">save_mode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.stream_writer">stream_writer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.write_streamly">write_streamly</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.StreamlyWriter">StreamlyWriter</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.StreamlyWriter.obj">obj</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.StreamlyWriter.streams">streams</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.StreamlyWriter.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.StreamlyWriter.enter_hook">enter_hook()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.StreamlyWriter.exit_hook">exit_hook()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.StreamlyWriter.write">write()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._modify_elem_key">_modify_elem_key</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._modify_elem_key.OPER_ELEM">OPER_ELEM</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._modify_elem_key.operate_elem">operate_elem()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._read_elem">_read_elem</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._read_elem.OPER_ELEM">OPER_ELEM</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._read_elem.operate_elem">operate_elem()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._remove_elem">_remove_elem</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._remove_elem.OPER_ELEM">OPER_ELEM</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._remove_elem.operate_elem">operate_elem()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._write_elem">_write_elem</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._write_elem.OPER_ELEM">OPER_ELEM</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._write_elem.operate_elem">operate_elem()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.Test">Test()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster._set_fileshandle">_set_fileshandle()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.add_default_file">add_default_file()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.elem_keys">elem_keys()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.from_cluster">from_cluster()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.init_io_metas">init_io_metas()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.modify_elem_key">modify_elem_key()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.read_elem">read_elem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.remove_elem">remove_elem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.save_without_cache">save_without_cache()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.sort_elem">sort_elem()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeCluster.write_elem">write_elem()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.DictLikeHandle">DictLikeHandle</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeHandle.LOAD_CACHE_ON_INIT">LOAD_CACHE_ON_INIT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeHandle.elem_num">elem_num</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeHandle.has_cache">has_cache</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeHandle.erase_cache">erase_cache()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeHandle.get_cache_at">get_cache_at()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeHandle.init_input_hook">init_input_hook()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeHandle.pop_cache_at">pop_cache_at()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeHandle.set_cache_at">set_cache_at()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DictLikeHandle.sort_cache">sort_cache()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster">DisunifiedFileCluster</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster.FILESHANDLE_TYPE">FILESHANDLE_TYPE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster._FCT">_FCT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster._FHT">_FHT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster._VDMT">_VDMT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster.all_files_exist">all_files_exist</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster.file_names">file_names</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster._read">_read</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster._read.get_file_core_func">get_file_core_func()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster._write">_write</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster._write.get_file_core_func">get_file_core_func()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster.Test">Test()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster.add_default_file">add_default_file()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster.create_fileshandle_in_iometa">create_fileshandle_in_iometa()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster.cvt_key">cvt_key()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFileCluster.rebuild">rebuild()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.DisunifiedFilesHandle">DisunifiedFilesHandle</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.DisunifiedFilesHandle.file">file</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.IntArrayDictAsTxtCluster">IntArrayDictAsTxtCluster</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.IntArrayDictAsTxtCluster.DEFAULT_VALUE_TYPE">DEFAULT_VALUE_TYPE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.IntArrayDictAsTxtCluster.read_inv_format">read_inv_format()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.IntArrayDictAsTxtCluster.write_format">write_format()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.NdarrayAsTxtCluster">NdarrayAsTxtCluster</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.NdarrayAsTxtCluster.DEFAULT_READ_FUNC">DEFAULT_READ_FUNC</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.NdarrayAsTxtCluster.DEFAULT_SUFFIX">DEFAULT_SUFFIX</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.NdarrayAsTxtCluster.DEFAULT_VALUE_TYPE">DEFAULT_VALUE_TYPE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.NdarrayAsTxtCluster.DEFAULT_WRITE_FUNC">DEFAULT_WRITE_FUNC</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.NdarrayAsTxtCluster.array_shape">array_shape</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.NdarrayAsTxtCluster.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.NdarrayAsTxtCluster.read_inv_format">read_inv_format()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.NdarrayAsTxtCluster.write_format">write_format()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.SingleFile">SingleFile</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster">UnifiedFileCluster</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.DEFAULT_READ_FUNC">DEFAULT_READ_FUNC</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.DEFAULT_SUFFIX">DEFAULT_SUFFIX</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.DEFAULT_VALUE_TYPE">DEFAULT_VALUE_TYPE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.DEFAULT_WRITE_FUNC">DEFAULT_WRITE_FUNC</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.FILESHANDLE_TYPE">FILESHANDLE_TYPE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster._FCT">_FCT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster._FHT">_FHT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster._IS_ELEM">_IS_ELEM</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster._VDMT">_VDMT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.alternate_suffix">alternate_suffix</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.cache_priority">cache_priority</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.fillchar">fillchar</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.filllen">filllen</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.read_func">read_func</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.suffix">suffix</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.value_type">value_type</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.write_func">write_func</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster._paste_file">_paste_file</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster._paste_file.get_FilesHandle">get_FilesHandle()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster._read">_read</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster._read.core_func">core_func</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster._write">_write</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster._write.core_func">core_func</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster._write.get_FilesHandle">get_FilesHandle()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.ElementsTest">ElementsTest()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.__init__">__init__()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.append">append()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.clear">clear()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.copy_from">copy_from()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.create_fileshandle_in_iometa">create_fileshandle_in_iometa()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.deformat_corename">deformat_corename()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.format_corename">format_corename()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.init_io_metas">init_io_metas()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.matching_path">matching_path()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.try_get_default">try_get_default()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.update_read_func_binded_paras">update_read_func_binded_paras()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.update_write_func_binded_paras">update_write_func_binded_paras()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFileCluster.write">write()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.UnifiedFilesHandle">UnifiedFilesHandle</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data.dataCluster.UnifiedFilesHandle.init_input_hook">init_input_hook()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data.dataCluster.cache_to_file_decorator">cache_to_file_decorator()</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dataset/">dataset</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dataset_example/">dataset_example</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dataset_format/">dataset_format</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../IOAbstract/">IOAbstract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mesh_manager/">mesh_manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../spliter/">spliter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../viewmeta/">viewmeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../_mkdoctest/">_mkdoctest</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">data</li>
+      <li class="breadcrumb-item active">dataCluster</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="datacluster">dataCluster</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="data.dataCluster"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.DF" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DF</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DF</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;DF&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;DictFile&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.DFC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DFC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DFC</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;DFC&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;DisunifiedFileCluster&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.DFH" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DFH</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DFH</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;DFH&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;DisunifiedFilesHandle&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.DLC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DLC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DLC</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;DLC&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;DictLikeCluster&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.DLFH" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DLFH</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DLFH</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;DLFH&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;DictLikeHandle&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.FHT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">FHT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">FHT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;FHT&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">FilesHandle</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.INDADC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">INDADC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">INDADC</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;INDADC&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;IntArrayDictAsTxtCluster&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.IntArrayDict" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">IntArrayDict</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">IntArrayDict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.NDAC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">NDAC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">NDAC</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;NDAC&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;NdarrayAsTxtCluster&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.UFC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">UFC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">UFC</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;UFC&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;UnifiedFileCluster&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.UFH" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">UFH</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">UFH</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;UFH&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;UnifiedFilesHandle&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.VDLT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">VDLT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">VDLT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;VDLT&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.VDMT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">VDMT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">VDMT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;VDMT&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.VINDADC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">VINDADC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">VINDADC</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;VINDADC&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="data.dataCluster.VNDAC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">VNDAC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">VNDAC</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;VNDAC&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.dataCluster.DictFile" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">DictFile</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster" href="#data.dataCluster.DisunifiedFileCluster">DisunifiedFileCluster</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.DFH" href="#data.dataCluster.DFH">DFH</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.DFC" href="#data.dataCluster.DFC">DFC</a>, <a class="autorefs autorefs-internal" title="data.IOAbstract.DSNT" href="../IOAbstract/#data.IOAbstract.DSNT">DSNT</a>, dict]</code>, <code><span title="typing.Generic">Generic</span>[<a class="autorefs autorefs-internal" title="data.dataCluster.DFH" href="#data.dataCluster.DFH">DFH</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.DFC" href="#data.dataCluster.DFC">DFC</a>, <a class="autorefs autorefs-internal" title="data.IOAbstract.DSNT" href="../IOAbstract/#data.IOAbstract.DSNT">DSNT</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.cache_priority" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">cache_priority</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">cache_priority</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.write_synchronous" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">write_synchronous</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">write_synchronous</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.__contains__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__contains__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__contains__</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.__getitem__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__getitem__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__getitem__</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">dataset_node</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DatasetNode</span><span class="p">],</span> <span class="n">mapping_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">flag_name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;.json&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.__iter__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__iter__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__iter__</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.__len__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__len__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__len__</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.__setitem__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__setitem__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__setitem__</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile._set_fileshandle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">_set_fileshandle</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_set_fileshandle</span><span class="p">(</span><span class="n">data_i</span><span class="p">,</span> <span class="n">fileshandle</span><span class="p">:</span> <span class="n">DFH</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.clear" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">clear</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">clear</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.get" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.has_info" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">has_info</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">has_info</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.pop" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">pop</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">pop</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.popitem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">popitem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">popitem</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.read_info" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">read_info</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">read_info</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.setdefault" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">setdefault</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">setdefault</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.update" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">update</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">update</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictFile.write_info" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">write_info</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">write_info</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.dataCluster.DictLikeCluster" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">DictLikeCluster</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster" href="#data.dataCluster.DisunifiedFileCluster">DisunifiedFileCluster</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.DLFH" href="#data.dataCluster.DLFH">DLFH</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.DLC" href="#data.dataCluster.DLC">DLC</a>, <a class="autorefs autorefs-internal" title="data.IOAbstract.DSNT" href="../IOAbstract/#data.IOAbstract.DSNT">DSNT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.VDLT" href="#data.dataCluster.VDLT">VDLT</a>]</code>, <code><span title="typing.Generic">Generic</span>[<a class="autorefs autorefs-internal" title="data.dataCluster.DLFH" href="#data.dataCluster.DLFH">DLFH</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.DLC" href="#data.dataCluster.DLC">DLC</a>, <a class="autorefs autorefs-internal" title="data.IOAbstract.DSNT" href="../IOAbstract/#data.IOAbstract.DSNT">DSNT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.VDLT" href="#data.dataCluster.VDLT">VDLT</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.FILESHANDLE_TYPE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">FILESHANDLE_TYPE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">FILESHANDLE_TYPE</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">FilesHandle</span><span class="p">]</span> <span class="o">=</span> <span class="n">DictLikeHandle</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.SAVE_AFTER_CLOSE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">SAVE_AFTER_CLOSE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">SAVE_AFTER_CLOSE</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.SAVE_IMMIDIATELY" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">SAVE_IMMIDIATELY</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">SAVE_IMMIDIATELY</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.SAVE_STREAMLY" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">SAVE_STREAMLY</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">SAVE_STREAMLY</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster._ELEM_BY_CACHE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_ELEM_BY_CACHE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_ELEM_BY_CACHE</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster._IS_ELEM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_IS_ELEM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_IS_ELEM</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.caches" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">caches</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">caches</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.save_mode" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">save_mode</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">save_mode</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.stream_writer" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">stream_writer</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">stream_writer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">StreamlyWriter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.write_streamly" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">write_streamly</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">write_streamly</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.StreamlyWriter" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">StreamlyWriter</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._Writer" href="../IOAbstract/#data.IOAbstract.IOStatusManager._Writer">_Writer</a></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster.StreamlyWriter.obj" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">obj</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">obj</span><span class="p">:</span> <span class="n">DictLikeCluster</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster.StreamlyWriter.streams" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">streams</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">streams</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">JsonIO</span><span class="o">.</span><span class="n">Stream</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster.StreamlyWriter.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">cluster</span><span class="p">:</span> <span class="n">DictLikeCluster</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster.StreamlyWriter.enter_hook" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">enter_hook</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">enter_hook</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster.StreamlyWriter.exit_hook" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">exit_hook</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">exit_hook</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster.StreamlyWriter.write" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">write</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">write</span><span class="p">(</span><span class="n">data_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">elem_i</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster._modify_elem_key" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_modify_elem_key</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._modify_key" href="../IOAbstract/#data.IOAbstract.FilesCluster._modify_key">_modify_key</a>[&#39;DictLikeCluster&#39;, dict[int, <span title="typing.Any">Any</span>], <a class="autorefs autorefs-internal" title="data.dataCluster.DictLikeHandle" href="#data.dataCluster.DictLikeHandle">DictLikeHandle</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster._modify_elem_key.OPER_ELEM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">OPER_ELEM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">OPER_ELEM</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster._modify_elem_key.operate_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">operate_elem</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">operate_elem</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster._read_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_read_elem</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._read" href="#data.dataCluster.DisunifiedFileCluster._read">_read</a>[&#39;DictLikeCluster&#39;, dict[int, <span title="typing.Any">Any</span>], <a class="autorefs autorefs-internal" title="data.dataCluster.DictLikeHandle" href="#data.dataCluster.DictLikeHandle">DictLikeHandle</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster._read_elem.OPER_ELEM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">OPER_ELEM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">OPER_ELEM</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster._read_elem.operate_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">operate_elem</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">operate_elem</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster._remove_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_remove_elem</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._remove" href="../IOAbstract/#data.IOAbstract.FilesCluster._remove">_remove</a>[&#39;DictLikeCluster&#39;, dict[int, <span title="typing.Any">Any</span>], <a class="autorefs autorefs-internal" title="data.dataCluster.DictLikeHandle" href="#data.dataCluster.DictLikeHandle">DictLikeHandle</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster._remove_elem.OPER_ELEM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">OPER_ELEM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">OPER_ELEM</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster._remove_elem.operate_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">operate_elem</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">operate_elem</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster._write_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_write_elem</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._write" href="#data.dataCluster.DisunifiedFileCluster._write">_write</a>[&#39;DictLikeCluster&#39;, dict[int, <span title="typing.Any">Any</span>], <a class="autorefs autorefs-internal" title="data.dataCluster.DictLikeHandle" href="#data.dataCluster.DictLikeHandle">DictLikeHandle</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster._write_elem.OPER_ELEM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">OPER_ELEM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">OPER_ELEM</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.dataCluster.DictLikeCluster._write_elem.operate_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">operate_elem</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">operate_elem</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.Test" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">Test</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">Test</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">dataset_node</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DatasetNode</span><span class="p">],</span> <span class="n">mapping_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">flag_name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster._set_fileshandle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">_set_fileshandle</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_set_fileshandle</span><span class="p">(</span><span class="n">data_i</span><span class="p">,</span> <span class="n">fh</span><span class="p">:</span> <span class="n">DictLikeHandle</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.add_default_file" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">add_default_file</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">add_default_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.elem_keys" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">elem_keys</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">elem_keys</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.from_cluster" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">from_cluster</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">from_cluster</span><span class="p">(</span><span class="n">cluster</span><span class="p">:</span> <span class="n">DLC</span><span class="p">,</span> <span class="n">dataset_node</span><span class="p">:</span> <span class="n">DSNT</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mapping_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">flag_name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DLC</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.init_io_metas" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">init_io_metas</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">init_io_metas</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.modify_elem_key" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">modify_elem_key</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">modify_elem_key</span><span class="p">(</span><span class="n">src</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dst</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.read_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">read_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">read_elem</span><span class="p">(</span><span class="n">src</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="o">*</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.remove_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">remove_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">remove_elem</span><span class="p">(</span><span class="n">dst</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">remove_both</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.save_without_cache" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">save_without_cache</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">save_without_cache</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>to spare memory, save without cache</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.sort_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">sort_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">sort_elem</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeCluster.write_elem" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">write_elem</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">write_elem</span><span class="p">(</span><span class="n">dst</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="o">*</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.dataCluster.DictLikeHandle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">DictLikeHandle</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFilesHandle" href="#data.dataCluster.DisunifiedFilesHandle">DisunifiedFilesHandle</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.DLC" href="#data.dataCluster.DLC">DLC</a>, dict[int, <span title="typing.Any">Any</span>]]</code>, <code><span title="typing.Generic">Generic</span>[<a class="autorefs autorefs-internal" title="data.dataCluster.DLC" href="#data.dataCluster.DLC">DLC</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeHandle.LOAD_CACHE_ON_INIT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">LOAD_CACHE_ON_INIT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">LOAD_CACHE_ON_INIT</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeHandle.elem_num" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">elem_num</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">elem_num</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeHandle.has_cache" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">has_cache</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">has_cache</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeHandle.erase_cache" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">erase_cache</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">erase_cache</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeHandle.get_cache_at" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_cache_at</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_cache_at</span><span class="p">(</span><span class="n">elem_i</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeHandle.init_input_hook" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">init_input_hook</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">init_input_hook</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">value_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeHandle.pop_cache_at" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">pop_cache_at</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">pop_cache_at</span><span class="p">(</span><span class="n">elem_i</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeHandle.set_cache_at" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">set_cache_at</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_cache_at</span><span class="p">(</span><span class="n">elem_i</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DictLikeHandle.sort_cache" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">sort_cache</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">sort_cache</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.dataCluster.DisunifiedFileCluster" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">DisunifiedFileCluster</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.IOAbstract.FilesCluster" href="../IOAbstract/#data.IOAbstract.FilesCluster">FilesCluster</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.DFH" href="#data.dataCluster.DFH">DFH</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.DFC" href="#data.dataCluster.DFC">DFC</a>, <a class="autorefs autorefs-internal" title="data.IOAbstract.DSNT" href="../IOAbstract/#data.IOAbstract.DSNT">DSNT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.VDMT" href="#data.dataCluster.VDMT">VDMT</a>]</code>, <code><span title="typing.Generic">Generic</span>[<a class="autorefs autorefs-internal" title="data.dataCluster.DFH" href="#data.dataCluster.DFH">DFH</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.DFC" href="#data.dataCluster.DFC">DFC</a>, <a class="autorefs autorefs-internal" title="data.IOAbstract.DSNT" href="../IOAbstract/#data.IOAbstract.DSNT">DSNT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.VDMT" href="#data.dataCluster.VDMT">VDMT</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster.FILESHANDLE_TYPE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">FILESHANDLE_TYPE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">FILESHANDLE_TYPE</span> <span class="o">=</span> <span class="n">DisunifiedFilesHandle</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster._FCT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_FCT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_FCT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;_FCT&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;DisunifiedFileCluster&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster._FHT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_FHT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_FHT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;_FHT&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">DisunifiedFilesHandle</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster._VDMT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_VDMT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_VDMT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;_VDMT&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster.all_files_exist" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">all_files_exist</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">all_files_exist</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster.file_names" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">file_names</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">file_names</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster._read" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_read</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.IOAbstract.FilesCluster._read" href="../IOAbstract/#data.IOAbstract.FilesCluster._read">_read</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._FCT" href="#data.dataCluster.DisunifiedFileCluster._FCT">_FCT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._VDMT" href="#data.dataCluster.DisunifiedFileCluster._VDMT">_VDMT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._FHT" href="#data.dataCluster.DisunifiedFileCluster._FHT">_FHT</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.dataCluster.DisunifiedFileCluster._read.get_file_core_func" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_file_core_func</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_file_core_func</span><span class="p">(</span><span class="n">src_file_handle</span><span class="p">:</span> <span class="n">DisunifiedFilesHandle</span><span class="p">,</span> <span class="n">dst_file_handle</span><span class="p">:</span> <span class="n">DisunifiedFilesHandle</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster._write" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_write</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.IOAbstract.FilesCluster._write" href="../IOAbstract/#data.IOAbstract.FilesCluster._write">_write</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._FCT" href="#data.dataCluster.DisunifiedFileCluster._FCT">_FCT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._VDMT" href="#data.dataCluster.DisunifiedFileCluster._VDMT">_VDMT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.DisunifiedFileCluster._FHT" href="#data.dataCluster.DisunifiedFileCluster._FHT">_FHT</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.dataCluster.DisunifiedFileCluster._write.get_file_core_func" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_file_core_func</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_file_core_func</span><span class="p">(</span><span class="n">src_file_handle</span><span class="p">:</span> <span class="n">DisunifiedFilesHandle</span><span class="p">,</span> <span class="n">dst_file_handle</span><span class="p">:</span> <span class="n">DisunifiedFilesHandle</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster.Test" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">Test</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">Test</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">dataset_node</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DatasetNode</span><span class="p">],</span> <span class="n">mapping_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">flag_name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">fileshandle_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster.add_default_file" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">add_default_file</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">add_default_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster.create_fileshandle_in_iometa" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">create_fileshandle_in_iometa</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">create_fileshandle_in_iometa</span><span class="p">(</span><span class="n">src</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dst</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster.cvt_key" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">cvt_key</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">cvt_key</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">DisunifiedFilesHandle</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFileCluster.rebuild" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">rebuild</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">rebuild</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.dataCluster.DisunifiedFilesHandle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">DisunifiedFilesHandle</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.IOAbstract.FilesHandle" href="../IOAbstract/#data.IOAbstract.FilesHandle">FilesHandle</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.DFC" href="#data.dataCluster.DFC">DFC</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.VDMT" href="#data.dataCluster.VDMT">VDMT</a>]</code>, <code><span title="typing.Generic">Generic</span>[<a class="autorefs autorefs-internal" title="data.dataCluster.DFC" href="#data.dataCluster.DFC">DFC</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.VDMT" href="#data.dataCluster.VDMT">VDMT</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.DisunifiedFilesHandle.file" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">file</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">file</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.dataCluster.IntArrayDictAsTxtCluster" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">IntArrayDictAsTxtCluster</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.NdarrayAsTxtCluster" href="#data.dataCluster.NdarrayAsTxtCluster">NdarrayAsTxtCluster</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.UFH" href="#data.dataCluster.UFH">UFH</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.INDADC" href="#data.dataCluster.INDADC">INDADC</a>, <a class="autorefs autorefs-internal" title="data.IOAbstract.DSNT" href="../IOAbstract/#data.IOAbstract.DSNT">DSNT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.IntArrayDict" href="#data.dataCluster.IntArrayDict">IntArrayDict</a>]</code>, <code><span title="typing.Generic">Generic</span>[<a class="autorefs autorefs-internal" title="data.dataCluster.UFH" href="#data.dataCluster.UFH">UFH</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.INDADC" href="#data.dataCluster.INDADC">INDADC</a>, <a class="autorefs autorefs-internal" title="data.IOAbstract.DSNT" href="../IOAbstract/#data.IOAbstract.DSNT">DSNT</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.IntArrayDictAsTxtCluster.DEFAULT_VALUE_TYPE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_VALUE_TYPE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_VALUE_TYPE</span> <span class="o">=</span> <span class="nb">dict</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.IntArrayDictAsTxtCluster.read_inv_format" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">read_inv_format</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">read_inv_format</span><span class="p">(</span><span class="n">array</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>array: np.ndarray [N, 5]</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.IntArrayDictAsTxtCluster.write_format" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">write_format</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">write_format</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">IntArrayDict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.dataCluster.NdarrayAsTxtCluster" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">NdarrayAsTxtCluster</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.dataCluster.UnifiedFileCluster" href="#data.dataCluster.UnifiedFileCluster">UnifiedFileCluster</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.UFH" href="#data.dataCluster.UFH">UFH</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.NDAC" href="#data.dataCluster.NDAC">NDAC</a>, <a class="autorefs autorefs-internal" title="data.IOAbstract.DSNT" href="../IOAbstract/#data.IOAbstract.DSNT">DSNT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.VNDAC" href="#data.dataCluster.VNDAC">VNDAC</a>]</code>, <code><span title="typing.Generic">Generic</span>[<a class="autorefs autorefs-internal" title="data.dataCluster.UFH" href="#data.dataCluster.UFH">UFH</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.NDAC" href="#data.dataCluster.NDAC">NDAC</a>, <a class="autorefs autorefs-internal" title="data.IOAbstract.DSNT" href="../IOAbstract/#data.IOAbstract.DSNT">DSNT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.VNDAC" href="#data.dataCluster.VNDAC">VNDAC</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.NdarrayAsTxtCluster.DEFAULT_READ_FUNC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_READ_FUNC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_READ_FUNC</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.NdarrayAsTxtCluster.DEFAULT_SUFFIX" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_SUFFIX</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_SUFFIX</span> <span class="o">=</span> <span class="s1">&#39;.txt&#39;</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.NdarrayAsTxtCluster.DEFAULT_VALUE_TYPE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_VALUE_TYPE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_VALUE_TYPE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.NdarrayAsTxtCluster.DEFAULT_WRITE_FUNC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_WRITE_FUNC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_WRITE_FUNC</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.NdarrayAsTxtCluster.array_shape" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">array_shape</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">array_shape</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">array_shape</span> <span class="k">if</span> <span class="n">array_shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.NdarrayAsTxtCluster.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">dataset_node</span><span class="p">:</span> <span class="n">DSNT</span><span class="p">,</span> <span class="n">mapping_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">suffix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">flag_name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">read_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">VDMT</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">write_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VDMT</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">value_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">filllen</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">fillchar</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">alternate_suffix</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">read_func_args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">read_func_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write_func_args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write_func_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">array_shape</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.NdarrayAsTxtCluster.read_inv_format" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">read_inv_format</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">read_inv_format</span><span class="p">(</span><span class="n">array</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>array: np.ndarray [N, 5]</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.NdarrayAsTxtCluster.write_format" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">write_format</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">write_format</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.dataCluster.SingleFile" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">SingleFile</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.dataCluster.UnifiedFileCluster" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">UnifiedFileCluster</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.IOAbstract.FilesCluster" href="../IOAbstract/#data.IOAbstract.FilesCluster">FilesCluster</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.UFH" href="#data.dataCluster.UFH">UFH</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.UFC" href="#data.dataCluster.UFC">UFC</a>, <a class="autorefs autorefs-internal" title="data.IOAbstract.DSNT" href="../IOAbstract/#data.IOAbstract.DSNT">DSNT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.VDMT" href="#data.dataCluster.VDMT">VDMT</a>]</code>, <code><span title="typing.Generic">Generic</span>[<a class="autorefs autorefs-internal" title="data.dataCluster.UFH" href="#data.dataCluster.UFH">UFH</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.UFC" href="#data.dataCluster.UFC">UFC</a>, <a class="autorefs autorefs-internal" title="data.IOAbstract.DSNT" href="../IOAbstract/#data.IOAbstract.DSNT">DSNT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.VDMT" href="#data.dataCluster.VDMT">VDMT</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.DEFAULT_READ_FUNC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_READ_FUNC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_READ_FUNC</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.DEFAULT_SUFFIX" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_SUFFIX</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_SUFFIX</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.DEFAULT_VALUE_TYPE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_VALUE_TYPE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_VALUE_TYPE</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.DEFAULT_WRITE_FUNC" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">DEFAULT_WRITE_FUNC</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_WRITE_FUNC</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.FILESHANDLE_TYPE" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">FILESHANDLE_TYPE</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">FILESHANDLE_TYPE</span> <span class="o">=</span> <span class="n">UnifiedFilesHandle</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster._FCT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_FCT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_FCT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;_FCT&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;UnifiedFileCluster&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster._FHT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_FHT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_FHT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;_FHT&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">UnifiedFilesHandle</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster._IS_ELEM" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_IS_ELEM</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_IS_ELEM</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster._VDMT" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">_VDMT</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">_VDMT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;_VDMT&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.alternate_suffix" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">alternate_suffix</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">alternate_suffix</span> <span class="o">=</span> <span class="n">alternate_suffix</span> <span class="k">if</span> <span class="n">alternate_suffix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.cache_priority" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">cache_priority</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">cache_priority</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.fillchar" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">fillchar</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">fillchar</span> <span class="o">=</span> <span class="n">fillchar</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.filllen" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">filllen</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">filllen</span> <span class="o">=</span> <span class="n">filllen</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.read_func" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">read_func</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">read_func</span> <span class="o">=</span> <span class="n">read_func</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.suffix" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">suffix</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">suffix</span> <span class="o">=</span> <span class="n">suffix</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.value_type" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">value_type</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">value_type</span> <span class="o">=</span> <span class="n">value_type</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.write_func" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">write_func</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">write_func</span> <span class="o">=</span> <span class="n">write_func</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster._paste_file" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_paste_file</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.IOAbstract.FilesCluster._paste_file" href="../IOAbstract/#data.IOAbstract.FilesCluster._paste_file">_paste_file</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.UnifiedFileCluster._FCT" href="#data.dataCluster.UnifiedFileCluster._FCT">_FCT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.UnifiedFileCluster._VDMT" href="#data.dataCluster.UnifiedFileCluster._VDMT">_VDMT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.UnifiedFileCluster._FHT" href="#data.dataCluster.UnifiedFileCluster._FHT">_FHT</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.dataCluster.UnifiedFileCluster._paste_file.get_FilesHandle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_FilesHandle</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_FilesHandle</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">UnifiedFilesHandle</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster._read" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_read</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.IOAbstract.FilesCluster._read" href="../IOAbstract/#data.IOAbstract.FilesCluster._read">_read</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.UnifiedFileCluster._FCT" href="#data.dataCluster.UnifiedFileCluster._FCT">_FCT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.UnifiedFileCluster._VDMT" href="#data.dataCluster.UnifiedFileCluster._VDMT">_VDMT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.UnifiedFileCluster._FHT" href="#data.dataCluster.UnifiedFileCluster._FHT">_FHT</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.dataCluster.UnifiedFileCluster._read.core_func" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">core_func</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">core_func</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster._write" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">_write</span>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.IOAbstract.FilesCluster._write" href="../IOAbstract/#data.IOAbstract.FilesCluster._write">_write</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.UnifiedFileCluster._FCT" href="#data.dataCluster.UnifiedFileCluster._FCT">_FCT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.UnifiedFileCluster._VDMT" href="#data.dataCluster.UnifiedFileCluster._VDMT">_VDMT</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.UnifiedFileCluster._FHT" href="#data.dataCluster.UnifiedFileCluster._FHT">_FHT</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h4 id="data.dataCluster.UnifiedFileCluster._write.core_func" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">core_func</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">core_func</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="data.dataCluster.UnifiedFileCluster._write.get_FilesHandle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_FilesHandle</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">get_FilesHandle</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sub_dir</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.ElementsTest" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">ElementsTest</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">ElementsTest</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.__init__" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="fm">__init__</span><span class="p">(</span><span class="n">dataset_node</span><span class="p">:</span> <span class="n">DSNT</span><span class="p">,</span> <span class="n">mapping_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">suffix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">flag_name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">read_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">VDMT</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">write_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VDMT</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">value_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">filllen</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">fillchar</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">alternate_suffix</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">read_func_args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">read_func_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write_func_args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write_func_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.append" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">append</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">VDMT</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sub_dir</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.clear" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">clear</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">clear</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear_both</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.copy_from" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">copy_from</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">copy_from</span><span class="p">(</span><span class="n">src</span><span class="p">:</span> <span class="n">UFC</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">cover</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">only_cache</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.create_fileshandle_in_iometa" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">create_fileshandle_in_iometa</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">create_fileshandle_in_iometa</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sub_dir</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.deformat_corename" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">deformat_corename</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">deformat_corename</span><span class="p">(</span><span class="n">corename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.format_corename" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">format_corename</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">format_corename</span><span class="p">(</span><span class="n">data_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.init_io_metas" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">init_io_metas</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">init_io_metas</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>init the io_metas of the data cluster</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.matching_path" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">matching_path</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">matching_path</span><span class="p">()</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.try_get_default" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">try_get_default</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">try_get_default</span><span class="p">(</span><span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">read_func</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">write_func</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">value_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.update_read_func_binded_paras" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">update_read_func_binded_paras</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">update_read_func_binded_paras</span><span class="p">(</span><span class="n">paras</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.update_write_func_binded_paras" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">update_write_func_binded_paras</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">update_write_func_binded_paras</span><span class="p">(</span><span class="n">paras</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFileCluster.write" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">write</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">write</span><span class="p">(</span><span class="n">data_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">VDMT</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sub_dir</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">other_paras</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="data.dataCluster.UnifiedFilesHandle" class="doc doc-heading">
+          <span class="doc doc-object-name doc-class-name">UnifiedFilesHandle</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="data.IOAbstract.FilesHandle" href="../IOAbstract/#data.IOAbstract.FilesHandle">FilesHandle</a>[<a class="autorefs autorefs-internal" title="data.dataCluster.UFC" href="#data.dataCluster.UFC">UFC</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.VDMT" href="#data.dataCluster.VDMT">VDMT</a>]</code>, <code><span title="typing.Generic">Generic</span>[<a class="autorefs autorefs-internal" title="data.dataCluster.UFC" href="#data.dataCluster.UFC">UFC</a>, <a class="autorefs autorefs-internal" title="data.dataCluster.VDMT" href="#data.dataCluster.VDMT">VDMT</a>]</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="data.dataCluster.UnifiedFilesHandle.init_input_hook" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">init_input_hook</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">init_input_hook</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">read_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">write_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="data.dataCluster.cache_to_file_decorator" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">cache_to_file_decorator</span>
+
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">cache_to_file_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../create_6d_posture_dataset/utils/plane/" class="btn btn-neutral float-left" title="utils.plane"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dataset/" class="btn btn-neutral float-right" title="dataset">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../create_6d_posture_dataset/utils/plane/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../dataset/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
