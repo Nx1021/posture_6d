@@ -412,8 +412,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='An example script with command line arguments.')
 
     # 添加命令行参数
+    parser.add_argument('--mt', default=False, help='Second argument (optional)')  # 使用 action='store_true' 来将 --mt 视为布尔类型
     parser.add_argument('--treedir', type=str, default = os.path.normpath(os.path.join(file_directory, "../")), help='First argument')
-    parser.add_argument('--mt', type=bool, default = True, help='Second argument (optional)') # modify temp
 
     args = parser.parse_args()
 
