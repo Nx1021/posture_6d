@@ -1,2 +1,0 @@
-# posture
-::: core.posture

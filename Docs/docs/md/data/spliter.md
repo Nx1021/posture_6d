@@ -1,2 +1,0 @@
-# spliter
-::: data.spliter

@@ -1,2 +1,0 @@
-# intr
-::: core.intr

@@ -1,2 +1,0 @@
-# viewmeta
-::: data.viewmeta
