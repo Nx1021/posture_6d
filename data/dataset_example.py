@@ -22,6 +22,7 @@ class PostureDataset(Mix_Dataset[FCT, DST, VDST]):
     SPLIT_PARA.update(
         {
             POSTURE_SPLITER_NAME: POSTURE_SUBSETS,
+            "aug_posture": POSTURE_SUBSETS,
         }
     )
 
@@ -102,6 +103,17 @@ class MutilMaskCluster(UnifiedFileCluster[MutilMaskFilesHandle, "MutilMaskCluste
             results = np.array(results)[argsort]
             dict_rlt:dict[int, np.ndarray] = dict(zip(id_seq, results))
             return dict_rlt
+        
+        def cvt_to_core_paras(self, 
+                              src_file_handle, 
+                              dst_file_handle, 
+                              value, 
+                              **other_paras) -> tuple:
+            paths, *paras = super().cvt_to_core_paras(src_file_handle, 
+                                                    dst_file_handle,
+                                                    value,
+                                                    **other_paras)
+            return sorted(paths), *paras
     
     class _write(UnifiedFileCluster._write["MutilMaskCluster", dict[int, np.ndarray], MutilMaskFilesHandle]):
         def split_value_as_mutil(self, core_values:dict[int, np.ndarray]):
@@ -151,12 +163,14 @@ class BopFormat(PostureDataset[UnifiedFileCluster, "BopFormat", ViewMeta]):
         self.info_dictlike = DictLikeCluster(self, "", flag_name=self.INFO)
         scene_camera    = DictLikeHandle.from_name(self.info_dictlike, self.GT_CAM_FILE)
         scene_gt        = DictLikeHandle.from_name(self.info_dictlike, self.GT_FILE)
+        scene_gt_info   = DictLikeHandle.from_name(self.info_dictlike, self.GT_INFO_FILE)
         self.info_dictlike._set_fileshandle(0, scene_camera)
         self.info_dictlike._set_fileshandle(1, scene_gt)
+        self.info_dictlike._set_fileshandle(2, scene_gt_info)
 
-        self.rgb_cluster = UnifiedFileCluster(self,     self.RGB_DIR,      suffix = ".jpg", read_func=cv2.imread, write_func=cv2.imwrite, flag_name=ViewMeta.COLOR)
+        self.rgb_cluster = UnifiedFileCluster(self,     self.RGB_DIR,      suffix = ".jpg", read_func=cv2.imread, write_func=cv2.imwrite, flag_name=ViewMeta.COLOR, alternate_suffix=[".png"])
         self.depth_cluster = UnifiedFileCluster(self,   self.DEPTH_DIR,    suffix = ".png", read_func=partial(cv2.imread, flags = cv2.IMREAD_ANYDEPTH), write_func=cv2.imwrite, flag_name=ViewMeta.DEPTH)
-        self.mask_cluster = MutilMaskCluster(self,      self.MASK_DIR,     suffix = ".png", read_func=cv2.imread, write_func=cv2.imwrite, flag_name=ViewMeta.MASKS)
+        self.mask_cluster = MutilMaskCluster(self,      self.MASK_DIR,     suffix = ".png", read_func=partial(cv2.imread, flags = cv2.IMREAD_GRAYSCALE), write_func=cv2.imwrite, flag_name=ViewMeta.MASKS)
         self.mask_cluster.link_rely_on(self.info_dictlike) # set rely, the obj_id is recorded in scene_gt.json
 
     def read(self, src: int, *, force = False, **other_paras)-> ViewMeta:
@@ -165,15 +179,26 @@ class BopFormat(PostureDataset[UnifiedFileCluster, "BopFormat", ViewMeta]):
         depth   = raw_read_rlt[ViewMeta.DEPTH]
         masks   = raw_read_rlt[ViewMeta.MASKS]
         extr_vecs = {}
+        visib_fracts = {}
+        labels = {}
         intr        = raw_read_rlt[self.INFO][0][self.KW_CAM_K]
         depth_scale = raw_read_rlt[self.INFO][0][self.KW_CAM_DS]
         infos   = raw_read_rlt[self.INFO]
         
+        id_seq = []
+
         for obj_info in infos[1]:
             posture = Posture(rmat = np.reshape(obj_info[self.KW_GT_R], (3,3)), tvec = np.reshape(obj_info[self.KW_GT_t], (3,1)))
             extr_vecs.update({obj_info[self.KW_GT_ID]: np.array([posture.rvec, posture.tvec])})
+            id_seq.append(obj_info[self.KW_GT_ID])
+
+        for id_, obj_gt_info in zip(id_seq, infos[2]):
+            visib = obj_gt_info[self.KW_GT_INFO_VISIB_FRACT]
+            visib_fracts.update({id_: visib})
+            bbox = obj_gt_info[self.KW_GT_INFO_BBOX_VIS]
+            labels.update({id_: bbox})
         
-        return ViewMeta(rgb, depth, masks, extr_vecs, intr, depth_scale, None, None, None, None)
+        return ViewMeta(rgb, depth, masks, extr_vecs, intr, depth_scale, None, None, visib_fracts, labels)
 
     def write(self, data_i: int, value: ViewMeta, *, force = False, **other_paras):
         raise NotImplementedError
@@ -205,6 +230,8 @@ class cxcywhLabelCluster(IntArrayDictAsTxtCluster[UnifiedFilesHandle, "cxcywhLab
     class _write(IntArrayDictAsTxtCluster._write["cxcywhLabelCluster", dict[int, np.ndarray], UnifiedFilesHandle]):
         def preprogress_value(self, value:dict[int, np.ndarray], *, image_size = None, **other_paras):
             value = super().preprogress_value(value)
+            if value is None:
+                return None
             image_size = get_with_priority(image_size, self.files_cluster._get_rely(cxcywhLabelCluster.KW_IMAGE_SIZE), self.files_cluster.default_image_size)
             if image_size is not None:
                 bbox_2d = {}
@@ -397,6 +424,13 @@ class VocFormat_6dPosture(PostureDataset[UnifiedFileCluster, "VocFormat_6dPostur
         self.landmarks_elements.set_io_ctrl_strategy(   IO_CTRL_STRATEGY.CACHE_IDPNDT)
         self.visib_fracts_element.set_io_ctrl_strategy( IO_CTRL_STRATEGY.CACHE_IDPNDT)
         # self.labels_elements.set_io_ctrl_strategy(      IO_CTRL_STRATEGY.CACHE_IDPNDT)
+
+        src_dataset.extr_vecs_elements.file_to_cache(force = force)
+        src_dataset.intr_elements.file_to_cache(force = force)
+        src_dataset.depth_scale_elements.file_to_cache(force = force)
+        src_dataset.bbox_3ds_elements.file_to_cache(force = force)
+        src_dataset.landmarks_elements.file_to_cache(force = force)
+        src_dataset.visib_fracts_element.file_to_cache(force = force)
 
         self.copy_from(src_dataset, cover = cover, force = force)
 

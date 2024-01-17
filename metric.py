@@ -178,7 +178,7 @@ class MetricCalculator():
         diameter = self.mesh_manager.get_model_diameter(class_id) #直径
 
         symmetries = self.mesh_manager.get_model_symmetries(class_id)
-        if not symmetries:
+        if symmetries is None:
             # ADD
             delta = pred_pointcloud_OCS - gt_pointcloud_OCS #[N, 3]
             distances = np.linalg.norm(delta, axis= -1)

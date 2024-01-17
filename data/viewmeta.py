@@ -502,6 +502,14 @@ class ViewMeta():
         orig_dict_list = get_meta_dict(self)
         modify_class_id(orig_dict_list, modify_class_id_pairs)
 
+        for i in range(len(self.ids)):
+            _id = self.ids[i]
+            for pair in modify_class_id_pairs:
+                if _id == pair[0]:
+                    self.ids[i] = pair[1]
+                    break
+
+
     def calc_by_base(self, mesh_dict:dict[int, MeshMeta], cover = False):
         from ..derive import calc_viewmeta_by_base
         calc_viewmeta_by_base(self, mesh_dict, cover)
@@ -525,12 +533,15 @@ class ViewMeta():
             value = func(value) if value is not None else None
         # sort the dict by key, and check if the ids is same
         if isinstance(value, dict):
-            value = dict(sorted(value.items(), key=lambda x: x[0]))
-            new_ids = list(value.keys())
-            if len(self.ids) == 0:
-                self.ids = new_ids
-            elif self.ids != new_ids:
-                raise ValueError("ids must be same")
+            if len(value) == 0:
+                value = None
+            else:
+                value = dict(sorted(value.items(), key=lambda x: x[0]))
+                new_ids = list(value.keys())
+                if len(self.ids) == 0:
+                    self.ids = new_ids
+                elif self.ids != new_ids:
+                    raise ValueError("ids must be same")
 
         # set the value to the class
         ViewMeta.IGNORE_WARNING = True

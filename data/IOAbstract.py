@@ -1493,7 +1493,7 @@ class _AppendNames(dict[str, Union[List[str], str]]):
         bool
             True if the name was added, False if it already existed.
         """
-        if appendname not in self:
+        if appendname not in self.appendnames:
             self.appendnames.append(appendname)
             return True
         return False
@@ -1512,7 +1512,7 @@ class _AppendNames(dict[str, Union[List[str], str]]):
         bool
             True if the name was removed, False if it did not exist.
         """
-        if appendname in self:
+        if appendname in self.appendnames:
             self.appendnames.remove(appendname)
             return True
         return False
@@ -1921,6 +1921,10 @@ class FilesHandle(_RegisterInstance["FilesHandle"], Generic[FCT, VDMT]):
                     obj.add_appendname(appname)
             return obj
         elif cls.GET_INSTANCE_STRATEGY == 1:
+            if orig_obj.multi_files:
+                obj:FilesHandle = cls._registry[identity_string]
+                for appname in obj._appendnames_obj.appendnames:
+                    orig_obj.add_appendname(appname)
             cls.register(identity_string, orig_obj)
             cls.GET_INSTANCE_STRATEGY = 0
             return orig_obj
@@ -2994,11 +2998,11 @@ class FilesHandle(_RegisterInstance["FilesHandle"], Generic[FCT, VDMT]):
             dir_ = self.get_dir()
             return [os.path.join(dir_, x) for x in file_name]
         else:
-            if self.__path is None:
+            if not hasattr(self, "_path") or self._path is None:
                 file_name: str = self.get_name(get_list=False)  # type: ignore 
                 dir_ = self.get_dir()
-                self.__path = os.path.join(dir_, file_name)
-            return self.__path
+                self._path = os.path.join(dir_, file_name)
+            return self._path
             
     def get_key(self):
         """
@@ -3190,7 +3194,7 @@ class BinDict(dict[_KT, _VT], Generic[_KT, _VT]):
     """
 
     def __init__(self, dict_: Optional[dict[_KT, _VT]] = None, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super().__init__(dict_, *args, **kwargs)
         self.init_reverse_dict()
 
     @staticmethod
@@ -4055,7 +4059,6 @@ class DataMapping(IOStatusManager, _RegisterInstance["DataMapping"], Node["DataM
             for dir_ in d:
                 if len(os.listdir(os.path.join(r, dir_))) == 0:
                     os.rmdir(os.path.join(r, dir_))
-                    os.rmdir(os.path.join(r, dir_))
     
     def _rebuild_done(self):
         self._reset_MemoryData_modified()
@@ -4919,7 +4922,10 @@ class IOMeta(ABC, Generic[FCT, VDMT, FHT]):
                 return self.gather_mutil_results(rlt) # gather mutil results to a single result, because `rlt` contains the datas for mutil files
         else:
             raise IOMetaPriorityError("core_func is None")
-        rlt = self.inv_format_value(rlt)
+        try:
+            rlt = self.inv_format_value(rlt)
+        except:
+            raise IOMetaPriorityError("inv_format_value raises exception")
         return rlt
 
     def execute_core_func(self, core_func, *core_args, **other_paras):
@@ -4937,12 +4943,18 @@ class IOMeta(ABC, Generic[FCT, VDMT, FHT]):
         if self.multi_files:
             rlts = []
             for i in range(len(core_args[0])):
-                rlt = core_func(*[x[i] for x in core_args], **self.core_func_binded_paras)
+                try:
+                    rlt = core_func(*[x[i] for x in core_args], **self.core_func_binded_paras)
+                except:
+                    raise IOMetaPriorityError("unexpected error while executing core_func")
                 self.core_func_hook(*[x[i] for x in core_args], **other_paras)
                 rlts.append(rlt)
             return rlts
         else:
-            rlt = core_func(*core_args, **self.core_func_binded_paras)
+            try:
+                rlt = core_func(*core_args, **self.core_func_binded_paras)
+            except:
+                raise IOMetaPriorityError("unexpected error while executing core_func")
             self.core_func_hook(*core_args)
             return rlt
 

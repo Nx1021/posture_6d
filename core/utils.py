@@ -721,14 +721,30 @@ class Table(Generic[ROWKEYT, COLKETT, ITEM]):
         row_key, col_key, table_mode = self.__process_item(keys)
         if table_mode:
             self.__assert_keys_list(row_key, col_key)
+            # check value type
+            using_dict_value = False
+            try:
+                self.assert_default_value_type(value)
+            except:
+                using_dict_value = True
+                if isinstance(value, Table):
+                    value = value.to_dict()
+                elif isinstance(value, dict):
+                    value = Table.from_dict(value).to_dict()
+                else:
+                    raise ValueError("value must be an instance of default_value_type or a dict or a Table")
             # check value
             table_dict = {}
             for rn in row_key:
                 table_dict[rn] = {}
                 for cn in col_key:
-                    _v = self.__data[rn][cn]
-                    self.assert_default_value_type(_v)
-                    table_dict[rn][cn] = self.__data[rn][cn]
+                    # _v = self.__data[rn][cn]
+                    if using_dict_value:
+                        _v = value[rn][cn]
+                        self.assert_default_value_type(_v)
+                    else:
+                        _v = value
+                    table_dict[rn][cn] = _v
             self.update(table_dict)
         else:              
             self.assert_default_value_type(value)

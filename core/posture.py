@@ -104,10 +104,10 @@ class Posture:
         return eular
     
     @classmethod
-    def from_vecs(cls, src_vec:np.ndarray, dst_vec:np.ndarray):
+    def from_vecs(cls, src_vec:np.ndarray, dst_vec:np.ndarray, tvec = None):
         ### 转换为旋转向量
         rvec = Rotation.get_rvec_from_destination(dst_vec, src_vec)
-        return cls(rvec=rvec)
+        return cls(rvec=rvec, tvec = tvec)
 
 class Rotation:
     def __init__(self) -> None:

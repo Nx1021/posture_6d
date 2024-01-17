@@ -78,7 +78,7 @@ class UnifiedFileCluster(FilesCluster[UFH, UFC, DSNT, VDMT], Generic[UFH, UFC, D
                  value_type:Callable = None,
                  filllen = 6, 
                  fillchar = '0',
-                 alternate_suffix:list = None,
+                 alternate_suffix:list[str] = None,
                  read_func_args = None,
                  read_func_kwargs = None,
                  write_func_args = None,
@@ -110,6 +110,7 @@ class UnifiedFileCluster(FilesCluster[UFH, UFC, DSNT, VDMT], Generic[UFH, UFC, D
 
         self.filllen = filllen
         self.fillchar = fillchar
+        alternate_suffix = [alternate_suffix] if isinstance(alternate_suffix, str) else alternate_suffix
         self.alternate_suffix = alternate_suffix if alternate_suffix is not None else []  
         super().__init__(dataset_node, mapping_name, flag_name=flag_name)
         self.cache_priority = False 
@@ -487,10 +488,14 @@ class DictLikeHandle(DisunifiedFilesHandle[DLC, dict[int, Any]], Generic[DLC]):
     @property
     def elem_num(self):
         return len(self.cache)
+    
+    @property
+    def elem_i_upper(self):
+        return max(self.cache.keys(), default=-1) + 1
 
-    # @property
-    # def elem_i_upper(self):
-    #     return max(self.cache.keys(), default=-1) + 1
+    @property
+    def elem_continuous(self):
+        return self.elem_num == self.elem_i_upper
         
     def erase_cache(self):
         if not self.is_closed and not self.is_readonly:
@@ -917,12 +922,12 @@ class IntArrayDictAsTxtCluster(NdarrayAsTxtCluster[UFH, INDADC, DSNT, IntArrayDi
     
     @staticmethod
     def write_format(self:IOMeta["IntArrayDictAsTxtCluster", IntArrayDict, UnifiedFilesHandle], value:IntArrayDict) -> Any:
+        if value is None:
+            return None
         array = []
         for i, (k, v) in enumerate(value.items()):
-            array.append(
-                np.concatenate([np.array([k]).astype(v.dtype), v.reshape(-1)])
-                )
+            if not isinstance(v, np.ndarray):
+                v = np.array(v)
+            array.append(np.concatenate([np.array([k]).astype(v.dtype), v.reshape(-1)]))
         array = np.stack(array)
         return array
-
-

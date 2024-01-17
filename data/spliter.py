@@ -22,7 +22,7 @@ import warnings
 import copy
 
 from abc import ABC, abstractmethod
-from typing import Any, Union, Callable, TypeVar, Generic, Iterable, Generator
+from typing import Any, Union, Callable, TypeVar, Generic, Iterable, Generator, Optional
 from functools import partial
 
 
@@ -74,7 +74,7 @@ class Spliter(DisunifiedFileCluster[SpliterFilesHandle, SP, SPG, Table[int, str,
 
     ALWAYS_ALLOW_WRITE = True
 
-    def __init__(self, dataset_node: Union[str, DatasetNode], mapping_name: str, *args, subsets = None, **kwargs) -> None:
+    def __init__(self, dataset_node: Union[str, DatasetNode], mapping_name: str, *args, subsets:Optional[list[str]] = None, **kwargs) -> None:
         super().__init__(dataset_node, mapping_name, *args, **kwargs)
         self.split_fileshandle:SpliterFilesHandle = self.FILESHANDLE_TYPE.from_name(self, self.SPLIT_FILE)
         self._set_fileshandle(0, self.split_fileshandle)
@@ -386,14 +386,17 @@ class SpliterGroup(DatasetNode[Spliter, SPG, Table[int, str, bool]], Generic[SP,
     DEFAULT_SPLIT_MODE = ["default"]
 
     def __init__(self, top_directory, mapping_name, *, flag_name="", split_paras = None) -> None:
-        self.__split_paras:dict[str, list[str]] = split_paras if split_paras is not None else {self.DEFAULT_SPLIT_MODE: None}
+        self.__split_paras:dict[str, list[str]] = split_paras if split_paras is not None else {self.DEFAULT_SPLIT_MODE[0]: None}
         super().__init__(top_directory, mapping_name, flag_name=flag_name)
 
     def init_clusters_hook(self):
         super().init_clusters_hook()
         for split_mode, subsets in self.__split_paras.items():
             self.add_cluster(Spliter(self, split_mode, subsets = subsets))
-    
+      
+    def add_spliter(self, split_mode:str, subsets:Optional[list[str]] = None):
+        self.add_cluster(Spliter(self, split_mode, subsets = subsets))
+  
     def init_dataset_attr_hook(self):
         super().init_dataset_attr_hook()
 
