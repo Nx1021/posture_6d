@@ -145,8 +145,8 @@ class Dataset(DatasetNode[FCT, DST, VDST], Generic[FCT, DST, VDST]):
 
     SPLIT_PARA = {DEFAULT_SPLITER_NAME: DEFAULT_SUBSETS}
 
-    def init_clusters_hook(self):
-        super().init_clusters_hook()
+    def init_clusters_hook(self, lazy):
+        super().init_clusters_hook(lazy)
         self.spliter_group = SpliterGroup(self, "split_group", split_paras=copy.deepcopy(self.SPLIT_PARA))
 
     @property

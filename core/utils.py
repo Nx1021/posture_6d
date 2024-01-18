@@ -11,11 +11,12 @@ import re
 import pickle
 import warnings
 import cv2
+from tqdm import tqdm
 
-from typing import Generic, TypeVar, Union, Callable, Iterable, Type, Mapping
+from typing import Generic, TypeVar, Union, Callable, Iterable, Type, Mapping, Optional, Any
 import types
 from collections import OrderedDict
-
+from itertools import chain
 
 def get_bbox_connections(bbox_3d_proj:np.ndarray):
     '''
@@ -140,26 +141,39 @@ class JsonIO():
             super(JsonIO._MyEncoder, self).__init__(**kwargs)
 
         def default(self, obj):
-            return (self.FORMAT_SPEC.format(id(obj)) if isinstance(obj, JsonIO._NoIndent)
-                    else super(JsonIO._MyEncoder, self).default(obj))
+            if isinstance(obj, JsonIO._NoIndent):
+                id_ = id(obj)
+                self.no_indent_value_dict[str(id_)] = obj.value
+                return self.FORMAT_SPEC.format(id_)
+            else:
+                super(JsonIO._MyEncoder, self).default(obj)
 
         def encode(self, obj):
+            self.no_indent_value_dict:dict[str, Any] = {}
+
             format_spec = self.FORMAT_SPEC  # Local var to expedite access.
             json_repr = super(JsonIO._MyEncoder, self).encode(obj)  # Default JSON.
 
-            # Replace any marked-up object ids in the JSON repr with the
-            # value returned from the json.dumps() of the corresponding
-            # wrapped Python object.
-            for match in self.regex.finditer(json_repr):
-                # see https://stackoverflow.com/a/15012814/355230
-                id = int(match.group(1))
-                no_indent = PyObj_FromPtr(id)
-                json_obj_repr = json.dumps(no_indent.value, sort_keys=self.__sort_keys)
+            json_repr_list = re.split('"@@|@@"', json_repr)
 
-                # Replace the matched id string with json formatted representation
-                # of the corresponding Python object.
-                json_repr = json_repr.replace(
-                                '"{}"'.format(format_spec.format(id)), json_obj_repr)
+            value_list = list(self.no_indent_value_dict.values())
+            no_indend_idx = [idx for idx, x in enumerate(json_repr_list) if x.isdigit()]
+
+            for idx ,value in zip(no_indend_idx, value_list):
+                json_repr_list[idx] = json.dumps(value, sort_keys=self.__sort_keys)
+
+            json_repr = "".join(json_repr_list)
+
+            # for match in self.regex.finditer(json_repr):
+            #     # see https://stackoverflow.com/a/15012814/355230
+            #     id = int(match.group(1))
+            #     no_indent_value = self.no_indent_value_dict[id]
+            #     json_obj_repr = json.dumps(no_indent_value, sort_keys=self.__sort_keys)
+
+            #     # Replace the matched id string with json formatted representation
+            #     # of the corresponding Python object.
+            #     json_repr = json_repr.replace(
+            #                     '"{}"'.format(format_spec.format(id)), json_obj_repr)
 
             return json_repr
 
@@ -333,17 +347,22 @@ class JsonIO():
         return dict_
 
     @staticmethod
-    def _dumps(to_dump_dict, regard_list_as_array = False):
-        to_dump_dict = JsonIO.__convert_dict_to_jsonformat(to_dump_dict, regard_list_as_array)
-        string = ""            
-        for k, v in to_dump_dict.items():
+    def _dumps(to_dump_dict, format = True, regard_list_as_array = False):
+        if format:
+            to_dump_dict = JsonIO.__convert_dict_to_jsonformat(to_dump_dict, regard_list_as_array)
+        string_list = []    
+        if len(to_dump_dict) > 10000:
+            progress = tqdm(to_dump_dict.items(), leave=False, desc="dump_json: the length of dict is too large, please wait")
+        else:
+            progress = to_dump_dict.items()
+        for k, v in progress:
             json_data = json.dumps({k: v}, cls=JsonIO._MyEncoder, ensure_ascii=False, sort_keys=True, indent=2)
-            string += json_data[1:-2] + ','
-        return string
+            string_list.append(json_data[1:-2] + ',')
+        return "".join(string_list)
 
     @staticmethod
-    def dump_json(path, to_dump_dict, regard_list_as_array = False):
-        string = JsonIO._dumps(to_dump_dict, regard_list_as_array)
+    def dump_json(path, to_dump_dict, format = True, regard_list_as_array = False):
+        string = JsonIO._dumps(to_dump_dict, format, regard_list_as_array)
         string = '{' + string[:-1] + '\n}'
         with open(path, 'w') as fw:
             fw.write(string)
@@ -383,6 +402,275 @@ def int_str_cocvt(ref_iterable:Iterable[str],
                 raise ValueError("Key not found or ambiguous")
     else:
         raise TypeError("Key must be an int or str")
+
+_KT = TypeVar('_KT')
+_VT = TypeVar('_VT')
+class BinDict(dict[_KT, _VT], Generic[_KT, _VT]):
+    """
+    A dictionary subclass that supports bidirectional mapping between keys and values.
+
+    Parameters
+    ----------
+    dict_ : dict, optional
+        The initial dictionary to populate the BinDict with.
+
+    Attributes
+    ----------
+    _reverse_dict : dict
+        A dictionary that stores the reverse mapping of values to keys.
+
+    Methods
+    -------
+    gen_reverse_dict(dict_)
+        Generates the reverse dictionary from the given dictionary.
+    init_reverse_dict()
+        Initializes the `_reverse_dict` attribute.
+    __getitem__(key)
+        Returns the value associated with the given key.
+    __del_item(key)
+        Deletes the item with the given key and its corresponding reverse mapping.
+    __setitem__(key, value)
+        Sets the value associated with the given key and updates the reverse mapping.
+    update(*args, **kwargs)
+        Updates the BinDict with the key-value pairs from other dictionaries.
+    pop(key, default=None)
+        Removes and returns the value associated with the given key.
+    popitem()
+        Removes and returns the last key-value pair in the BinDict.
+    clear()
+        Removes all items from the BinDict.
+    setdefault(key, default=None)
+        Returns the value associated with the given key, or sets it to the default value if the key is not present.
+    __delitem__(key)
+        Deletes the item with the given key and its corresponding reverse mapping.
+    __repr__()
+        Returns a string representation of the BinDict.
+
+    Examples
+    --------
+    >>> bin_dict = BinDict({'a': 1, 'b': 2})
+    >>> print(bin_dict['a'])
+    1
+    >>> bin_dict.update({'c': 3})
+    >>> print(bin_dict)
+    BinDict({'a': 1, 'b': 2, 'c': 3})
+    >>> bin_dict.query_value(3)
+    'c'
+    """
+
+    def __init__(self, dict_: Optional[dict[_KT, _VT]] = None, *args, **kwargs):
+        super().__init__(dict_, *args, **kwargs)
+        self.init_reverse_dict()
+
+    @staticmethod
+    def gen_reverse_dict(dict_: dict[_KT, _VT]) -> dict[_VT, _KT]:
+        """
+        Generates a reverse dictionary from the given dictionary.
+
+        Parameters
+        ----------
+        dict_ : dict
+            The dictionary to generate the reverse dictionary from.
+
+        Returns
+        -------
+        dict
+            The reverse dictionary.
+        """
+        def reverse_entry(entry):
+            key, value = entry
+            return value, key
+
+        reverse_entries = list(map(reverse_entry, dict_.items()))
+
+        return dict(reverse_entries)
+
+    def init_reverse_dict(self):
+        """
+        Initializes the `_reverse_dict` attribute by generating the reverse dictionary from the current dictionary.
+        """
+        self._reverse_dict = self.gen_reverse_dict(self)
+
+    def __getitem__(self, __key: _KT) -> _VT:
+        """
+        Returns the value associated with the given key.
+
+        Parameters
+        ----------
+        __key : _KT
+            The key to retrieve the value for.
+
+        Returns
+        -------
+        _VT
+            The value associated with the key.
+        """
+        return super().__getitem__(__key)
+
+    def __del_item(self, key) -> _VT:
+        """
+        Deletes the item with the given key and its corresponding reverse mapping.
+
+        Parameters
+        ----------
+        key : _KT
+            The key of the item to delete.
+
+        Returns
+        -------
+        _VT
+            The value of the deleted item.
+        """
+        value = self[key]
+        super().__delitem__(key)
+        if self.has_value(value):
+            del self._reverse_dict[value]
+        return value
+
+    def __setitem__(self, key, value):
+        """
+        Sets the value associated with the given key and updates the reverse mapping.
+
+        Parameters
+        ----------
+        key : _KT
+            The key to set the value for.
+        value : _VT
+            The value to associate with the key.
+        """
+        if key in self:
+            # If key already exists, delete the old reverse mapping
+            old_value = self[key]
+            if self.has_value(old_value):
+                del self._reverse_dict[old_value]
+        if self.has_value(value):
+            # If value already exists in the reverse mapping, delete the old key
+            old_key = self._reverse_dict[value]
+            del self[old_key]
+        super().__setitem__(key, value)
+        self._reverse_dict[value] = key
+
+    def update(self, *args: dict[_KT, _VT], **kwargs):
+        """
+        Updates the BinDict with the key-value pairs from other dictionaries.
+
+        Parameters
+        ----------
+        *args : dict
+            Other dictionaries to update the BinDict with.
+        **kwargs : key-value pairs
+            Key-value pairs to update the BinDict with.
+        """
+        for other_dict in args:
+            reverse_dict = self.gen_reverse_dict(other_dict)
+
+            if len(self) > 0:
+                reverse_same_keys = set(reverse_dict.keys()) & set(self._reverse_dict.keys())
+                origin_same_keys = set(other_dict.keys()) & set(self.keys())
+                for rev_k in reverse_same_keys:
+                    self.pop(self._reverse_dict[rev_k])
+                for k in origin_same_keys:
+                    self._reverse_dict.pop(self[k])
+
+            super().update(other_dict)
+            self._reverse_dict.update(reverse_dict)
+        for key, value in kwargs.items():
+            self[key] = value
+
+    def pop(self, key, default=None) -> _VT:
+        """
+        Removes and returns the value associated with the given key.
+
+        Parameters
+        ----------
+        key : _KT
+            The key of the item to remove.
+        default : any, optional
+            The value to return if the key is not found, by default None.
+
+        Returns
+        -------
+        _VT
+            The value associated with the key, or the default value if the key is not found.
+        """
+        if self.has(key):
+            value = self.__del_item(key)
+            return value
+        else:
+            return default
+
+    # def popitem(self) -> tuple[_KT, _VT]:
+    #     """
+    #     Removes and returns the last key-value pair in the BinDict.
+
+    #     Returns
+    #     -------
+    #     tuple
+    #         The last key-value pair in the BinDict.
+    #     """
+    #     key, value = super().popitem()
+    #     if value in self._reverse_dict:
+    #         del self._reverse_dict[value]
+    #     return key, value
+
+    def clear(self):
+        """
+        Removes all items from the BinDict.
+        """
+        super().clear()
+        self._reverse_dict.clear()
+
+    def setdefault(self, key, default=None) -> _VT:
+        """
+        Returns the value associated with the given key, or sets it to the default value if the key is not present.
+
+        Parameters
+        ----------
+        key : _KT
+            The key to retrieve the value for.
+        default : any, optional
+            The default value to set if the key is not present, by default None.
+
+        Returns
+        -------
+        _VT
+            The value associated with the key, or the default value if the key is not present.
+        """
+        if not self.has(key):
+            self[key] = default
+        return self[key]
+
+    def __delitem__(self, key):
+        """
+        Deletes the item with the given key and its corresponding reverse mapping.
+
+        Parameters
+        ----------
+        key : _KT
+            The key of the item to delete.
+        """
+        if self.has(key):
+            self.__del_item(key)
+
+    def __repr__(self) -> str:
+        """
+        Returns a string representation of the BinDict.
+
+        Returns
+        -------
+        str
+            A string representation of the BinDict.
+        """
+        return f"{self.__class__.__name__}({super().__repr__()})"
+
+    def has(self, key):
+        return key in self
+
+    def has_value(self, value:_VT):
+        return value in self._reverse_dict
+
+    def query_value(self, value:_VT):
+        return self._reverse_dict.get(value, None)
 
 
 ITEM = TypeVar('ITEM')
@@ -444,10 +732,11 @@ class Table(Generic[ROWKEYT, COLKETT, ITEM]):
             self.__row_name_type:Type[ROWKEYT] = row_name_type
             self.__col_name_type:Type[COLKETT] = col_name_type
 
-            for row_name in row_names or []:
-                self.add_row(row_name)
-            for col_name in col_names or []:
-                self.add_column(col_name)
+            self.add_new_column_in_batch(col_names or [])
+            self.add_new_row_in_batch(row_names or [])
+
+    def _GET_DATA_UNSAFELY(self):
+        return self.__data
 
     @staticmethod
     def __type_process(self, value:Union[str, type], orig_list:list, orig_flag):
@@ -545,6 +834,15 @@ class Table(Generic[ROWKEYT, COLKETT, ITEM]):
             return True
         return False
 
+    def add_new_row_in_batch(self, row_names:list[ROWKEYT]):
+        row_names = list(set(row_names).difference(self.__row_names)) # add only new row names
+        if any([not isinstance(x, self.row_name_type) for x in row_names]): 
+            raise TypeError("row_names must be an instance of row_name_type") # must be an instance of row_name_type
+        self.__row_names.extend(row_names)
+        
+        to_update = {row_name: {col_name: self.gen_default_value() for col_name in self.__col_names} for row_name in row_names}
+        self.__data.update(to_update)
+
     def remove_row(self, row_name:Union[int,str], not_exist_ok=False):
         row_name = self._row_name_filter(row_name)
         if self.__key_assert(row_name, self.__row_names, True, ignore=not_exist_ok):
@@ -561,6 +859,16 @@ class Table(Generic[ROWKEYT, COLKETT, ITEM]):
                 self.__data[row_name][col_name] = self.gen_default_value()
             return True
         return False
+
+    def add_new_column_in_batch(self, col_names:list[COLKETT]):
+        col_names = list(set(col_names).difference(self.__col_names))
+        if any([not isinstance(x, self.col_name_type) for x in col_names]):
+            raise TypeError("col_names must be an instance of col_name_type")
+        self.__col_names.extend(col_names)
+
+        for row_name in self.__row_names:
+            for col_name in col_names:
+                self.__data[row_name][col_name] = self.gen_default_value()
 
     def remove_column(self, col_name:Union[int,str], not_exist_ok=False):
         col_name = self._col_name_filter(col_name)
@@ -637,11 +945,21 @@ class Table(Generic[ROWKEYT, COLKETT, ITEM]):
                     yield self.__data[row_name][col_name]
 
     def update(self, other:Union[dict[ROWKEYT, dict[COLKETT, ITEM]], "Table[ROWKEYT, COLKETT, ITEM]"]):
+        row_names = list(other.keys())
+        new_row_names = list(set(row_names).difference(self.col_names))
+        col_names = list(set(chain(*[list(x.keys()) for x in other.values()])))
+        new_col_names = set(col_names).difference(self.col_names)
+        
+        self.add_new_column_in_batch(new_col_names)
+        self.add_new_row_in_batch(new_row_names)
+
         for row_name, row in other.items():
-            self.add_row(row_name, exist_ok=True)
-            for col_name, value in row.items():
-                self.add_column(col_name, exist_ok=True)
-                self.__data[row_name][col_name] = value
+            self.__data[row_name].update(row)
+
+            # self.add_row(row_name, exist_ok=True)
+            # for col_name, value in row.items():
+            #     self.add_column(col_name, exist_ok=True)
+            #     self.__data[row_name][col_name] = value
     
     def clear(self):
         self.__data.clear()
@@ -651,15 +969,15 @@ class Table(Generic[ROWKEYT, COLKETT, ITEM]):
         self.__row_names.sort(key=key, reverse=reverse)
         self.__data = {row_name: self.__data[row_name] for row_name in self.__row_names}
 
-    def merge(self, other:dict[str, dict[str, ITEM]], merge_func:Callable = None):
-        merge_func = lambda x, y: True
-        assert callable(merge_func)
-        for row_name, row in other.items():
-            self.add_row(row_name, exist_ok=True)
-            for col_name, value in row.items():
-                self.add_column(col_name, exist_ok=True)
-                if merge_func(self.__data[row_name][col_name], value):
-                    self.__data[row_name][col_name] = value
+    # def merge(self, other:dict[str, dict[str, ITEM]], merge_func:Callable = None):
+    #     merge_func = lambda x, y: True
+    #     assert callable(merge_func)
+    #     for row_name, row in other.items():
+    #         self.add_row(row_name, exist_ok=True)
+    #         for col_name, value in row.items():
+    #             self.add_column(col_name, exist_ok=True)
+    #             if merge_func(self.__data[row_name][col_name], value):
+    #                 self.__data[row_name][col_name] = value
 
     def clean_invalid(self, judge_invalid_func:Callable):
         assert callable(judge_invalid_func)

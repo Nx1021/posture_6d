@@ -157,8 +157,8 @@ class BopFormat(PostureDataset[UnifiedFileCluster, "BopFormat", ViewMeta]):
     MASK_DIR = "mask"
     INFO = "info"
 
-    def init_clusters_hook(self):
-        super().init_clusters_hook()
+    def init_clusters_hook(self, lazy):
+        super().init_clusters_hook(lazy)
 
         self.info_dictlike = DictLikeCluster(self, "", flag_name=self.INFO)
         scene_camera    = DictLikeHandle.from_name(self.info_dictlike, self.GT_CAM_FILE)
@@ -192,11 +192,15 @@ class BopFormat(PostureDataset[UnifiedFileCluster, "BopFormat", ViewMeta]):
             extr_vecs.update({obj_info[self.KW_GT_ID]: np.array([posture.rvec, posture.tvec])})
             id_seq.append(obj_info[self.KW_GT_ID])
 
-        for id_, obj_gt_info in zip(id_seq, infos[2]):
-            visib = obj_gt_info[self.KW_GT_INFO_VISIB_FRACT]
-            visib_fracts.update({id_: visib})
-            bbox = obj_gt_info[self.KW_GT_INFO_BBOX_VIS]
-            labels.update({id_: bbox})
+        if 2 in infos:
+            for id_, obj_gt_info in zip(id_seq, infos[2]):
+                visib = obj_gt_info[self.KW_GT_INFO_VISIB_FRACT]
+                visib_fracts.update({id_: visib})
+                bbox = obj_gt_info[self.KW_GT_INFO_BBOX_VIS]
+                labels.update({id_: bbox})
+        else:
+            visib_fracts = None
+            labels = None
         
         return ViewMeta(rgb, depth, masks, extr_vecs, intr, depth_scale, None, None, visib_fracts, labels)
 
@@ -305,51 +309,51 @@ class cxcywhLabelCluster(IntArrayDictAsTxtCluster[UnifiedFilesHandle, "cxcywhLab
 class VocFormat_6dPosture(PostureDataset[UnifiedFileCluster, "VocFormat_6dPosture", ViewMeta]):
     KW_IMGAE_DIR = "images"
 
-    def __init__(self, directory, *, flag_name="", parent: DatasetNode = None) -> None:
-        super().__init__(directory, flag_name=flag_name, parent=parent)
+    def __init__(self, directory, *, flag_name="", parent: DatasetNode = None, lazy = False) -> None:
+        super().__init__(directory, flag_name=flag_name, parent=parent, lazy = lazy)
 
-    def init_clusters_hook(self):
-        super().init_clusters_hook()
+    def init_clusters_hook(self, lazy):
+        super().init_clusters_hook(lazy)
         self.images_elements =\
               UnifiedFileCluster[UnifiedFilesHandle, UnifiedFileCluster, VocFormat_6dPosture, np.ndarray](self, self.KW_IMGAE_DIR, suffix = ".jpg" ,
                     read_func=cv2.imread, 
                     write_func=cv2.imwrite, 
-                    flag_name=ViewMeta.COLOR)
+                    flag_name=ViewMeta.COLOR, lazy=lazy)
         
         self.depth_elements      =\
               UnifiedFileCluster[UnifiedFilesHandle, UnifiedFileCluster, VocFormat_6dPosture, np.ndarray](self, "depths",  suffix = '.png',
                     read_func = partial(cv2.imread, flags = cv2.IMREAD_ANYDEPTH), 
                     write_func =cv2.imwrite,
-                    flag_name=ViewMeta.DEPTH)
+                    flag_name=ViewMeta.DEPTH, lazy=lazy)
         
         self.masks_elements      =\
               UnifiedFileCluster[UnifiedFilesHandle, UnifiedFileCluster, VocFormat_6dPosture, dict[int, np.ndarray]](self, "masks", suffix = ".pkl",
                     read_func = deserialize_object,
                     write_func = serialize_object,
-                    flag_name=ViewMeta.MASKS)
+                    flag_name=ViewMeta.MASKS, lazy=lazy)
         rebind_methods(self.masks_elements.read_meta, self.masks_elements.read_meta.inv_format_value, self.deserialize_mask_dict) ### TODO
         rebind_methods(self.masks_elements.write_meta, self.masks_elements.write_meta.format_value, self.serialize_mask_dict) ### TODO
 
         self.extr_vecs_elements  = IntArrayDictAsTxtCluster(self, "trans_vecs",     array_shape=(2, 3), write_func_kwargs={"fmt":"%8.8f"},  
-                                                            flag_name=ViewMeta.EXTR_VECS)
+                                                            flag_name=ViewMeta.EXTR_VECS, lazy=lazy)
 
         self.intr_elements       = NdarrayAsTxtCluster(self,        "intr",         array_shape=(3,3),  write_func_kwargs={"fmt":"%8.8f", "delimiter":'\t'},
-                                                            flag_name=ViewMeta.INTR)
+                                                            flag_name=ViewMeta.INTR, lazy=lazy)
 
         self.depth_scale_elements= NdarrayAsTxtCluster(self,        "depth_scale",  array_shape=(-1,),  write_func_kwargs={"fmt":"%8.8f"}, 
-                                                            flag_name=ViewMeta.DEPTH_SCALE)
+                                                            flag_name=ViewMeta.DEPTH_SCALE, lazy=lazy)
 
         self.bbox_3ds_elements   = IntArrayDictAsTxtCluster(self,   "bbox_3ds",     array_shape=(-1, 2), write_func_kwargs={"fmt":"%8.8f"},
-                                                            flag_name=ViewMeta.BBOX_3DS)
+                                                            flag_name=ViewMeta.BBOX_3DS, lazy=lazy)
 
         self.landmarks_elements  = IntArrayDictAsTxtCluster(self,   "landmarks",    array_shape=(-1, 2), write_func_kwargs={"fmt":"%8.8f"},
-                                                            flag_name=ViewMeta.LANDMARKS)
+                                                            flag_name=ViewMeta.LANDMARKS, lazy=lazy)
 
         self.visib_fracts_element = IntArrayDictAsTxtCluster(self,   "visib_fracts", array_shape=(-1,),  write_func_kwargs={"fmt":"%8.8f"},
-                                                            flag_name=ViewMeta.VISIB_FRACTS)
+                                                            flag_name=ViewMeta.VISIB_FRACTS, lazy=lazy)
 
         self.labels_elements      = cxcywhLabelCluster(self,         "labels",       array_shape=(-1,),  write_func_kwargs={"fmt":"%8.8f"},
-                                                            flag_name=ViewMeta.LABELS)
+                                                            flag_name=ViewMeta.LABELS, lazy=lazy)
 
         self.labels_elements.default_image_size = (640, 480)
         self.labels_elements.link_rely_on(self.images_elements)

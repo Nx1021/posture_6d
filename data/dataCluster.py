@@ -28,12 +28,12 @@ from functools import partial
 # from posture_6d.data.IOAbstract import DatasetNode
 
 
-from .IOAbstract import DataMapping, DatasetNode, IOMeta, BinDict, _KT, _VT, DMT, VDMT, DSNT,\
+from .IOAbstract import DataMapping, DatasetNode, IOMeta, FhBinDict, _KT, _VT, DMT, VDMT, DSNT,\
     FilesHandle, CacheProxy, \
     AmbiguousError, IOMetaParameterError, KeyNotFoundError, ClusterDataIOError, DataMapExistError, \
         IOStatusWarning, ClusterIONotExecutedWarning, ClusterNotRecommendWarning,\
     FilesCluster,\
-    parse_kw, get_with_priority
+    parse_kw, get_with_priority, method_exit_hook_decorator
 from ..core.utils import JsonIO, deserialize_object, serialize_object, rebind_methods
 
 FHT = TypeVar('FHT', bound=FilesHandle) # type of the files handle
@@ -83,8 +83,11 @@ class UnifiedFileCluster(FilesCluster[UFH, UFC, DSNT, VDMT], Generic[UFH, UFC, D
                  read_func_kwargs = None,
                  write_func_args = None,
                  write_func_kwargs = None,
+                 lazy = False,
                  **kwargs
                  ) -> None:
+        self._lazy = lazy # lazy mode, only load the fileshandle when needed
+
         suffix = suffix if suffix is not None else self.DEFAULT_SUFFIX
         assert suffix is not None, "suffix must be specified"
         self.suffix = suffix
@@ -115,6 +118,116 @@ class UnifiedFileCluster(FilesCluster[UFH, UFC, DSNT, VDMT], Generic[UFH, UFC, D
         super().__init__(dataset_node, mapping_name, flag_name=flag_name)
         self.cache_priority = False 
 
+    def __init_subclass__(cls, **kwargs):
+        cls.build_partly = method_exit_hook_decorator(cls, cls.build_partly, cls._rebuild_done)
+        super().__init_subclass__(**kwargs)
+
+    def data_keys(self):
+        if self._lazy:
+            return self.MemoryData._lazy_data.keys()
+        else:
+            return self.MemoryData.keys()
+
+    def load_postprocess(self, data:dict):
+        if not data:
+            return self.MEMORY_DATA_TYPE({})  # 返回一个空的 data_info_map
+
+        if not self._lazy:
+            new_dict = {int(k): None for k in data.keys()}
+            for k, v in tqdm(data.items(), desc=f"loading {self}", total=len(new_dict), leave=False):
+                new_dict[int(k)] = self.FILESHANDLE_TYPE.from_dict(self, v)
+            data_info_map = self.MEMORY_DATA_TYPE(new_dict)
+        else:
+            new_dict = {}
+            data_info_map = self.MEMORY_DATA_TYPE({})
+            data_info_map._lazy_data = data
+            data_info_map.fileshandle_init_func = partial(self.FILESHANDLE_TYPE.from_dict, self)
+
+        return data_info_map
+
+    def save_preprecess(self, MemoryData:FhBinDict[FHT] = None ):
+        MemoryData = self.MemoryData if MemoryData is None else MemoryData
+        to_save_dict = {item[0]: item[1].as_dict() for item in MemoryData.items()}
+        if MemoryData._lazy_data is not None:
+            MemoryData._lazy_data.update(to_save_dict)
+            to_save_dict = MemoryData._lazy_data
+        return to_save_dict
+
+    def query_fileshandle(self, data_i:int) -> FHT:
+        """
+        Retrieve the fileshandle at the specified index from the MemoryData.
+
+        Args:
+            data_i (int): The index of the fileshandle to retrieve.
+
+        Returns:
+            FHT: The fileshandle at the specified index.
+        """
+        return self.MemoryData[data_i]
+
+    def build_partly(self, build_data_i_list:Union[int, Iterable[int]]):
+        ### input check ###
+        if isinstance(build_data_i_list, int):
+            build_data_i_list = [build_data_i_list]
+        assert isinstance(build_data_i_list, (Iterable)), f"the type of data_i {type(build_data_i_list)} is not Iterable"
+        if len(build_data_i_list) == 0:
+            return
+        else:
+            assert all([isinstance(i, int) for i in build_data_i_list]), f"the type of data_i {type(build_data_i_list)} is not Iterable[int]"
+        
+        ### build ###
+
+        to_build_paths:dict[int, list[str]] = {}
+        exist_files_i = []
+
+        if len(build_data_i_list) < 20:
+            # if the number of data_i is small, search one by one
+            for data_i in tqdm(build_data_i_list, leave=False, desc = f"searching {self.data_path}"):
+                search_name = self.format_name(data_i, "")
+                paths = glob.glob(os.path.join(self.data_path, f"**/{search_name}*.*")) # match only with prefix + corename, to compatible with the mutil-files mode
+                if len(paths) > 0:
+                    exist_files_i.append(data_i)
+                    if data_i not in self.keys():
+                        to_build_paths[data_i] = paths
+        else:
+            # if the number of data_i is large, search all files and then match the data_i
+            print("\r", f"matching paths in {self.data_path}", end = "")
+            paths = glob.glob(os.path.join(self.data_path, f"**/*.*")) # match all files
+            for path in tqdm(paths, leave=False, desc = f"scanning {self.data_path}"):
+                paras = self.FILESHANDLE_TYPE._parse_one_path_to_paras(
+                                self, path, self.DEFAULT_PREFIX_JOINER, self.DEFAULT_APPENDNAMES_JOINER)
+                data_i = self.deformat_corename(paras[1]) # paras[1] is the corename
+                # check if the data_i is in the build_data_i_list
+                if data_i in build_data_i_list:
+                    exist_files_i.append(data_i)
+                    if data_i not in self.keys():
+                        to_build_paths.setdefault(data_i, []).append(path)
+        
+        not_exist_files_i = set(self.keys()).intersection(set(build_data_i_list)).difference(exist_files_i)
+                
+        for data_i, bp in tqdm(to_build_paths.items(), leave=False, desc = f"creating fileshandles for {self}"):
+            if isinstance(bp, list):
+                for _p in bp:
+                    fh:FilesHandle = self.FILESHANDLE_TYPE.create_new_and_cover().from_path(self, _p)
+            else:
+                fh:FilesHandle = self.FILESHANDLE_TYPE.create_new_and_cover().from_path(self, bp)
+            if fh.all_file_exist:
+                self._set_fileshandle(data_i, fh)
+                # self.MemoryData[data_i] = fh
+            else:
+                self.paste_file(data_i, fh)
+
+        for data_i in tqdm(not_exist_files_i, leave=False, desc = f"deleting not exist fileshandles for {self}"):
+            self._pop_fileshandle(data_i)
+        
+        self.save()
+
+    def activate(self, build_data_i_list:Union[int, Iterable[int]] = None):
+        if not self._lazy:
+            return
+        ### input check ###
+        self.MemoryData.activate(build_data_i_list)
+
     #####
     def create_fileshandle_in_iometa(self, src, dst, value, * ,sub_dir = "", **other_paras):
         if not self.MULTI_FILES:
@@ -137,6 +250,33 @@ class UnifiedFileCluster(FilesCluster[UFH, UFC, DSNT, VDMT], Generic[UFH, UFC, D
         fillchar = self.fillchar
         return f"{str(data_i).rjust(filllen, fillchar)}"
     
+    def format_name(self, data_i:int, suffix:str = None, prefix:str=None, appendnames:Union[str, list[str]]=None, prefix_joiner:str=None, appendnames_joiner:str=None):
+        corename = self.format_corename(data_i)
+
+        suffix                  = get_with_priority(suffix, self.DEFAULT_SUFFIX) # type: ignore
+
+        prefix:str              = get_with_priority(prefix,             self.DEFAULT_PREFIX,             self.FILESHANDLE_TYPE.DEFAULT_PREFIX,             '') # type: ignore
+        appendnames:list[str]   = get_with_priority(appendnames,        self.DEFAULT_APPENDNAMES,        self.FILESHANDLE_TYPE.DEFAULT_APPENDNAMES,        ['']) # type: ignore
+        if isinstance(appendnames, str):
+            appendnames = [appendnames]
+
+        prefix_joiner:str       = get_with_priority(prefix_joiner,      self.DEFAULT_PREFIX_JOINER,      self.FILESHANDLE_TYPE.DEFAULT_PREFIX_JOINER,      '') # type: ignore
+        appendnames_joiner:str  = get_with_priority(appendnames_joiner, self.DEFAULT_APPENDNAMES_JOINER, self.FILESHANDLE_TYPE.DEFAULT_APPENDNAMES_JOINER, '') # type: ignore
+
+        if len(prefix) > 0:
+            prefix = prefix + prefix_joiner
+        if len(suffix) > 0 and suffix[0] != '.': 
+            suffix = '.' + suffix
+        
+        names = [prefix + corename + appendnames_joiner + apn + suffix for apn in appendnames]
+        if len(names) == 1:
+            return names[0]
+        else:
+            return names
+
+    def format_file_name(self, data_i: int):
+        core_name = self.format_corename(data_i)
+
     def deformat_corename(self, corename: str):
         return int(corename)
 

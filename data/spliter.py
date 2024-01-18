@@ -32,7 +32,7 @@ from functools import partial
 from . import Posture, JsonIO, JSONDecodeError, Table, extract_doc, search_in_dict, int_str_cocvt, \
     serialize_object, deserialize_object, read_file_as_str, write_str_to_file
 from .mesh_manager import MeshMeta
-from .IOAbstract import DataMapping, DatasetNode, IOMeta, BinDict, _KT, _VT, DMT, VDMT, DSNT,\
+from .IOAbstract import DataMapping, DatasetNode, IOMeta, FhBinDict, _KT, _VT, DMT, VDMT, DSNT,\
     FilesHandle, CacheProxy, \
     AmbiguousError, IOMetaParameterError, KeyNotFoundError, ClusterDataIOError, DataMapExistError, \
         IOStatusWarning, ClusterIONotExecutedWarning, ClusterNotRecommendWarning,\
@@ -389,8 +389,8 @@ class SpliterGroup(DatasetNode[Spliter, SPG, Table[int, str, bool]], Generic[SP,
         self.__split_paras:dict[str, list[str]] = split_paras if split_paras is not None else {self.DEFAULT_SPLIT_MODE[0]: None}
         super().__init__(top_directory, mapping_name, flag_name=flag_name)
 
-    def init_clusters_hook(self):
-        super().init_clusters_hook()
+    def init_clusters_hook(self, lazy):
+        super().init_clusters_hook(lazy)
         for split_mode, subsets in self.__split_paras.items():
             self.add_cluster(Spliter(self, split_mode, subsets = subsets))
       

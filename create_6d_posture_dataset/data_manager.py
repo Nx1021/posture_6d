@@ -24,8 +24,8 @@ class FrameMeta():
 
 class CommonData(DatasetNode[FilesCluster, "CommonData", VDMT], Generic[VDMT]):
 
-    def init_clusters_hook(self):
-        super().init_clusters_hook()
+    def init_clusters_hook(self, lazy):
+        super().init_clusters_hook(lazy)
 
 
         self.std_models_corenames = [os.path.splitext(x)[0] for x in os.listdir(os.path.join(self.data_path, "../std_meshes")) if x.endswith(".ply")]
@@ -147,8 +147,8 @@ class DataRecorder(CommonData[FrameMeta], Dataset):
             for fh in self.rgb_elements.query_all_fileshandle():
                 self.active_spliter.set_one(fh.get_key(), fh.sub_dir, True)
 
-    def init_clusters_hook(self):
-        super().init_clusters_hook()
+    def init_clusters_hook(self, lazy):
+        super().init_clusters_hook(lazy)
         Dataset.init_clusters_hook(self)
         
         self.rgb_elements   = ElementsWithCategory(self, RGB_DIR, suffix='.png',
@@ -322,8 +322,8 @@ class ModelManager(CommonData):
     def std_meshes_enums(self):
         return self.std_meshes.enums
 
-    def init_clusters_hook(self):
-        super().init_clusters_hook()
+    def init_clusters_hook(self, lazy):
+        super().init_clusters_hook(lazy)
 
         self.std_meshes         = EnumElements(self, "../std_meshes", suffix='.ply', flag_name="std_meshes",
                                     read_func=o3d.io.read_triangle_mesh,
