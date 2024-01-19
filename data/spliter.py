@@ -78,11 +78,11 @@ class Spliter(DisunifiedFileCluster[SpliterFilesHandle, SP, SPG, Table[int, str,
         super().__init__(dataset_node, mapping_name, *args, **kwargs)
         self.split_fileshandle:SpliterFilesHandle = self.FILESHANDLE_TYPE.from_name(self, self.SPLIT_FILE)
         self._set_fileshandle(0, self.split_fileshandle)
-
+        
         subsets = subsets if subsets is not None else self.DEFAULT_SUB_SET
         
         self.__exclusive = True
-        self.get_idx_dict()
+        
         for subset in subsets:
             self.add_subset(subset)
 

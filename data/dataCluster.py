@@ -123,10 +123,7 @@ class UnifiedFileCluster(FilesCluster[UFH, UFC, DSNT, VDMT], Generic[UFH, UFC, D
         super().__init_subclass__(**kwargs)
 
     def data_keys(self):
-        if self._lazy:
-            return self.MemoryData._lazy_data.keys()
-        else:
-            return self.MemoryData.keys()
+        return self.MemoryData.keys()
 
     def load_postprocess(self, data:dict):
         if not data:
@@ -140,17 +137,17 @@ class UnifiedFileCluster(FilesCluster[UFH, UFC, DSNT, VDMT], Generic[UFH, UFC, D
         else:
             new_dict = {}
             data_info_map = self.MEMORY_DATA_TYPE({})
-            data_info_map._lazy_data = data
-            data_info_map.fileshandle_init_func = partial(self.FILESHANDLE_TYPE.from_dict, self)
+            data_info_map.set_lazy_data(data, partial(self.FILESHANDLE_TYPE.from_dict, self))
 
         return data_info_map
 
     def save_preprecess(self, MemoryData:FhBinDict[FHT] = None ):
         MemoryData = self.MemoryData if MemoryData is None else MemoryData
         to_save_dict = {item[0]: item[1].as_dict() for item in MemoryData.items()}
-        if MemoryData._lazy_data is not None:
-            MemoryData._lazy_data.update(to_save_dict)
-            to_save_dict = MemoryData._lazy_data
+        if MemoryData.has_lazy_data():
+            lazy_data = MemoryData.get_lazy_data()
+            lazy_data.update(to_save_dict)
+            to_save_dict = lazy_data
         return to_save_dict
 
     def query_fileshandle(self, data_i:int) -> FHT:
@@ -184,7 +181,7 @@ class UnifiedFileCluster(FilesCluster[UFH, UFC, DSNT, VDMT], Generic[UFH, UFC, D
             # if the number of data_i is small, search one by one
             for data_i in tqdm(build_data_i_list, leave=False, desc = f"searching {self.data_path}"):
                 search_name = self.format_name(data_i, "")
-                paths = glob.glob(os.path.join(self.data_path, f"**/{search_name}*.*")) # match only with prefix + corename, to compatible with the mutil-files mode
+                paths = self.matching_path(search_name) # match only with prefix + corename, to compatible with the mutil-files mode
                 if len(paths) > 0:
                     exist_files_i.append(data_i)
                     if data_i not in self.keys():
@@ -192,7 +189,7 @@ class UnifiedFileCluster(FilesCluster[UFH, UFC, DSNT, VDMT], Generic[UFH, UFC, D
         else:
             # if the number of data_i is large, search all files and then match the data_i
             print("\r", f"matching paths in {self.data_path}", end = "")
-            paths = glob.glob(os.path.join(self.data_path, f"**/*.*")) # match all files
+            paths = self.matching_path() # match all files
             for path in tqdm(paths, leave=False, desc = f"scanning {self.data_path}"):
                 paras = self.FILESHANDLE_TYPE._parse_one_path_to_paras(
                                 self, path, self.DEFAULT_PREFIX_JOINER, self.DEFAULT_APPENDNAMES_JOINER)
@@ -220,7 +217,19 @@ class UnifiedFileCluster(FilesCluster[UFH, UFC, DSNT, VDMT], Generic[UFH, UFC, D
         for data_i in tqdm(not_exist_files_i, leave=False, desc = f"deleting not exist fileshandles for {self}"):
             self._pop_fileshandle(data_i)
         
-        self.save()
+
+
+    def delete_unlink_files_in_dir(self):
+        print('\r', "gathering..." , end = "")
+        paths = self.matching_path()
+        paths = [os.path.abspath(p) for p in paths]
+        
+        all_linked_files = [os.path.abspath(x) for x in self.MemoryData.export_path_dict().values()]
+
+        unlinked = list(set(paths).difference(all_linked_files))
+
+        for path in tqdm(unlinked, leave=False, desc = f"deleting files in {self.data_path}"):
+            os.remove(path)
 
     def activate(self, build_data_i_list:Union[int, Iterable[int]] = None):
         if not self._lazy:
@@ -280,10 +289,10 @@ class UnifiedFileCluster(FilesCluster[UFH, UFC, DSNT, VDMT], Generic[UFH, UFC, D
     def deformat_corename(self, corename: str):
         return int(corename)
 
-    def matching_path(self):
+    def matching_path(self, name = ""):
         paths = []
         for suffix in self.alternate_suffix + [self.suffix]:
-            paths.extend(glob.glob(os.path.join(self.data_path, "**/*" + suffix), recursive=True))
+            paths.extend(glob.glob(os.path.join(self.data_path, f"**/{name}*" + suffix), recursive=True))
         return paths
     
     @classmethod

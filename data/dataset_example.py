@@ -5,7 +5,7 @@ from .dataCluster import UnifiedFileCluster, DisunifiedFileCluster, DictLikeClus
     IntArrayDictAsTxtCluster, NdarrayAsTxtCluster
 from .IOAbstract import ClusterWarning, FilesCluster, get_with_priority, IO_CTRL_STRATEGY
 from .viewmeta import ViewMeta
-from ..core.utils import deserialize_object, serialize_object, rebind_methods
+from ..core.utils import deserialize_object, serialize_object, rebind_methods, set_diff_keep_order, set_intersect_keep_order, set_union_keep_order
 from ..core.posture import Posture
 
 import numpy as np
@@ -36,14 +36,14 @@ class PostureDataset(Mix_Dataset[FCT, DST, VDST]):
         real_idx = self.reality_spliter.get_idx_list(0)
         sim_idx  = self.reality_spliter.get_idx_list(1)
 
-        real_base_idx = list(set(real_idx).intersection(self.basis_spliter.get_idx_list(self.BASIS_SUBSETS[0])))
+        real_base_idx = list(set_intersect_keep_order(real_idx, self.basis_spliter.get_idx_list(self.BASIS_SUBSETS[0])))
 
         if source is None:
             pass
         else:
-            real_idx = list(set(real_idx).intersection(source))
-            real_base_idx = list(set(real_base_idx).intersection(source))
-            sim_idx  = list(set(sim_idx).intersection(source))
+            real_idx = list(set_intersect_keep_order(real_idx, source))
+            real_base_idx = list(set_intersect_keep_order(real_base_idx, source))
+            sim_idx  = list(set_intersect_keep_order(sim_idx, source))
 
         train_real, val_real = Spliter.gen_split(real_base_idx, ratio, 2)
 
@@ -173,17 +173,12 @@ class BopFormat(PostureDataset[UnifiedFileCluster, "BopFormat", ViewMeta]):
         self.mask_cluster = MutilMaskCluster(self,      self.MASK_DIR,     suffix = ".png", read_func=partial(cv2.imread, flags = cv2.IMREAD_GRAYSCALE), write_func=cv2.imwrite, flag_name=ViewMeta.MASKS)
         self.mask_cluster.link_rely_on(self.info_dictlike) # set rely, the obj_id is recorded in scene_gt.json
 
-    def read(self, src: int, *, force = False, **other_paras)-> ViewMeta:
-        raw_read_rlt = super().raw_read(src, force = force, **other_paras)
-        rgb     = raw_read_rlt[ViewMeta.COLOR]
-        depth   = raw_read_rlt[ViewMeta.DEPTH]
-        masks   = raw_read_rlt[ViewMeta.MASKS]
+    def _parse_infos(self, infos):
         extr_vecs = {}
         visib_fracts = {}
         labels = {}
-        intr        = raw_read_rlt[self.INFO][0][self.KW_CAM_K]
-        depth_scale = raw_read_rlt[self.INFO][0][self.KW_CAM_DS]
-        infos   = raw_read_rlt[self.INFO]
+        intr        = infos[0][self.KW_CAM_K]
+        depth_scale = infos[0][self.KW_CAM_DS]
         
         id_seq = []
 
@@ -196,11 +191,30 @@ class BopFormat(PostureDataset[UnifiedFileCluster, "BopFormat", ViewMeta]):
             for id_, obj_gt_info in zip(id_seq, infos[2]):
                 visib = obj_gt_info[self.KW_GT_INFO_VISIB_FRACT]
                 visib_fracts.update({id_: visib})
-                bbox = obj_gt_info[self.KW_GT_INFO_BBOX_VIS]
-                labels.update({id_: bbox})
+                bbox_x1y1wh = obj_gt_info[self.KW_GT_INFO_BBOX_VIS]
+                bbox_x1y1x2y2 = np.array([bbox_x1y1wh[0], bbox_x1y1wh[1], bbox_x1y1wh[0] + bbox_x1y1wh[2], bbox_x1y1wh[1] + bbox_x1y1wh[3]])
+                labels.update({id_: bbox_x1y1x2y2})
         else:
             visib_fracts = None
             labels = None
+        
+        return  extr_vecs, intr, depth_scale, visib_fracts, labels     
+
+    def read_info(self, src: int, *, force = False, **other_paras):
+        infos = self.info_dictlike.read(src, force = force, **other_paras)
+        return self._parse_infos(infos)
+
+    def read(self, src: int, *, force = False, **other_paras)-> ViewMeta:
+        raw_read_rlt = super().raw_read(src, force = force, **other_paras)
+        rgb     = raw_read_rlt[ViewMeta.COLOR]
+        depth   = raw_read_rlt[ViewMeta.DEPTH]
+        masks   = raw_read_rlt[ViewMeta.MASKS]
+        
+        extr_vecs = {}
+        visib_fracts = {}
+        labels = {}
+        infos   = raw_read_rlt[self.INFO]
+        extr_vecs, intr, depth_scale, visib_fracts, labels  = self._parse_infos(infos)
         
         return ViewMeta(rgb, depth, masks, extr_vecs, intr, depth_scale, None, None, visib_fracts, labels)
 

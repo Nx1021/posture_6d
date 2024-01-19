@@ -18,6 +18,11 @@ import types
 from collections import OrderedDict
 from itertools import chain
 
+
+_KT = TypeVar('_KT')
+_VT = TypeVar('_VT')
+_ITERABLE_T = TypeVar('_ITERABLE_T', bound = Iterable)
+
 def get_bbox_connections(bbox_3d_proj:np.ndarray):
     '''
     bbox_3d_proj: [..., B, (x,y)]
@@ -57,7 +62,8 @@ def modify_class_id(dict_list:list[dict[int, Any]], modify_class_id_pairs:list[t
             if pair[0] in orig_dict:
                 new_dict[pair[1]] = orig_dict[pair[0]]
         orig_dict.clear()
-        orig_dict.update(new_dict)    
+        orig_dict.update(new_dict)  
+    return dict_list  
 
 def get_meta_dict(obj):
     orig_dict_list = []
@@ -124,6 +130,42 @@ def _ignore_warning(func, category = Warning):
         return rlt
     return warpper
 
+def __cvt_set_type(seq, type_:type):
+    if issubclass(type_, str):
+        seq = "".join(seq)
+    elif issubclass(type_, np.ndarray):
+        seq = np.array(seq)
+    else:
+        try:
+            seq = type_(seq)
+        except:
+            pass
+    return seq
+
+def set_diff_keep_order(base:Iterable[_KT], sub:Iterable[_KT]) -> Iterable[_KT]:
+    base_k = OrderedDict.fromkeys(base)
+    sub_k = OrderedDict.fromkeys(sub)
+    diff = [x for x in base_k if x not in sub_k]
+    return __cvt_set_type(diff, type(base))
+
+def set_intersect_keep_order(base:Iterable[_KT], sub:Iterable[_KT]) -> list[_KT]:
+    base_k = OrderedDict.fromkeys(base)
+    sub_k = OrderedDict.fromkeys(sub)
+    intersect = [x for x in base_k if x in sub_k]
+    return __cvt_set_type(intersect, type(base))
+
+def set_union_keep_order(base:Iterable[_KT], sub:Iterable[_KT]) -> list[_KT]:
+    union_ = OrderedDict.fromkeys(base + sub)
+    return __cvt_set_type(union_, type(base))
+
+def unique_keep_order(iterable:Iterable[_KT]) -> list[_KT]:
+    return list(OrderedDict.fromkeys(iterable))
+
+def array_to_list(obj):
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+    else:
+        return obj
 
 class JsonIO():
     class _NoIndent(object):
@@ -403,8 +445,6 @@ def int_str_cocvt(ref_iterable:Iterable[str],
     else:
         raise TypeError("Key must be an int or str")
 
-_KT = TypeVar('_KT')
-_VT = TypeVar('_VT')
 class BinDict(dict[_KT, _VT], Generic[_KT, _VT]):
     """
     A dictionary subclass that supports bidirectional mapping between keys and values.
@@ -538,7 +578,7 @@ class BinDict(dict[_KT, _VT], Generic[_KT, _VT]):
         value : _VT
             The value to associate with the key.
         """
-        if key in self:
+        if self.has(key):
             # If key already exists, delete the old reverse mapping
             old_value = self[key]
             if self.has_value(old_value):
@@ -723,17 +763,19 @@ class Table(Generic[ROWKEYT, COLKETT, ITEM]):
         if isinstance(data, Table):
             data = data.to_dict()
         data = dict(data)
+
         if len(data) > 0:
             row_name_type, col_name_type = self.get_type(data, row_name_type, col_name_type)
             self.__row_name_type:Type[ROWKEYT] = row_name_type
             self.__col_name_type:Type[COLKETT] = col_name_type
+            self.add_new_column_in_batch(col_names if col_names is not None else [])
+            self.add_new_row_in_batch(row_names if row_names is not None else [])
             self.update(data)
         else:
             self.__row_name_type:Type[ROWKEYT] = row_name_type
             self.__col_name_type:Type[COLKETT] = col_name_type
-
-            self.add_new_column_in_batch(col_names or [])
-            self.add_new_row_in_batch(row_names or [])
+            self.add_new_column_in_batch(col_names if col_names is not None else [])
+            self.add_new_row_in_batch(row_names if row_names is not None else [])
 
     def _GET_DATA_UNSAFELY(self):
         return self.__data
@@ -835,7 +877,8 @@ class Table(Generic[ROWKEYT, COLKETT, ITEM]):
         return False
 
     def add_new_row_in_batch(self, row_names:list[ROWKEYT]):
-        row_names = list(set(row_names).difference(self.__row_names)) # add only new row names
+        row_names = set_diff_keep_order(row_names, self.__row_names)
+        row_names = array_to_list(row_names)
         if any([not isinstance(x, self.row_name_type) for x in row_names]): 
             raise TypeError("row_names must be an instance of row_name_type") # must be an instance of row_name_type
         self.__row_names.extend(row_names)
@@ -861,7 +904,8 @@ class Table(Generic[ROWKEYT, COLKETT, ITEM]):
         return False
 
     def add_new_column_in_batch(self, col_names:list[COLKETT]):
-        col_names = list(set(col_names).difference(self.__col_names))
+        col_names = set_diff_keep_order(col_names, self.__col_names)
+        col_names = array_to_list(col_names)
         if any([not isinstance(x, self.col_name_type) for x in col_names]):
             raise TypeError("col_names must be an instance of col_name_type")
         self.__col_names.extend(col_names)
@@ -946,10 +990,10 @@ class Table(Generic[ROWKEYT, COLKETT, ITEM]):
 
     def update(self, other:Union[dict[ROWKEYT, dict[COLKETT, ITEM]], "Table[ROWKEYT, COLKETT, ITEM]"]):
         row_names = list(other.keys())
-        new_row_names = list(set(row_names).difference(self.col_names))
-        col_names = list(set(chain(*[list(x.keys()) for x in other.values()])))
-        new_col_names = set(col_names).difference(self.col_names)
-        
+        new_row_names = set_diff_keep_order(row_names, self.row_names)
+        col_names = list(OrderedDict.fromkeys(chain(*[list(x.keys()) for x in other.values()])))
+        new_col_names = set_diff_keep_order(col_names, self.col_names)
+
         self.add_new_column_in_batch(new_col_names)
         self.add_new_row_in_batch(new_row_names)
 

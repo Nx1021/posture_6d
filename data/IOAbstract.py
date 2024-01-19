@@ -31,11 +31,14 @@ import time
 # from concurrent.futures import ProcessPoolExecutor
 
 from . import Posture, JsonIO, JSONDecodeError, Table, BinDict, extract_doc, search_in_dict, int_str_cocvt,\
-      serialize_object, deserialize_object, test_pickleable, read_file_as_str, write_str_to_file
+      serialize_object, deserialize_object, test_pickleable, read_file_as_str, write_str_to_file, set_union_keep_order, set_intersect_keep_order, set_diff_keep_order
 from .mesh_manager import MeshMeta
 
 
 DEBUG = False
+
+IO_TEST_MODE = False
+IO_TEST_PRINT_INTERNAL = 100
 
 NODE = TypeVar('NODE', bound="Node")
 
@@ -2508,7 +2511,7 @@ class FilesHandle(_RegisterInstance["FilesHandle"], Generic[FCT, VDMT]):
         return sub_dir, corename, suffix, prefix, appendname, prefix_joiner, appendnames_joiner
 
     @staticmethod
-    def _compose_paras_to_name(corename:str, suffix:str = "", prefix:str = "", appendname:str = "", prefix_joiner:str = "", appendnames_joiner:str = ""):
+    def _compose_paras_to_name(corename:str, suffix:str = "", prefix:str = "", appendnames:str = "", prefix_joiner:str = "", appendnames_joiner:str = ""):
         """
         Composes the parameters into a file name.
 
@@ -2534,13 +2537,37 @@ class FilesHandle(_RegisterInstance["FilesHandle"], Generic[FCT, VDMT]):
         str: 
             The composed file name.
         """
+        appendnames = [appendnames] if isinstance(appendnames, str) else appendnames
+        assert all([isinstance(a, str) for a in appendnames]), "appendnames must be a str or a list of str"
+        appendnames = [a + (appendnames_joiner if len(a) > 0 else "") for a in appendnames]
+
         if len(prefix) > 0:
             prefix = prefix + prefix_joiner
-        if len(appendname) > 0:
-            appendname = appendnames_joiner + appendname
+
         if len(suffix) > 0 and suffix[0] != '.': 
             suffix = '.' + suffix
-        return prefix + corename + appendname + suffix
+
+        names = [prefix + corename + a + suffix for a in appendnames]
+
+        if len(names) == 1:
+            return names[0]
+        else:
+            return names
+
+    @staticmethod
+    def _compose_paras_to_path_from_dict(dict_:dict[str, Union[str, dict[str, str]]]):
+        data_path:str       = dict_[FilesHandle.KW_data_path] # type: ignore
+        sub_dir             = dict_[FilesHandle.KW_sub_dir]
+        corename            = dict_[FilesHandle.KW_corename]
+        suffix              = dict_[FilesHandle.KW_suffix]      
+
+        prefix                  = dict_[FilesHandle.KW_prefix][_Prefix.KW_PREFIX]
+        prefix_joiner           = dict_[FilesHandle.KW_prefix][_Prefix.KW_JOINER]
+        appendnames             = dict_[FilesHandle.KW_appendnames][_AppendNames.KW_APPENDNAMES]
+        appendnames_joiner      = dict_[FilesHandle.KW_appendnames][_AppendNames.KW_JOINER]
+
+        name = FilesHandle._compose_paras_to_name(corename, suffix, prefix, appendnames, prefix_joiner, appendnames_joiner)
+        return os.path.join(data_path, sub_dir, name)
 
     @classmethod
     def _default_compose_paras_to_name(cls, corename:str, suffix:str = ""):
@@ -2823,8 +2850,8 @@ class FilesHandle(_RegisterInstance["FilesHandle"], Generic[FCT, VDMT]):
         return rlt
 
     def __setattr__(self, name, value):
-        if hasattr(self, "_inited"):
-            raise AttributeError(f"FilesHandle is immutable, you can't change its attribute")
+        if hasattr(self, "_inited") and name in self.INDENTITY_PARA_NAMES:
+            raise AttributeError(f"{name} is immutable for {self.__class__.__name__}")
         return super().__setattr__(name, value)
     # endregion make immutable
 
@@ -3188,31 +3215,42 @@ class FilesHandle(_RegisterInstance["FilesHandle"], Generic[FCT, VDMT]):
 class FhBinDict(BinDict[int, FHT], Generic[FHT]):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._lazy_data:Optional[dict[int, dict]] = None
+        self.__lazy_data:Optional[dict[int, dict]] = None
         self.fileshandle_init_func:Callable[[dict], FHT] = None
 
+    def set_lazy_data(self, lazy_data:dict[int, dict], fileshandle_init_func:Callable[[dict], FHT]):
+        assert isinstance(lazy_data, dict), f"lazy_data must be a dict, not {lazy_data}"
+        self.__lazy_data = lazy_data
+        self.fileshandle_init_func = fileshandle_init_func
+    
+    def get_lazy_data(self):
+        return self.__lazy_data
+
+    def has_lazy_data(self):
+        return self.__lazy_data is not None
+
     def __activate(self, key):
-        self[key] = self.fileshandle_init_func(self._lazy_data[key])
-        self._lazy_data.__delitem__(key) # can only use once
+        self[key] = self.fileshandle_init_func(self.__lazy_data[key])
+        self.__lazy_data.__delitem__(key) # can only use once
 
     def __getitem__(self, key:int) -> FHT:
         return self.get(key)
 
     def activate(self, keys:Union[int, list[int]] = None):
         if keys is None:
-            keys = list(set(self._lazy_data.keys()).difference(self.keys()))
+            keys = list(set(self.__lazy_data.keys()).difference(super().keys()))
         else:
             if isinstance(keys, int):
                 keys = [keys]
             assert all([isinstance(k, int) for k in keys]), f"keys must be int or list of int, not {keys}"
-            keys = list(set(keys).union(self._lazy_data.keys()).difference(self.keys()))
+            keys = list(set(keys).union(self.__lazy_data.keys()).difference(super().keys()))
         for key in keys:
             self.__activate(key)
 
     def get(self, key, default = None):
         fh = dict.get(self, key, default)
         if fh is None:
-            if key in self._lazy_data:
+            if key in self.__lazy_data:
                 self.__activate(key)
                 return self[key]
             else:
@@ -3225,11 +3263,11 @@ class FhBinDict(BinDict[int, FHT], Generic[FHT]):
         for arg in args:
             if isinstance(arg, FhBinDict):
                 # update _lazy_data
-                if arg._lazy_data is not None:
-                    if self._lazy_data is None:
-                        self._lazy_data = arg._lazy_data.copy()
+                if arg.has_lazy_data():
+                    if not self.has_lazy_data():
+                        self.__lazy_data = arg.__lazy_data.copy()
                     else:
-                        self._lazy_data.update(arg._lazy_data)
+                        self.__lazy_data.update(arg.__lazy_data)
                 # update fileshandle_init_func
                 if self.fileshandle_init_func is None:
                     self.fileshandle_init_func = arg.fileshandle_init_func
@@ -3238,7 +3276,29 @@ class FhBinDict(BinDict[int, FHT], Generic[FHT]):
                         f"fileshandle_init_func must be the same, not {self.fileshandle_init_func} and {arg.fileshandle_init_func}"
 
     def has(self, key):
-        return key in self or (self._lazy_data is not None and key in self._lazy_data)
+        return key in super().keys()
+
+    def export_path_dict(self):
+        path_dict = {}
+
+        if self.has_lazy_data():
+            for key, data in self.__lazy_data.items():
+                path_dict[key] = FilesHandle._compose_paras_to_path_from_dict(data)
+        for key, fh in self.items():
+            path_dict[key] = fh.get_path()
+        return path_dict
+
+    def keys(self):
+        if self.has_lazy_data():
+            return sorted(list(set(super().keys()).union(self.__lazy_data.keys())))
+        else:
+            return super().keys()
+
+    def __contains__(self, key: object) -> bool:
+        if self.has_lazy_data():
+            return key in super().keys() or key in self.__lazy_data
+        else:
+            return key in super().keys()
 
 class Node(Generic[NODE]):
     """
@@ -4765,7 +4825,11 @@ class IOMeta(ABC, Generic[FCT, VDMT, FHT]):
         if core_func is not None:
             if self.multi_files and self.__class__.__name__ == "_write":
                 core_values = self.split_value_as_mutil(*core_values) # split core values to multiple values, because `core_values` contains the datas for mutil files 
-            rlt = self.execute_core_func(core_func, path, *core_values) # execute core func
+            if IO_TEST_MODE and not self.READ:
+                self.print_IO_TEST(core_func, path, *core_values)
+                rlt = None
+            else:
+                rlt = self.execute_core_func(core_func, path, *core_values) # execute core func
             if self.multi_files and self.__class__.__name__ == "_read":
                 return self.gather_mutil_results(rlt) # gather mutil results to a single result, because `rlt` contains the datas for mutil files
         else:
@@ -4940,6 +5004,15 @@ class IOMeta(ABC, Generic[FCT, VDMT, FHT]):
     def is_overwriting(self, dst:int):
         return not self.files_cluster.idx_unwrited(dst)
     # endregion conditions func
+
+    def print_IO_TEST(self, core_func, path, *core_values):
+        try:
+            self.__print_io_test_count += 1 
+        except:
+            self.__print_io_test_count = 0
+        if self.__print_io_test_count % IO_TEST_PRINT_INTERNAL == 0:
+            print(f"{self.files_cluster} | {self.__class__.__name__}:  func:'{core_func}'  path:'{path}'  values:{[type(v) for v in core_values]}")
+        # raise ClusterDataIOError("skip")
 
 class FilesCluster(DataMapping[FHT, FCT, VDMT], Generic[FHT, FCT, DSNT, VDMT]):
     """
@@ -5192,7 +5265,7 @@ class FilesCluster(DataMapping[FHT, FCT, VDMT], Generic[FHT, FCT, DSNT, VDMT]):
         """
         return None
     
-    def _set_fileshandle(self, data_i, fileshandle:FHT):
+    def _set_fileshandle(self, data_i, fileshandle:FHT, cover = False):
         '''
         Set the fileshandle for the given data index.
 
@@ -5204,7 +5277,7 @@ class FilesCluster(DataMapping[FHT, FCT, VDMT], Generic[FHT, FCT, DSNT, VDMT]):
             bool: True if the fileshandle is set successfully, False otherwise.
         '''
         assert isinstance(fileshandle, self.FILESHANDLE_TYPE), f"fileshandle must be {self.FILESHANDLE_TYPE}, not {type(fileshandle)}"
-        if not self.MemoryData.has_value(fileshandle):
+        if not self.MemoryData.has_value(fileshandle) or cover:
             self.MemoryData[data_i] = fileshandle
             self._set_MemoryData_modified()
             return True
@@ -5220,10 +5293,12 @@ class FilesCluster(DataMapping[FHT, FCT, VDMT], Generic[FHT, FCT, DSNT, VDMT]):
         Returns:
             object: The popped file handle.
         """
+        fh = None
         if self.has_data(data_i):
             fh = self.MemoryData.pop(data_i)
             if fh is not None:
                 self._set_MemoryData_modified()
+        return fh
     # endregion fileshandle operation ########
 
     # region io #####
@@ -5951,7 +6026,7 @@ class FilesCluster(DataMapping[FHT, FCT, VDMT], Generic[FHT, FCT, DSNT, VDMT]):
             data_i = self.deformat_corename(fh.corename)
             data_i = data_i if data_i is not None else self.data_i_upper
             if fh.all_file_exist:
-                self._set_fileshandle(data_i, fh)
+                self._set_fileshandle(data_i, fh, cover = True)
                 # self.MemoryData[data_i] = fh
             else:
                 self.paste_file(data_i, fh)
@@ -6580,7 +6655,7 @@ class DatasetNode(DataMapping[dict[str, bool], DSNT, VDST], ABC, Generic[FCT, DS
     def build_partly(self, build_data_i_list:Union[int, Iterable[int]]):
         if len(self.elem_clusters) > 0:
             i_upper = max([x.i_upper for x in self.elem_clusters])
-            build_data_i_list = list(set(build_data_i_list).intersection(range(i_upper)))
+            build_data_i_list = list(set_intersect_keep_order(build_data_i_list, list(range(i_upper))))
             self.MemoryData.add_new_row_in_batch(build_data_i_list)
             for data_i in tqdm(build_data_i_list, desc=f"building {self}"):
                 self.__calc_overview(data_i)
