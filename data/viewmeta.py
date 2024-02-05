@@ -651,51 +651,78 @@ class ViewMeta():
         }
         return dict_
 
-    def plot(self):
+    def plot(self, show_mask = True, show_2dbbox = True, show_landmarks = True, show_3dbbox = True, show_annotation = True, show_depth = True, reverse_rgb = True, exclude_class_ids = None, obj_names:dict[int, str] = None):
         '''
         显示
         use plt.show() after this method to show
         '''
-        plt.subplot(1,2,1)
-        if self.masks is not None:
-            masks = np.stack(list(self.masks.values()))
+        exclude_class_ids = [] if exclude_class_ids is None else exclude_class_ids
+        assert all([isinstance(x, int) for x in exclude_class_ids]), "exclude_class_ids must be list[int]"
+
+        if show_depth:
+            plt.subplot(1,2,1)
+
+        if self.masks is not None and show_mask:
+            masks = []
+            for id_, mask in self.masks.items():
+                if id_ not in exclude_class_ids:
+                    masks.append(mask)  
+            masks = np.stack(masks)
             mask = np.sum(masks.astype(np.float32) * 0.2, axis=0).astype(np.uint8)
             mask = cv2.cvtColor(mask, cv2.COLOR_GRAY2RGB)
+        else:
+            mask = 0
+        
+        if self.bbox_2d is not None and show_2dbbox:
             # bbox_2d
-            for bbox_2d in self.bbox_2d.values():
+            for id_, bbox_2d in self.bbox_2d.items():
+                if id_ in exclude_class_ids:
+                    continue
                 plt.gca().add_patch(plt.Rectangle((bbox_2d[0], bbox_2d[1]), 
                                                 bbox_2d[2] - bbox_2d[0], bbox_2d[3] - bbox_2d[1],
                                                     color="blue", fill=False, linewidth=1))
-        else:
-            mask = 0
+
         color = np.clip((self.color.astype(np.float32) + mask), 0, 255).astype(np.uint8)
+        if reverse_rgb:
+            color = color[..., ::-1]
         plt.imshow(color) 
         # landmarks
-        if self.landmarks is not None:
-            for ldmks in self.landmarks.values():
+        if self.landmarks is not None and show_landmarks:
+            for id_, ldmks in self.landmarks.items():
+                if id_ in exclude_class_ids:
+                    continue
                 plt.scatter(ldmks[:,0], ldmks[:,1], c = 'g')
                 # plot the idx of landmarks
                 for idx, ldmk in enumerate(ldmks):
                     plt.text(ldmk[0], ldmk[1], idx, verticalalignment='top')
         # bbox_3d
-        if self.bbox_3d is not None:
-            for bbox_3d in self.bbox_3d.values():
+        if self.bbox_3d is not None and show_3dbbox:
+            for id_, bbox_3d in self.bbox_3d.items():
+                if id_ in exclude_class_ids:
+                    continue
                 plt.scatter(bbox_3d[:,0], bbox_3d[:,1], c = 'r')
                 lines = get_bbox_connections(bbox_3d)
                 for line in lines:
                     plt.plot(line[0], line[1], c = 'r')
         # 标注类别与可见性
-        if self.bbox_3d is not None:
+        if self.bbox_3d is not None and show_annotation:
             for class_id in self.bbox_3d.keys():
+                if class_id in exclude_class_ids:
+                    continue
+                if obj_names is not None and class_id in obj_names:
+                    _obj_name = obj_names[class_id]
+                else:
+                    _obj_name = ""
                 vb = self.visib_fracts[class_id]
-                label = "{} {:>.3}".format(class_id, float(vb))
+                label = "{} {} {:>.3}".format(class_id, _obj_name, float(vb))
                 lt = np.min(self.bbox_3d[class_id], axis = 0)
                 plt.text(lt[0], lt[1], label, verticalalignment='top')
 
-        plt.subplot(1,2,2)
-        if self.depth is not None:
-            plt.imshow(self.depth)
-            plt.title("depth scale:{}".format(self.depth_scale))
+        if show_depth:
+            plt.subplot(1,2,2)
+            if self.depth is not None:
+                plt.imshow(self.depth)
+                plt.title("depth scale:{}".format(self.depth_scale))
 
 class ViewMetaMaskContour(ViewMeta):
     class MasksAP(AugmentPipeline):

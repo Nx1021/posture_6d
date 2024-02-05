@@ -366,9 +366,13 @@ class JsonIO():
                         new_value.append(item)
             elif isinstance(value, dict):
                 new_value = JsonIO.__convert_dict_to_jsonformat(value, regard_list_as_array)
-                if not any([isinstance(x, JsonIO._NoIndent) for x in new_value.values()]) and\
-                list(new_value.values()) == list(value.values()):
-                    new_value = JsonIO._NoIndent(new_value)
+                if not any([isinstance(x, JsonIO._NoIndent) for x in new_value.values()]):
+                    try:
+                        ok = list(new_value.values()) == list(value.values())
+                    except:
+                        ok = False
+                    if ok:
+                        new_value = JsonIO._NoIndent(new_value)
             else:
                 new_value = value
             return new_value
