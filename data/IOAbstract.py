@@ -1998,13 +1998,13 @@ class FilesHandle(_RegisterInstance["FilesHandle"], Generic[FCT, VDMT]):
     # region hook
     def __init_subclass__(cls, **kwargs):
         ### __init__ ###
-        cls.__init__ = method_exit_hook_decorator(cls, cls.__init__, cls.set_inited, cls.has_not_inited)
+        cls.__init__ = method_exit_hook_decorator(cls, cls.__init__, cls.__set_inited, cls.__has_not_inited)
         super().__init_subclass__(**kwargs)
 
-    def set_inited(self):
+    def __set_inited(self):
         self._inited = True
 
-    def has_not_inited(self):
+    def __has_not_inited(self):
         try:
             self._inited
         except AttributeError:
@@ -3272,8 +3272,9 @@ class FhBinDict(BinDict[int, FHT], Generic[FHT]):
                 if self.fileshandle_init_func is None:
                     self.fileshandle_init_func = arg.fileshandle_init_func
                 else:
-                    assert self.fileshandle_init_func == arg.fileshandle_init_func, \
-                        f"fileshandle_init_func must be the same, not {self.fileshandle_init_func} and {arg.fileshandle_init_func}"
+                    pass
+                    # assert self.fileshandle_init_func == arg.fileshandle_init_func, \
+                    #     f"fileshandle_init_func must be the same, not {self.fileshandle_init_func} and {arg.fileshandle_init_func}"
 
     def has(self, key):
         return key in super().keys()
@@ -3874,7 +3875,7 @@ class DataMapping(IOStatusManager, _RegisterInstance["DataMapping"], Node["DataM
         '''
         ### __init__ ###
         cls._orig_init = cls.__init__ # type: ignore
-        cls.__init__ = method_exit_hook_decorator(cls, cls.__init__, cls.try_open, cls.has_not_inited)
+        cls.__init__ = method_exit_hook_decorator(cls, cls.__init__, cls.try_open, cls.__has_not_inited)
         ### clear ###
         cls.clear = method_exit_hook_decorator(cls, cls.clear, cls._clear_empty_dir)
         ### rebuild ###
@@ -3938,7 +3939,7 @@ class DataMapping(IOStatusManager, _RegisterInstance["DataMapping"], Node["DataM
         #     self.process_unfinished()
         self._inited = True
 
-    def has_not_inited(self):
+    def __has_not_inited(self):
         '''
         Checks if the data mapping has not been initialized.
 
@@ -3965,7 +3966,7 @@ class DataMapping(IOStatusManager, _RegisterInstance["DataMapping"], Node["DataM
     
     def _rebuild_done(self):
         self._reset_MemoryData_modified()
-        self.relugar_MemoryData()
+        self._relugar_MemoryData()
         self.save(True)
 
     @property
@@ -4209,14 +4210,14 @@ class DataMapping(IOStatusManager, _RegisterInstance["DataMapping"], Node["DataM
         if os.path.exists(self.pickle_MemoryData_path):
             with open(self.pickle_MemoryData_path, 'rb') as f:
                 MemoryData = pickle.load(f)
-            self.merge_MemoryData(MemoryData)
+            self._merge_MemoryData(MemoryData)
         if os.path.exists(self.MemoryData_path):
             try:
                 MemoryData = self.load_postprocess(self.__class__.load_memory_func(self.MemoryData_path))
             except:
                 rebuild = True
             else:
-                self.merge_MemoryData(MemoryData) ## TODO
+                self._merge_MemoryData(MemoryData) ## TODO
                 rebuild = False
         else:
             rebuild = True
@@ -4233,13 +4234,26 @@ class DataMapping(IOStatusManager, _RegisterInstance["DataMapping"], Node["DataM
         #     print(self.MemoryData)
 
     @abstractmethod
-    def merge_MemoryData(self, MemoryData:dict):
+    def _merge_MemoryData(self, MemoryData:dict):
+        """
+        merge `MemoryData` to `self.MemoryData`
+
+        must be overwriten in subclass
+        """
         pass
 
-    def relugar_MemoryData(self):
+    def _relugar_MemoryData(self):
+        """
+        regular `self.MemoryData`
+
+        must be overwriten in subclass
+        """
         pass
 
     def sort(self):
+        """
+        sort `self.MemoryData` by keys
+        """
         new_dict = dict(sorted(self.MemoryData.items(), key=lambda x:x[0])) # type: ignore
         self.MemoryData.clear()
         self.MemoryData.update(new_dict)    
@@ -4250,10 +4264,18 @@ class DataMapping(IOStatusManager, _RegisterInstance["DataMapping"], Node["DataM
     # region - property
     @property
     def num(self):
+        """
+        the number of items in the mapping
+        """
         return len(self.keys())
     
     @property
     def i_upper(self):
+        """
+        the upper limit of indices in the mapping
+
+        indices ∈ [0, i_upper)
+        """
         return max(self.keys(), default=-1) + 1
 
     @property
@@ -4262,46 +4284,143 @@ class DataMapping(IOStatusManager, _RegisterInstance["DataMapping"], Node["DataM
 
     @property
     def continuous(self):
+        """
+        whether the indices in the mapping are continuous
+        """
         return self.num == self.i_upper
     # endregion - property
 
     # region - io metas #
     def set_io_ctrl_strategy(self, strategy):
+        """
+        set the I/O control strategy based on the provided strategy. See :link:`IO_CTRL_STRATEGY` for more information.
+
+        Parameters
+        -----
+        strategy: int
+            The strategy to set = [
+            IO_CTRL_STRATEGY.FILE_IDPNDT             (0),
+            IO_CTRL_STRATEGY.FILE_SYNC               (1),
+            IO_CTRL_STRATEGY.FILE_STRICK_IDPNDT      (2),
+            IO_CTRL_STRATEGY.FILE_STRICK_SYNC        (3),
+            IO_CTRL_STRATEGY.CACHE_IDPNDT            (4),
+            IO_CTRL_STRATEGY.CACHE_SYNC              (5),
+            IO_CTRL_STRATEGY.CACHE_STRICK_IDPNDT     (6),
+            IO_CTRL_STRATEGY.CACHE_STRICK_SYNC       (7)]
+        """
         self.cache_priority, self.strict_priority_mode, self.write_synchronous = IO_CTRL_STRATEGY.get_ctrl_flag(strategy)
 
     def get_io_ctrl_strategy(self):
+        """
+        get the I/O control strategy.
+
+        Returns
+        -----
+        int: 
+            The control strategy calculated based on the given parameters.
+        """
         return IO_CTRL_STRATEGY.get_ctrl_strategy(self.cache_priority, self.strict_priority_mode, self.write_synchronous)
 
     @abstractmethod
     def read(self, src:int) -> VDMT:
+        """
+        read data from the mapping by the key `src`
+        """
         pass
 
     @abstractmethod
     def write(self, dst:int, value:VDMT, *, force = False, **other_paras) -> None:
+        """
+        write `value` to the mapping by the key `dst`
+
+        Parameters
+        -----
+        dst: int
+            the key to write
+        value: `VDMT`
+            the value to write
+        force: bool
+            whether to force the write operation, default is `False`. 
+        """
         pass
         
     @abstractmethod
     def modify_key(self, src:int, dst:int, *, force = False, **other_paras) -> None:
+        """
+        modify the key `src` to `dst`
+
+        Parameters
+        -----
+        src: int
+            the key to modify
+        dst: int
+            the new key
+        force: bool
+            whether to force the modify operation, default is `False`.
+        """
         pass
 
     @abstractmethod
     def remove(self, dst:int, *, force = False, **other_paras) -> None:
+        """
+        remove the data by key `dst`
+
+        Parameters
+        -----
+        dst: int
+            the key to remove
+        force: bool
+            whether to force the remove operation, default is `False`.
+        """
         pass
 
     @abstractmethod
     def merge_from(self, src:DMT, *, force = False) -> None:
+        """
+        merge data from another mapping
+
+        Parameters
+        -----
+        src: `DataMapping`
+            the source mapping
+        force: bool
+            whether to force the merge operation, default is `False`.
+        """
         pass
 
     @abstractmethod
     def copy_from(self, src:DMT, *, cover = False, force = False) -> None:
+        """
+        copy data from another mapping
+
+        Parameters
+        -----
+        src: `DataMapping`
+            the source mapping
+        cover: bool
+            whether to cover the data of self, default is `False`. CANNOT UNDO
+        force: bool
+            whether to force the copy operation, default is `False`.
+        """
         pass
     # endregion io metas #####
 
     # region - general #    
     def keys(self):
+        """
+        keys of the mapping
+        """
         return self.MemoryData.keys()
 
     def values(self) -> Generator[VDMT, Any, None]:
+        """
+        a generator of values of the mapping
+
+        Returns
+        ----
+        Generator[VDMT, Any, None]: 
+            a generator of values of the mapping
+        """
         def value_generator():
             keys = sorted(list(self.keys()))
             for i in keys:
@@ -4309,6 +4428,14 @@ class DataMapping(IOStatusManager, _RegisterInstance["DataMapping"], Node["DataM
         return value_generator()
     
     def items(self):
+        """
+        a generator of items of the mapping
+
+        Returns
+        ----
+        Generator[Tuple[int, VDMT], Any, None]: 
+            a generator of items of the mapping
+        """
         def items_generator():
             keys = sorted(list(self.keys()))
             for i in keys:
@@ -4345,17 +4472,30 @@ class DataMapping(IOStatusManager, _RegisterInstance["DataMapping"], Node["DataM
 
     # region - complex io ####
     def append(self, value:VDMT, *, force = False, **other_paras):
+        """
+        append a value to the mapping.
+
+        equalivent to `self.write(self.next_valid_i, value, force=force, **other_paras)`
+
+        see :link:`DataMapping.write` for more information
+        """
         assert self.KEY_TYPE == int, f"the key_type of {self.__class__.__name__} is not int"
         dst = self.next_valid_i
         self.write(dst, value, force=force, **other_paras)
 
     def clear(self, *, force = False):
+        """
+        clear the data mapping, CANNOT UNDO        
+        """
         with self.get_writer(force).allow_overwriting():
             ### TODO
             for key in tqdm(list(self.keys()), desc=f"clear {self}"):
                 self.remove(key)
 
     def make_continuous(self, *, force = False):
+        """
+        make the indices in the mapping continuous
+        """
         assert self.KEY_TYPE == int, f"the key_type of {self.__class__.__name__} is not int"
         if self.continuous:
             return
@@ -4365,18 +4505,46 @@ class DataMapping(IOStatusManager, _RegisterInstance["DataMapping"], Node["DataM
 
     @abstractmethod
     def cache_to_file(self, data_i:Optional[int] = None, *, force = False, **other_paras):
+        """
+        dump the data in cache into file
+
+        Parameters
+        -----
+        data_i: Optional[int]
+            the index of the data to cache, default is `None`, which means cache all data
+        force: bool
+            default is `False`
+        """
         pass
 
     @abstractmethod 
     def file_to_cache(self, data_i:Optional[int] = None, *, save = True, force = False, **other_paras):
+        """
+        load the data from file into cache
+
+        Parameters
+        -----
+        data_i: Optional[int]
+            the index of the data to cache, default is `None`, which means cache all data
+        save: bool
+            whether to save the cache to :link:`MemoryData_path`
+        force: bool
+            default is `False`
+        """
         pass
 
     @abstractmethod 
     def clear_files(self, *, force = False):
+        """
+        clear all files on the disk, while keep the cache in memory
+        """
         pass
 
     @abstractmethod 
     def clear_cache(self, *, force = False):
+        """
+        clear all cache in memory, while keep the files on the disk
+        """
         pass
     # endregion - complex io ####
 
@@ -6037,7 +6205,7 @@ class FilesCluster(DataMapping[FHT, FCT, VDMT], Generic[FHT, FCT, DSNT, VDMT]):
 
         self.sort()
     
-    def merge_MemoryData(self, to_merge_MemoryData:FhBinDict[FHT]):
+    def _merge_MemoryData(self, to_merge_MemoryData:FhBinDict[FHT]):
         assert type(to_merge_MemoryData) == self.MEMORY_DATA_TYPE, f"MemoryData type {type(to_merge_MemoryData)} != cluster type {type(self)}"
         same_fh:list[FilesHandle] = []
         for loaded_fh in to_merge_MemoryData.values(): # TODO: imporve speed
@@ -6660,11 +6828,11 @@ class DatasetNode(DataMapping[dict[str, bool], DSNT, VDST], ABC, Generic[FCT, DS
             for data_i in tqdm(build_data_i_list, desc=f"building {self}"):
                 self.__calc_overview(data_i)
 
-    def merge_MemoryData(self, MemoryData:Table[int, str, bool]):
+    def _merge_MemoryData(self, MemoryData:Table[int, str, bool]):
         # self.MemoryData.merge(MemoryData)
         self.MemoryData.update(MemoryData)
 
-    def relugar_MemoryData(self):
+    def _relugar_MemoryData(self):
         self.MemoryData.sort()
         for row_i in list(self.MemoryData.keys()):
             if not any(self.MemoryData.get_row(row_i).values()):
